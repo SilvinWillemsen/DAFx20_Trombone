@@ -1,0 +1,34 @@
+\section{Discretisation}\label{sec:discrete}
+
+$l = [0, \hdots, N]$ where 
+
+As done in \cite{Harrison2018}, it is useful to place either $p$ or $v$ on an interleaved grid; both in space and time. Following Harrison, we place $v$ on this interleaved grid. Accordingly, system \eqref{eq:firstOrderSystem} is discretised into the following finite difference scheme (FDS)
+\begin{subequations}\label{eq:FDS}
+    \begin{align}
+        \frac{\bar S_l}{\rho_0 c^2}\delta_{t+}p_l^n &= -\delta_{x-}(S_{l+1/2}v_{l+1/2}^{n+1/2}),\label{eq:discPressure}\\
+        \rho_0 \delta_{t-}v_{l+1/2}^{n+1/2}&=-\delta_{x+}p_l^n,\label{eq:discVelocity}
+    \end{align}
+\end{subequations}
+
+
+
+Boundary conditions:
+
+At $l = 0$
+
+
+
+after which the update schemes become
+\begin{subequations}
+    \begin{align}
+        p_l^{n+1} &= p_l^n - \frac{\rho_0 c \lambda}{\bar{S}_l}(S_{l+1/2}v_{l+1/2}^{n+1/2}-S_{l-1/2}v_{l-1/2}^{n+1/2}),\label{eq:pressureUpdate}\\
+        v_{l+1/2}^{n+1/2} &= v_{l+1/2}^{n-1/2}-\frac{\lambda}{\rho_0 c}(p_{l+1}^n - p_l^n),\label{eq:velocityUpdate}
+    \end{align}
+\end{subequations}
+where $\lambda = ck/h$ is referred to as the Courant number and
+\begin{equation}
+    \lambda \leq 1
+\end{equation}
+in order for the scheme to be stable. 
+
+\input{Sections/tromboneTikz.tex}

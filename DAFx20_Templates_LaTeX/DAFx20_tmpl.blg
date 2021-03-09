@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: DAFx20_tmpl.aux
+The style file: IEEEbib.bst
+Database file #1: DAFx20_tmpl.bib
+You've used 15 entries,
+            1838 wiz_defined-function locations,
+            564 strings with 6222 characters,
+and the built_in function-call counts, 3075 in all, are:
+= -- 299
+> -- 97
+< -- 4
++ -- 40
+- -- 25
+* -- 212
+:= -- 493
+add.period$ -- 15
+call.type$ -- 15
+change.case$ -- 12
+chr.to.int$ -- 0
+cite$ -- 15
+duplicate$ -- 151
+empty$ -- 304
+format.name$ -- 25
+if$ -- 693
+int.to.chr$ -- 0
+int.to.str$ -- 15
+missing$ -- 12
+newline$ -- 78
+num.names$ -- 16
+pop$ -- 42
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 63
+stack$ -- 0
+substring$ -- 188
+swap$ -- 38
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 32
+width$ -- 17
+write$ -- 169

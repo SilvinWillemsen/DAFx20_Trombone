@@ -1,0 +1,32 @@
+\section{Implementation}
+
+\subsection{Parameters}
+
+\begin{table}[t]\label{tab:parameters}
+    \small
+    \begin{center}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Name & Symbol (unit) & Value\\ \hline
+        \multicolumn{3}{|l|}{\bf Tube}\\ \hline
+        Length & $L$ (m) & $2.685\leq L \leq 3.718$$^\star$\\
+        Air density &$\rho_0$ (kg/m$^3$) & 1.1769** 
+        \\
+        Wave speed & $c$ (m/s) & 347.23**\\
+        Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry} \\\hline
+        \multicolumn{3}{|l|}{\bf Lip reed}\\ \hline
+        Mass & $M_\text{r}$ (kg) & $5.37\cdot10^{-5}$*\\
+        Frequency & $\omega_0$ (rad/s) & $?? \leq \omega_0 \leq ??$\\
+        Mouth pressure & $P_\text{m}$ (Pa) & $0 \leq P_\text{m} \leq 6000??$\\
+        Damping & $\sigma_\text{r}$ (s$^{-1}$) & $5$*\\
+        Eff. surface area & $S_\text{r}$ (m$^{2}$) & $1.46\cdot 10^{-5}$*\\
+        Width & $w_\text{r}$ (m) & $0.01$* \\
+        Equilibrium & $H_0$ (m) &  $2.9 \cdot 10^{-4}$* \\\hline
+
+    \end{tabular}
+    \caption{List of parameter values used for the simulation. 
+    Taken from $^\star$\cite{Smyth2011}, *\cite{Harrison2018} or **\cite{Benade1968} with temperature $T=26.85^\circ C$. }
+    \end{center}
+\end{table}
+
+\subsection{Order of Calculation}
