@@ -1,11 +1,15 @@
 \BOOKMARK [1][-]{section.1}{1 \040Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{2 \040Continuous}{}% 2
+\BOOKMARK [1][-]{section.2}{2 \040Continuous System}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{2.1 \040Coupling to a Lip Reed}{section.2}% 3
 \BOOKMARK [2][-]{subsection.2.2}{2.2 \040Radiation}{section.2}% 4
 \BOOKMARK [1][-]{section.3}{3 \040Discretisation}{}% 5
-\BOOKMARK [1][-]{section.4}{4 \040Dynamic grid}{}% 6
-\BOOKMARK [1][-]{section.5}{5 \040Implementation}{}% 7
-\BOOKMARK [2][-]{subsection.5.1}{5.1 \040Parameters}{section.5}% 8
-\BOOKMARK [2][-]{subsection.5.2}{5.2 \040Order of Calculation}{section.5}% 9
-\BOOKMARK [1][-]{section.6}{6 \040Conclusion and Future Work}{}% 10
-\BOOKMARK [1][-]{section.7}{7 \040References}{}% 11
+\BOOKMARK [2][-]{subsection.3.1}{3.1 \040Numerical Methods}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.2}{3.2 \040Discrete Tube}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.3}{3.3 \040Lip reed}{section.3}% 8
+\BOOKMARK [1][-]{section.4}{4 \040Dynamic grid}{}% 9
+\BOOKMARK [2][-]{subsection.4.1}{4.1 \040Adding and removing grid points}{section.4}% 10
+\BOOKMARK [1][-]{section.5}{5 \040Implementation}{}% 11
+\BOOKMARK [2][-]{subsection.5.1}{5.1 \040Parameters}{section.5}% 12
+\BOOKMARK [2][-]{subsection.5.2}{5.2 \040Order of Calculation}{section.5}% 13
+\BOOKMARK [1][-]{section.6}{6 \040Conclusion and Future Work}{}% 14
+\BOOKMARK [1][-]{section.7}{7 \040References}{}% 15

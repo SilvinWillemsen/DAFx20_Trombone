@@ -1,19 +1,26 @@
-\section{Continuous}\label{sec:continuous}
-The behaviour of the air in an acoustic tube can be approximated using a 1-dimensional model. 
-
-Consider a tube of \SWcomment[time-varying] length $L$ \SWcomment[$=L(t)$] (in m) defined over spatial domain $x\in [0, L]$ and time $t\geq 0$. A system of first-order PDEs can then be written as
+\section{Continuous System}\label{sec:continuous}
+Wave propagation in an acoustic tube can be approximated using a 1-dimensional model. Consider a tube of \SWcomment[time-varying] length $L$ \SWcomment[$=L(t)$] (in m) defined over spatial domain $x\in [0, L]$ and time $t\geq 0$. Using operators $\partial_t$ and $\partial_x$ denoting a first-order derivative with respect to time $t$ and space $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as
 \begin{subequations}\label{eq:firstOrderSystem}
     \begin{align}
         \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
-        \rho_0\partial_tv &= -\partial_xp\label{eq:discVelocity}
+        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}
     \end{align}
 \end{subequations}
-with pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s).
+with pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s).
+
+Boundary conditions can then be imposed at the ends of domain, $x=0, L$. We assume the left boundary (at the mouthpiece) to be closed and the right (at the bell) to be open according to  
+\begin{subequations}\label{eq:contBound}
+    \begin{align}
+        S(0,t)v(0,t) &= 0, \quad \text{(Neumann, closed)}\label{eq:contNeumann}\\
+        p(L,t) &= 0. \quad \text{(Dirichlet, open)}\label{eq:contDirichlet}
+    \end{align}
+\end{subequations}
+In the following, these (lossless) boundary conditions will be modified to be coupled to a lip reed and radiating respectively.
 
 \subsection{Coupling to a Lip Reed}
 To excite the system, a lip reed can be modelled as a simple oscillating mass according to
-\begin{equation}
-    M_\text{r}\frac{d^2y}{dt^2} = -K y - M_\text{r} \sigma_\text{r} \frac{dy}{dt} + S_\text{r}\Delta p,
+\begin{equation}\label{eq:lipReedCont}
+    M_\text{r}\frac{d^2y}{dt^2} = -M_\text{r}\omega_0^2 y - M_\text{r} \sigma_\text{r} \frac{dy}{dt} + S_\text{r}\Delta p,
 \end{equation}
 with displacement from the equilibrium $y = y(t)$, lip mass $M_\text{r}$ (in kg), externally supplied (angular) frequency of oscillation $w_0$ \SWcomment[$= w_0(t)$] $= \sqrt{K/M_\text{r}}$ (in rad/s), stiffness $K$ \SWcomment[$= K(t)$] (in N/m), effective surface area $S_\text{r}$ (in m$^2$) and 
 \begin{equation}
@@ -29,13 +36,13 @@ This pressure difference causes a volume flow velocity following the Bernoulli e
     U_\text{r} = S_\text{r} \frac{dy}{dt}
 \end{equation}
 (in m/s).
-Assuming that the volume flow velocity is conserved the total air volume entering the system is defined as
-\begin{equation}
+Assuming that the volume flow velocity is conserved, the total air volume entering the system is defined as
+\begin{equation}\label{eq:lipBoundary}
     S(0)v(0,t) = U_\text{B}(t) + U_\text{r}(t).
 \end{equation}
-
+The lip reed can then be coupled to the tube by modifying boundary condition \eqref{eq:contNeumann} to \eqref{eq:lipBoundary}.
 
 \input{sections/lipSystem.tex}
 
 \subsection{Radiation}
-The radiation model used is the one for the unflanged cylindrical pipe proposed by Levine and Schwinger in \cite{Levine1948} and discretised by Silva \emph{et al.} in \cite{Silva2009}. As it is not important for the contribution of this work it will not be detailed here in full. The reader is instead referred to \cite{Harrison2018} for a comprehensive explanation. 
+As the bell-end of brass instruments is in a way ``coupled" to the air, the tube loses energy at the bell, or right boundary. These losses can be modelled using a radiation model and lossless condition \eqref{eq:contDirichlet} can be modified to be radiating instead. The radiation model used is the one for the unflanged cylindrical pipe proposed by Levine and Schwinger in \cite{Levine1948} and discretised by Silva \emph{et al.} in \cite{Silva2009}. As this model is not important for the contribution of this work it will not be detailed here in full. The interested reader is instead referred to \cite{Harrison2018} for a comprehensive explanation. 

@@ -1,8 +1,35 @@
 \section{Implementation}
 
 \subsection{Parameters}
+A schematic showing the trombone geometry is shown in Figure \ref{fig:tromboneSchematic} and the lengths and radii used in Table \ref{tab:geometry}.
 
-\begin{table}[t]\label{tab:parameters}
+Other parameters used in the simulation can be found in Table \ref{tab:parameters}.
+
+
+\begin{table}[t]
+    \small
+    \begin{center}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Part of tube & Length (cm) & Radius (cm)\\\hline
+        Inner slide (1) & 70.8 & 0.69\\
+        Outer slide (extended) (2) & 53 & 0.72 
+        \\
+        Slide crook (3)& 17.7 & 0.74\\
+        Outer slide (extended) (4) & 53 & 0.72 
+        \\
+        Inner slide (5) & 71.1 & 0.69\\
+        Gooseneck (6) & 24.1 & 0.71\\
+        Tuning slide (7) & 25.4 & 0.75, 1.07\\
+        Bell flare (8) & 56.7 \SWcomment[$\leftarrow$check]& 1, 10.8\\\hline
+    \end{tabular}
+    \caption{Geometry of a measured trombone taken from \cite{Smyth2011}. Numbers correspond to Figure \ref{fig:tromboneSchematic}.\label{tab:geometry}}
+    \end{center}
+\end{table}
+
+\input{Sections/tromboneTikz.tex}
+
+\begin{table}[t]
     \small
     \begin{center}
     \begin{tabular}{|l|c|c|}
@@ -13,7 +40,7 @@
         Air density &$\rho_0$ (kg/m$^3$) & 1.1769** 
         \\
         Wave speed & $c$ (m/s) & 347.23**\\
-        Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry} \\\hline
+        Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry}. \\\hline
         \multicolumn{3}{|l|}{\bf Lip reed}\\ \hline
         Mass & $M_\text{r}$ (kg) & $5.37\cdot10^{-5}$*\\
         Frequency & $\omega_0$ (rad/s) & $?? \leq \omega_0 \leq ??$\\
@@ -25,7 +52,7 @@
 
     \end{tabular}
     \caption{List of parameter values used for the simulation. 
-    Taken from $^\star$\cite{Smyth2011}, *\cite{Harrison2018} or **\cite{Benade1968} with temperature $T=26.85^\circ C$. }
+    Taken from $^\star$\cite{Smyth2011}, *\cite{Harrison2018} or **\cite{Benade1968} with temperature $T=26.85^\circ C$. \label{tab:parameters}}
     \end{center}
 \end{table}
 
