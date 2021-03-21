@@ -1,5 +1,5 @@
 # Fdb version 3
-["bibtex DAFx20_tmpl"] 1616342744 "DAFx20_tmpl.aux" "DAFx20_tmpl.bbl" "DAFx20_tmpl" 1616342806
+["bibtex DAFx20_tmpl"] 1616342744 "DAFx20_tmpl.aux" "DAFx20_tmpl.bbl" "DAFx20_tmpl" 1616342987
   "./IEEEbib.bst" 1613044983 17903 9ff833f4bf67f47893e44ee17b52d211 ""
   "DAFx20_tmpl.aux" 1616342805 8673 dcceb802c8a0dfdb8263204e141daf8c ""
   "DAFx20_tmpl.bcf" 0 -1 0 ""
@@ -7,7 +7,7 @@
   (generated)
   "DAFx20_tmpl.bbl"
   "DAFx20_tmpl.blg"
-["pdflatex"] 1616342804 "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.tex" "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf" "DAFx20_tmpl" 1616342806
+["pdflatex"] 1616342804 "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.tex" "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf" "DAFx20_tmpl" 1616342987
   "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.aux" 1616342805 8673 dcceb802c8a0dfdb8263204e141daf8c ""
   "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.tex" 1616325431 15614 edcbfd5fb27a79f55da1b6ce1dbdaaae ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
@@ -211,9 +211,9 @@
   "sections/introduction.tex" 1616336269 111 e6eec8ce7ec7c57bf5066725cb9fddfd ""
   "sections/lipSystem.tex" 1616322484 6564 485822e9df0f8d61adbe0965f117d5f9 ""
   (generated)
-  "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf"
-  "DAFx20_tmpl.log"
   "DAFx20_tmpl.out"
-  "DAFx20_tmpl.aux"
-  "DAFx20_tmpl.pdf"
   "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.log"
+  "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf"
+  "DAFx20_tmpl.pdf"
+  "DAFx20_tmpl.aux"
+  "DAFx20_tmpl.log"
