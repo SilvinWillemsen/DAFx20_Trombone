@@ -75,7 +75,7 @@ Finally, the boundary conditions in \eqref{eq:contBound} can be discretised as
 \subsection{Lip reed}
 As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$.
 
-Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows:
+Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows \SWcomment[Still need to add collision here, but I'm in doubt as to whether I want to include it at all.. The effect on the system is ]:
 \def\nphSys{n+1/2}
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
@@ -85,7 +85,7 @@ Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as fol
     \end{aligned}\label{eq:discReed}\\
     &\Delta p^{\nphSys} = P_\text{m} - \mu_{t+}p_0^n\label{eq:pDiff}\\
     &\begin{aligned}
-        U_\text{B}^{\nphSys} =&\ w[y^{\nphSys}+H_0]_+\text{sgn}(\Delta p^{\nphSys})\label{eq:bernoulli}\\
+        U_\text{B}^{\nphSys} =&\ w[\eta^{\nphSys}]_+\text{sgn}(\Delta p^{\nphSys})\label{eq:bernoulli}\\
         &
         \cdot\sqrt{2|\Delta p^{\nphSys}|/\rho_0}
     \end{aligned}\\
