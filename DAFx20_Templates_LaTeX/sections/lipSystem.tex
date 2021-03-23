@@ -84,6 +84,10 @@
 
     \node[rotate = 0] at (0.5, 1) (Sr) {$S_\text{r}$};
 
+    % % eta line
+    % \draw[-] (0.5*\massWidth, 0) -- (0.5*\massWidth, -2)
+    % node[] at (0.5*\massWidth + 0.5, -1) (eta) {$\eta$};
+
     \def\xOffset{0.3};
     % draw spring
     \filldraw[black] (-0.5 + \xOffset, 2.5) circle (1pt) node[anchor=center](topSpring){};    
@@ -133,6 +137,7 @@
     \draw[->] (3.75, -1.5) -- (3.75, 1.5);
     \node at (4, 0) {$0$};
     \draw (3.75 - \axisLineWidth, 0) -- (3.75 + \axisLineWidth, 0) {};
+
 
     \draw (3.75 - \axisLineWidth, -1.5) -- (3.75 + \axisLineWidth, -1.5) {};
     \node at (4.2, -1.5) {$-H_0$};
