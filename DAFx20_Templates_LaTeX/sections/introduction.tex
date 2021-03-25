@@ -5,8 +5,18 @@ From the point of view of the excitation, the interaction between the lips and t
 The sound propagation in the trombone also presents some very interesting nonlinearities, which have been investigated and simulated
 \cite{msallam1997physical,msallam2000physical,campbell2004brass}.
 One of the interesting characteristics of this instrument is the fact that the physical dimensions of the resonator vary while playing it.
-When simulating the body of the instrument using finite difference schemes (FDSs), this can be simulated by having a grid that 
+Some synthesis techniques such as digital waveguides 
+
+allow to approach the issue of dynamic resonator changes in a simple and computationally efficient way, and this feature has been extensively used in real-time sound synthesis \cite{cook2002real}.
+
+However, when modelling the resonator of the instrument using finite difference schemes (FDSs), the issue is not as trivial, and changes might compromise stability.
+Previous implementations of brass instruments using FDSs focus on the trumpet 
+ \cite{harrison2015environment}. To our knowledge, the simulation of a trombone with varying in realtime the shape of the resonator using FDSs has not been addressed yet.
+We can cope with this limitation  by having a grid that 
  dynamically changes as shown in a companion paper \cite{Willemsen2021}.
+
+ 
+
  Briefly described, we modify the grid configurations of the FDSs by adding and subtracting grid points based on parameters describing the system.
  In this paper we propose a full simulation of a trombone, describing in details all its elements and with a specific focus on the dynamic grid simulation.
  
