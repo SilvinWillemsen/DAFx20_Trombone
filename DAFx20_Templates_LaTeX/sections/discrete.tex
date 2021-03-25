@@ -55,7 +55,7 @@ System \eqref{eq:firstOrderSystem} can then be discretised into the following sy
 where $S_{l+1/2} = \mu_{x+}S_l$ and $\bar S_l = \mu_{x-}S_{l+1/2}$ are approximations to the continuous cross-sectional area $S(x)$. The values for $\bar S_l$ at the boundaries, i.e., $\bar S_0$ and $\bar S_N$ are set equal to $S(0)$ and $S(L)$.
 
 Expanding the operators, we obtain the following recursion
-\begin{subequations}
+\begin{subequations}\label{eq:updateNormal}
     \begin{align}
         p_l^{n+1} &= p_l^n - \frac{\rho_0 c \lambda}{\bar{S}_l}(S_{l+1/2}v_{l+1/2}^{n+1/2}-S_{l-1/2}v_{l-1/2}^{n+1/2}),\label{eq:pressureUpdate}\\
         v_{l+1/2}^{n+1/2} &= v_{l+1/2}^{n-1/2}-\frac{\lambda}{\rho_0 c}(p_{l+1}^n - p_l^n),\label{eq:velocityUpdate}
