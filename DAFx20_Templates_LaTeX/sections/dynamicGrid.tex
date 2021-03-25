@@ -10,9 +10,7 @@
 \end{figure*}
 
 \section{Dynamic grid}\label{sec:dynamicGrid}
-Arguably the most characteristic feature of the trombone is its slide with which the length of the tube is altered and the resonating frequencies are changed. In a companion article \cite{Willemsen2021}, we present a method to dynamically change grid configurations of FDSs by adding and subtracting grid points based on paramters describing the system.
-
-Though the paper shows changes in the wavespeed $c$ rather than the length $L$, the effect of a change in either of these parameters has an identical effect on the system \SWcomment[as long as the geometry is unchanged for the grid points.] This also means that grid spacing $h$ not change during the simulation, but rather the spatial domain of the system.
+Arguably the most characteristic feature of the trombone is its slide with which the length of the tube is altered and the resonating frequencies are changed. In a companion article \cite{Willemsen2021}, we present a method to dynamically change grid configurations of FDSs by adding and subtracting grid points based on paramters describing the system. Though the paper shows changes in the wavespeed $c$ rather than the length $L$, the effect of a change in either of these parameters has an identical effect on these systems \SWcomment[as long as the geometry is unchanged for the grid points.] This also means that grid spacing $h$ does not change during the simulation, but rather the spatial domain of the system.
 
 We can split a tube with length $L$ into two smaller sections with lengths $L_p$ and $L_q$ (in m) such that $L = L_p + L_q$. Splitting the FDSs in \eqref{eq:FDS} in this way yields two sets of first-order systems. The pressure and particle velocity of the first (left) system $p_\lp^n$ and $v_{\lp+1/2}^{n+1/2}$ are defined over discrete domains $\lp = [0, \hdots, M]$ and $\lp = [0, \hdots, M-1]$ respectively. Here, $M = \lceil L_p/h\rceil$ where $\lceil \cdot \rceil$ denotes the ceiling operation. The pressure and particle velocity of the second (right) system $q_\lq^n$ and $w_{\lq+1/2}^{n+1/2}$ are defined over discrete domains $\lq = [0, \hdots, M_q]$ and $\lq = [0, \hdots, M_q-1]$ respectively. Here $M_q = \lfloor L_q/h\rfloor$ where $\lfloor \cdot \rfloor$ denotes the flooring operation. The resulting system of FDSs then becomes
 \begin{subequations}\label{eq:firstOrderPairs}
@@ -34,18 +32,20 @@ The two pairs of first order systems in \eqref{eq:firstOrderPairs} are placed on
     x_{p_\lp} = \lp h, \quad \text{and}\quad
     x_{q_\lq} = L-(M_q - \lq)h
 \end{equation}
-describing the locations of the left system and right system respectively. It can be observed from Eq. \eqref{eq:gridLocations} that as the tube length $L$ changes, the locations of the grid points of the right system will change. More specifically, as the trombone-slide is extended and $L$ increases, all grid points of the right system move to the right, and vice versa for a contracting slide. As the interval between the inner boundaries will vary, the continuous domain $x \in [0,L]$ will not necessarily be subdivided into an integer amount of intervals $N$. This is where a \textit{fractional} number of intervals is introduced and is defined as \begin{equation}
+describing the locations of the left system and right system respectively. It can be observed from Eq. \eqref{eq:gridLocations} that as the tube length $L$ changes, the locations of the grid points of the right system will change. More specifically, as the trombone-slide is extended and $L$ increases, all grid points of the right system move to the right, and vice versa for a contracting slide. If $L$ is changed in a smooth fashion, the continuous domain $x \in [0,L]$ will not necessarily be subdivided into an integer amount of intervals $N$ (of size $h$). This is where a \textit{fractional} number of intervals is introduced and is defined as 
+\begin{equation}
     \Nfrac = L/h,
 \end{equation}
 which is essentially Eq. \eqref{eq:numberOfIntervals} without the flooring operation, yielding $N = \lfloor \Nfrac \rfloor$. The fractional part of $\Nfrac$ can then be calculated using
 \begin{equation}\label{eq:alphaDef}
     \alpha = \alpha^n = \Nfrac^n - N^n,
 \end{equation}
-which essentially describes the distance between the inner boundaries along the grid normalised by the grid spacing. If $\Nfrac^n = N^n$ and $\alpha = 0$, the inner boundaries $p_M$ and $q_0$ perfectly overlap. This also means that the domain $x$ can be exactly divided into $N$ equal intervals of size $h$. As the virtual grid points $p_{M+1}^n$ and $q_{-1}^n$ perfectly overlap with $q_{1}^n$ and $p_{M-1}^n$ respectively, these values can be used directly to calculate the inner boundaries.
-
-If $\alpha \neq 0$, some other definition needs to be found for these points. 
-
-Quadratic Lagrangian interpolation is used to calculate $p_{M+1}^n$ and $q_{-1}^n$ according to
+which essentially describes the distance between the inner boundaries along the grid in terms of how many times $h$ would fit in-between. If $\Nfrac^n = N^n$ and $\alpha = 0$, the inner boundaries $p_M$ and $q_0$ perfectly overlap. This also means that the domain $x$ can be exactly divided into $N$ equal intervals of size $h$. As the virtual grid points $p_{M+1}^n$ and $q_{-1}^n$ perfectly overlap with $q_{1}^n$ and $p_{M-1}^n$ respectively, these values can be used directly to calculate the inner boundaries. This situation effectively acts as a rigid connection between the inner boundaries defined as
+\begin{equation}\label{eq:rigidConn}
+    p_M^n = q_0^n.
+\end{equation}
+%
+If $\alpha \neq 0$, some other definition for $p_{M+1}^n$ and $q_{-1}^n$ needs to be found. We use quadratic Lagrangian interpolation according to
 \begin{subequations}\label{eq:connectionInterpol}
 \begin{align}
         &p_{M+1}^n = \frac{\alpha - 1}{\alpha + 1}p_{M}^n + q_0^n - \frac{\alpha - 1}{\alpha + 1}q_1^n
@@ -54,22 +54,16 @@ Quadratic Lagrangian interpolation is used to calculate $p_{M+1}^n$ and $q_{-1}^
         =-\frac{\alpha - 1}{\alpha + 1}p_{M-1}^n + p_{M}^n+ \frac{\alpha - 1}{\alpha + 1}q_{0}^n.\label{eq:calcQm1}
 \end{align}
 \end{subequations}
-which can then be used to calculate $v_{M+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_M^{n+1}$ and $q_0^{n+1}$. This process repeats every sample. It can be shown that if $\alpha=0$
-
-
-
-
+which can then be used to calculate $v_{M+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_M^{n+1}$ and $q_0^{n+1}$. This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M+1}^n = q_1^n$ and $q_{-1}^n = p_{M-1}^n$ as stated before.
 
 One can change the 
-
-
-As the geometry varies it matters a lot where points are added and subtracted. 
 
 
 \subsection{Adding and removing grid points}
 As $L$ changes, $L_p$ and $L_q$ change equally
 $L_\text{diff} = L^n-L^{n-1}$, $L_p^n = L_p^{n-1} + 0.5 L_\text{diff}$, $L_q^n =  L_q^{n-1} + 0.5L_\text{diff}$
 
-Use average to prevent drift when $\alpha = 0$ and stays 0.
 
-The main challenge, though, is to apply the method to a system of first-order equations rather than the second-order 1D wave equation presented in \cite{Willemsen2021}. \SWcomment[Rather than adding points to the left and right system in alternating fashion, points are added to pressures $p$ and $q$ and velocities $v$ and $w$ respectively]
+As the geometry varies it matters a lot where points are added and removed. 
+
+Experiments with adding / removing grid points where the geometry varies have been left for future work

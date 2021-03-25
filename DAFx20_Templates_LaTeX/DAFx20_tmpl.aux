@@ -20,6 +20,8 @@
 \citation{msallam1997physical}
 \citation{msallam2000physical}
 \citation{campbell2004brass}
+\citation{cook2002real}
+\citation{harrison2015environment}
 \citation{Willemsen2021}
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
@@ -55,27 +57,16 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2} Discrete Tube}{2}{subsection.3.2}}
 \newlabel{sec:discSyst}{{3.2}{2}{Discrete Tube}{subsection.3.2}{}}
 \newlabel{eq:numberOfIntervals}{{16}{2}{Discrete Tube}{equation.3.16}{}}
-\newlabel{eq:FDS}{{17}{2}{Discrete Tube}{equation.3.17}{}}
-\newlabel{eq:discPressure}{{17a}{2}{Discrete Tube}{equation.3.17a}{}}
-\newlabel{eq:discVelocity}{{17b}{2}{Discrete Tube}{equation.3.17b}{}}
-\newlabel{eq:pressureUpdate}{{18a}{2}{Discrete Tube}{equation.3.18a}{}}
-\newlabel{eq:velocityUpdate}{{18b}{2}{Discrete Tube}{equation.3.18b}{}}
 \citation{Willemsen2021}
 \citation{Willemsen2021}
 \citation{Willemsen2021}
 \citation{Willemsen2021}
-\citation{Smyth2011}
-\citation{Smyth2011}
-\citation{Smyth2011}
-\citation{Harrison2018}
-\citation{Benade1968}
-\citation{Smyth2011}
-\citation{Harrison2018}
-\citation{Benade1968}
-\citation{*}
-\bibstyle{IEEEbib}
-\bibdata{DAFx20_tmpl}
-\bibcite{campbell2004brass}{1}
+\newlabel{eq:FDS}{{17}{3}{Discrete Tube}{equation.3.17}{}}
+\newlabel{eq:discPressure}{{17a}{3}{Discrete Tube}{equation.3.17a}{}}
+\newlabel{eq:discVelocity}{{17b}{3}{Discrete Tube}{equation.3.17b}{}}
+\newlabel{eq:updateNormal}{{18}{3}{Discrete Tube}{equation.3.18}{}}
+\newlabel{eq:pressureUpdate}{{18a}{3}{Discrete Tube}{equation.3.18a}{}}
+\newlabel{eq:velocityUpdate}{{18b}{3}{Discrete Tube}{equation.3.18b}{}}
 \newlabel{eq:discNeumann}{{20a}{3}{Discrete Tube}{equation.3.20a}{}}
 \newlabel{eq:discDirich}{{20b}{3}{Discrete Tube}{equation.3.20b}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3} Lip reed}{3}{subsection.3.3}}
@@ -87,33 +78,56 @@
 \newlabel{eq:UbUr}{{21e}{3}{Lip reed}{equation.3.21e}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4} Dynamic grid}{3}{section.4}}
 \newlabel{sec:dynamicGrid}{{4}{3}{Dynamic grid}{section.4}{}}
+\newlabel{eq:firstOrderPairs}{{22}{3}{Dynamic grid}{equation.4.22}{}}
 \newlabel{eq:discPressureP}{{22a}{3}{Dynamic grid}{equation.4.22a}{}}
 \newlabel{eq:discVelocityV}{{22b}{3}{Dynamic grid}{equation.4.22b}{}}
-\newlabel{eq:discPressureP}{{22c}{3}{Dynamic grid}{equation.4.22c}{}}
-\newlabel{eq:discVelocityV}{{22d}{3}{Dynamic grid}{equation.4.22d}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1} Adding and removing grid points}{3}{subsection.4.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {5} Implementation}{3}{section.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1} Parameters}{3}{subsection.5.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.2} Order of Calculation}{3}{subsection.5.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {6} Results and Discussion}{3}{section.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {7} Conclusion and Future Work}{3}{section.7}}
-\newlabel{sec:conclusion}{{7}{3}{Conclusion and Future Work}{section.7}{}}
-\bibcite{msallam1997physical}{2}
-\bibcite{msallam2000physical}{3}
-\bibcite{Willemsen2021}{4}
-\bibcite{Levine1948}{5}
-\bibcite{Silva2009}{6}
-\bibcite{Harrison2018}{7}
-\bibcite{Smyth2011}{8}
-\bibcite{Benade1968}{9}
-\bibcite{smyth2011trombone}{10}
-\bibcite{JUCE}{11}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ are the result of the interpolation of known pressure values at $n$ \relax }}{4}{figure.caption.3}}
-\newlabel{fig:dynamicGridSchematic}{{2}{4}{Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ are the result of the interpolation of known pressure values at $n$ \relax }{figure.caption.3}{}}
+\newlabel{eq:discPressureQ}{{22c}{3}{Dynamic grid}{equation.4.22c}{}}
+\newlabel{eq:discVelocityW}{{22d}{3}{Dynamic grid}{equation.4.22d}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1} Changing the Tube Length}{3}{subsection.4.1}}
+\newlabel{eq:gridLocations}{{23}{3}{Changing the Tube Length}{equation.4.23}{}}
+\newlabel{eq:alphaDef}{{25}{3}{Changing the Tube Length}{equation.4.25}{}}
+\citation{Smyth2011}
+\citation{Smyth2011}
+\citation{Smyth2011}
+\citation{Harrison2018}
+\citation{Benade1968}
+\citation{Smyth2011}
+\citation{Harrison2018}
+\citation{Benade1968}
+\citation{Willemsen2021}
+\citation{*}
+\bibstyle{IEEEbib}
+\bibdata{DAFx20_tmpl}
+\bibcite{campbell2004brass}{1}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Schematic showing data flow of how different grid points at time index $n+1$ are calculated with $\alpha = 0.25$ in Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:alphaDef}\unskip \@@italiccorr )}}. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown (refer to Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:updateNormal}\unskip \@@italiccorr )}}). Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ and $w_{-1/2}^n$ are the result of the interpolation of known pressure values at $n$ using Eq. \textup  {\hbox {\mathsurround \z@ \normalfont  (\ignorespaces \ref  {eq:connectionInterpol}\unskip \@@italiccorr )}}. . \relax }}{4}{figure.caption.3}}
+\newlabel{fig:dynamicGridSchematic}{{2}{4}{Schematic showing data flow of how different grid points at time index $n+1$ are calculated with $\alpha = 0.25$ in Eq. \eqref {eq:alphaDef}. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown (refer to Eq. \eqref {eq:updateNormal}). Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ and $w_{-1/2}^n$ are the result of the interpolation of known pressure values at $n$ using Eq. \eqref {eq:connectionInterpol}. . \relax }{figure.caption.3}{}}
+\newlabel{eq:rigidConn}{{26}{4}{Changing the Tube Length}{equation.4.26}{}}
+\newlabel{eq:connectionInterpol}{{27}{4}{Changing the Tube Length}{equation.4.27}{}}
+\newlabel{eq:calcPMp1}{{27a}{4}{Changing the Tube Length}{equation.4.27a}{}}
+\newlabel{eq:calcQm1}{{27b}{4}{Changing the Tube Length}{equation.4.27b}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2} Adding and removing grid points}{4}{subsection.4.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {5} Implementation}{4}{section.5}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1} Parameters}{4}{subsection.5.1}}
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Geometry of a measured trombone taken from \cite  {Smyth2011}. Numbers correspond to Figure \ref  {fig:tromboneSchematic}.\relax }}{4}{table.caption.4}}
 \newlabel{tab:geometry}{{1}{4}{Geometry of a measured trombone taken from \cite {Smyth2011}. Numbers correspond to Figure \ref {fig:tromboneSchematic}.\relax }{table.caption.4}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8} References}{4}{section.8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Schematic of the trombone. Numbers correspond to the parts of the tube found in Table \ref  {tab:geometry} and dashed lines highlight where parts are separated. The scheme is split in the middle of the slide crook with the colours corresponding to those in \ref  {fig:dynamicGridSchematic}.\relax }}{4}{figure.caption.5}}
-\newlabel{fig:tromboneSchematic}{{3}{4}{Schematic of the trombone. Numbers correspond to the parts of the tube found in Table \ref {tab:geometry} and dashed lines highlight where parts are separated. The scheme is split in the middle of the slide crook with the colours corresponding to those in \ref {fig:dynamicGridSchematic}.\relax }{figure.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.2} Order of Calculation}{4}{subsection.5.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {6} Results and Discussion}{4}{section.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {7} Conclusion and Future Work}{4}{section.7}}
+\newlabel{sec:conclusion}{{7}{4}{Conclusion and Future Work}{section.7}{}}
+\bibcite{msallam1997physical}{2}
+\bibcite{msallam2000physical}{3}
+\bibcite{cook2002real}{4}
+\bibcite{harrison2015environment}{5}
+\bibcite{Willemsen2021}{6}
+\bibcite{Levine1948}{7}
+\bibcite{Silva2009}{8}
+\bibcite{Harrison2018}{9}
+\bibcite{Smyth2011}{10}
+\bibcite{Benade1968}{11}
+\bibcite{smyth2011trombone}{12}
+\bibcite{JUCE}{13}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Schematic of the trombone. Numbers correspond to the parts of the tube found in Table \ref  {tab:geometry} and dashed lines highlight where parts are separated. The scheme is split in the middle of the slide crook with the colours corresponding to those in \ref  {fig:dynamicGridSchematic}.\relax }}{5}{figure.caption.5}}
+\newlabel{fig:tromboneSchematic}{{3}{5}{Schematic of the trombone. Numbers correspond to the parts of the tube found in Table \ref {tab:geometry} and dashed lines highlight where parts are separated. The scheme is split in the middle of the slide crook with the colours corresponding to those in \ref {fig:dynamicGridSchematic}.\relax }{figure.caption.5}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces List of parameter values used for the simulation. Taken from $^\star $\cite  {Smyth2011}, *\cite  {Harrison2018} or **\cite  {Benade1968} with temperature $T=26.85^\circ C$. \relax }}{5}{table.caption.6}}
 \newlabel{tab:parameters}{{2}{5}{List of parameter values used for the simulation. Taken from $^\star $\cite {Smyth2011}, *\cite {Harrison2018} or **\cite {Benade1968} with temperature $T=26.85^\circ C$. \relax }{table.caption.6}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8} References}{5}{section.8}}

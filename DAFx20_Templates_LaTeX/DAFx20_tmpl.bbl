@@ -19,6 +19,17 @@ R{\'e}gis Msallam, Samuel Dequidt, Rene Causse, and Stephan Tassart,
 \newblock {\em Acta Acustica united with Acustica}, vol. 86, no. 4, pp.
   725--736, 2000.
 
+\bibitem{cook2002real}
+Perry~R Cook,
+\newblock {\em Real sound synthesis for interactive applications},
+\newblock CRC Press, 2002.
+
+\bibitem{harrison2015environment}
+Reginald~Langford Harrison, Stefan Bilbao, James Perry, and Trevor Wishart,
+\newblock ``An environment for physical modeling of articulated brass
+  instruments,''
+\newblock {\em Computer Music Journal}, vol. 39, no. 4, pp. 80--95, 2015.
+
 \bibitem{Willemsen2021}
 S.~Willemsen, S.~Bilbao, M.~Ducceschi, and S.~Serafin,
 \newblock ``Dynamic grids for finite-difference schemes in musical instrument
