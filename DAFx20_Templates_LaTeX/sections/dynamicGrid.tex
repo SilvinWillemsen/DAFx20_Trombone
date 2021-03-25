@@ -1,7 +1,7 @@
 \begin{figure*}[t]
     \centering
     \includegraphics[width = \textwidth]{Figures/tromboneSchematic.eps}
-    \caption{Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M_p}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ %and $w_{-1/2}^n$ 
+    \caption{Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ %and $w_{-1/2}^n$ 
     are the result of the interpolation of known pressure values at $n$ %and velocity values at $n+1/2$ respectively
     %. \SWcomment[Seemingly, $q_0^n$ is not calculated from anything, but it is simply $q_0^{n+1}$ time-shifted back. The same would be shown for $v_{M_p+1/2}^{n-1/2}$, but the figure does not go back-in-time more than this.]
     \label{fig:dynamicGridSchematic}}
@@ -21,9 +21,19 @@ We can split the FDS shown in \eqref{eq:FDS} into two sets of first-order system
         \rho_0 \delta_{t-}w_{\lq+1/2}^{n+1/2}&=-\delta_{x+}q_\lq^n,\label{eq:discVelocityV}
     \end{align}
 \end{subequations}
-The outer boundaries of this system, i.e., $\lp = 0$ and $\lq = M_q$, are the same as for the full system. The inner boundaries, $\lp = M_p$ and $\lq = 0$, however, are connected according to the method described in \cite{Willemsen2021}.
+The outer boundaries of this system, i.e., $\lp = 0$ and $\lq = M_q$, are the same as for the full system. The inner boundaries, $\lp = M$ and $\lq = 0$, however, are connected according to the method described in \cite{Willemsen2021} which will briefly be explained below. To calculate $p_M^{n+1}$ and $q_0^{n+1}$, points outside of their respective domains seem to be needed, i.e., $v_{M+1/2}$ and $w_{-1/2}$ which in their turn need $p_{M+1}$ and $q_{-1}$. We propose in \cite{Willemsen2021} to calculate these \textit{virtual grid points} based on known values of the system. A visual of the connection of the inner boundaries can be found in Figure \ref{fig:dynamicGridSchematic}.
 
-A visual of the calculations used at the connection location of the two schemes can be found in Figure \ref{fig:dynamicGridSchematic}.
+Quadratic Lagrangian interpolation is used to calculate $p_{M+1}^n$
+
+
+these can then be used to calculate $v_{M+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_M^{n+1}$ and $q_0^{n+1}$. The next sample this process repeats, etc. 
+
+We start by introducing a fractional number of intervals $\Nfrac$, which is essentially Eq. \eqref{eq:numberOfIntervals} without the flooring operation, so $N = \lfloor \Nfrac \rfloor$. The fractional part of $\Nfrac$ can then be calculated using
+\begin{equation}
+    \alpha = \alpha^n = \Nfrac^n - N^n
+\end{equation}
+
+
 
 
 

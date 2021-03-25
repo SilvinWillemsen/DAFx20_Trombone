@@ -1,5 +1,12 @@
 \section{Introduction}\label{sec:introduction}
-Intro intro
 
-Main challenge is to include time-varying length...
-
+The trombone is a musical instrument which is interesting from the simulation perspective from different viewpoints.
+From the point of view of the excitation, the interaction between the lips and the player has been extensively studied, and simulated mostly using a simple mass-spring damper system \cite{campbell2004brass}.
+The sound propagation in the trombone also presents some very interesting nonlinearities, which have been investigated and simulated
+\cite{msallam1997physical,msallam2000physical,campbell2004brass}.
+One of the interesting characteristics of this instrument is the fact that the physical dimensions of the resonator vary while playing it.
+When simulating the body of the instrument using finite difference schemes (FDSs), this can be simulated by having a grid that 
+ dynamically changes as shown in a companion paper \cite{Willemsen2021}.
+ Briefly described, we modify the grid configurations of the FDSs by adding and subtracting grid points based on parameters describing the system.
+ In this paper we propose a full simulation of a trombone, describing in details all its elements and with a specific focus on the dynamic grid simulation.
+ 

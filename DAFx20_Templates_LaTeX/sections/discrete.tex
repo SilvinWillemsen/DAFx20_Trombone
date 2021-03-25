@@ -38,11 +38,14 @@ Here, forward and backward averaging operators are extremely useful in the conte
 effectively placing the grid function on an \textit{interleaved grid} which will be further elaborated on in the following. 
 
 \subsection{Discrete Tube}\label{sec:discSyst}
-We start discretising system \eqref{eq:firstOrderSystem} by placing velocity $v$ on an interleaved grid, following \cite{Harrison2018}, both in space and time. Domain $x\in [0, L]$ can be discretised to $l = [0, \hdots, N]$ where number of intervals between grid points is calculated using $N=\lfloor L/h\rfloor$.
+We start discretising system \eqref{eq:firstOrderSystem} by placing velocity $v$ on an interleaved grid, following \cite{Harrison2018}, both in space and time. Domain $x\in [0, L]$ can be discretised to $l = [0, \hdots, N]$ where number of intervals between grid points is calculated using 
+\begin{equation}\label{eq:numberOfIntervals}
+    N=\lfloor L/h\rfloor.
+\end{equation}
 
 The grid functions $p_l^n \approx p(x,t)$ and $v_{l+1/2}^{n+1/2} \approx v(x,t)$ (with reduced domain $l = [0, \hdots, N-1]$) with $N+1$ and $N$ grid points respectively are then introduced along with discrete cross-sectional area $S_l\approx S(x)$ sampled at $x = lh$ to which the spatial operators defined in Section \ref{sec:numMeth} can also be applied.
 
-System \eqref{eq:firstOrderSystem} can then be discretised into the following system of finite difference schemes (FDSs)
+System \eqref{eq:firstOrderSystem} can then be discretised into the following system of FDSs
 \begin{subequations}\label{eq:FDS}
     \begin{align}
         \frac{\bar S_l}{\rho_0 c^2}\delta_{t+}p_l^n &= -\delta_{x-}(S_{l+1/2}v_{l+1/2}^{n+1/2}),\label{eq:discPressure}\\
@@ -75,7 +78,7 @@ Finally, the boundary conditions in \eqref{eq:contBound} can be discretised as
 \subsection{Lip reed}
 As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$.
 
-Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows \SWcomment[Still need to add collision here, but I'm in doubt as to whether I want to include it at all.. The effect on the system is ]:
+Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows \SWcomment[Still need to add collision here, but I'm in doubt as to whether I want to include it at all.. The effect on the system is negligible for the values I'm using and it's going to take up a lot of space to explain]:
 \def\nphSys{n+1/2}
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
