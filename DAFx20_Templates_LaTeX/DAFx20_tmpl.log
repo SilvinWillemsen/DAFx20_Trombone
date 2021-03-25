@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  25 MAR 2021 14:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  25 MAR 2021 16:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1116,7 +1116,7 @@ Package epstopdf Info: Source file: <Figures/tromboneSchematic.eps>
 (epstopdf)             Command: <repstopdf --outfile=Figures/tromboneSchematic-eps-converted-to.pdf Figures/tromboneSchematic.eps>
 (epstopdf)             \includegraphics on input line 3.
 Package epstopdf Info: Output file is already uptodate.
- <Figures/tromboneSchematic-eps-converted-to.pdf, id=153, 1304.875pt x 351.3125pt>
+ <Figures/tromboneSchematic-eps-converted-to.pdf, id=157, 1304.875pt x 351.3125pt>
 File: Figures/tromboneSchematic-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures/tromboneSchematic-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/tromboneSchematic-eps-converted-to.pdf used on input line 3.
@@ -1158,22 +1158,22 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 331.
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 331.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 331.
 Package rerunfilecheck Info: File `DAFx20_tmpl.out' has not changed.
-(rerunfilecheck)             Checksum: D542282B8861CAC43E9B9ACA5A385350;1130.
+(rerunfilecheck)             Checksum: 2DAEAECA70A8D2AB4E9A3F4FC744DC60;1212.
  )
 (\end occurred when \ifx on line 148 was incomplete) 
 Here is how much of TeX's memory you used:
- 20421 strings out of 493014
- 377817 string characters out of 6133351
- 443887 words of memory out of 5000000
- 23440 multiletter control sequences out of 15000+600000
+ 20424 strings out of 493014
+ 377860 string characters out of 6133351
+ 442888 words of memory out of 5000000
+ 23441 multiletter control sequences out of 15000+600000
  41619 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,17n,92p,1236b,1250s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (5 pages, 296541 bytes).
+Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (5 pages, 296608 bytes).
 PDF statistics:
- 328 PDF objects out of 1000 (max. 8388607)
- 277 compressed objects within 3 object streams
- 90 named destinations out of 1000 (max. 500000)
- 166 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 334 PDF objects out of 1000 (max. 8388607)
+ 283 compressed objects within 3 object streams
+ 92 named destinations out of 1000 (max. 500000)
+ 174 words of extra memory for PDF output out of 10000 (max. 10000000)
 

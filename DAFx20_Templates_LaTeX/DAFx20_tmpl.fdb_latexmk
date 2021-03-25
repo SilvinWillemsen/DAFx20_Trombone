@@ -1,14 +1,14 @@
 # Fdb version 3
-["bibtex DAFx20_tmpl"] 1616678653 "DAFx20_tmpl.aux" "DAFx20_tmpl.bbl" "DAFx20_tmpl" 1616678657
+["bibtex DAFx20_tmpl"] 1616684517 "DAFx20_tmpl.aux" "DAFx20_tmpl.bbl" "DAFx20_tmpl" 1616684520
   "./IEEEbib.bst" 1613044983 17903 9ff833f4bf67f47893e44ee17b52d211 ""
-  "DAFx20_tmpl.aux" 1616678656 10469 7aa06bf61ad633f1aab342f22a882122 ""
+  "DAFx20_tmpl.aux" 1616684519 10577 c5ae0f8dbae166ef0094cc5f5f8274f7 ""
   "DAFx20_tmpl.bcf" 0 -1 0 ""
   "DAFx20_tmpl.bib" 1616664691 3513 3edea6eb16a60fb3b5dee6128d41ad33 ""
   (generated)
-  "DAFx20_tmpl.bbl"
   "DAFx20_tmpl.blg"
-["pdflatex"] 1616678655 "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.tex" "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf" "DAFx20_tmpl" 1616678657
-  "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.aux" 1616678656 10469 7aa06bf61ad633f1aab342f22a882122 ""
+  "DAFx20_tmpl.bbl"
+["pdflatex"] 1616684518 "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.tex" "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf" "DAFx20_tmpl" 1616684520
+  "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.aux" 1616684519 10577 c5ae0f8dbae166ef0094cc5f5f8274f7 ""
   "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.tex" 1616659635 15640 d46df45602b64c1ca2104ad4584d3469 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
@@ -195,9 +195,9 @@
   "/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1478168725 1888048 f2c5faed5981a516f406b2ccc20bff71 ""
   "/usr/local/texlive/2016/texmf-var/web2c/pdftex/pdflatex.fmt" 1478168753 3873397 d7097b3ecb6d977e7d73acf1f03b0bec ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "DAFx20_tmpl.aux" 1616678656 10469 7aa06bf61ad633f1aab342f22a882122 ""
-  "DAFx20_tmpl.bbl" 1616678653 2925 9deaa9a71e50661025f2bf225e962057 "bibtex DAFx20_tmpl"
-  "DAFx20_tmpl.out" 1616678656 1130 d542282b8861cac43e9b9aca5a385350 ""
+  "DAFx20_tmpl.aux" 1616684519 10577 c5ae0f8dbae166ef0094cc5f5f8274f7 ""
+  "DAFx20_tmpl.bbl" 1616684518 2925 9deaa9a71e50661025f2bf225e962057 "bibtex DAFx20_tmpl"
+  "DAFx20_tmpl.out" 1616684519 1212 2daeaeca70a8d2ab4e9a3f4fc744dc60 ""
   "DAFx20_tmpl.tex" 1616659635 15640 d46df45602b64c1ca2104ad4584d3469 ""
   "Figures/tromboneSchematic.eps" 1616664635 108994 58f72a4da4a24a5767094f4726118a70 ""
   "dafx_20.sty" 1613044983 15866 907efeafd4892f5eb92dc72acb4159f8 ""
@@ -206,15 +206,15 @@
   "sections/continuous.tex" 1616659635 4845 e610cd5187646d70aee1363951449779 ""
   "sections/discrete.tex" 1616677549 7922 7593dead60aeb8761957d74c060b6685 ""
   "sections/discussion.tex" 1616678651 604 6ad3828f597b6145cecb4825f372517f ""
-  "sections/dynamicGrid.tex" 1616678654 7557 8135e6c29edc5f2239e3070616b75ffd ""
-  "sections/implementation.tex" 1616659635 2442 fc009b704667f86e219b4650bcf86004 ""
+  "sections/dynamicGrid.tex" 1616684516 7569 a0e4d7e49474bb64668603ea1aa20cf6 ""
+  "sections/implementation.tex" 1616684516 2482 dbdebbfc6cd50ff3425487ce0b0046c4 ""
   "sections/introduction.tex" 1616664691 1817 2e29d379d269bb8a7dbce1f139a23ef8 ""
   "sections/lipSystem.tex" 1616659635 6701 c54c05939da8e52f6eff815237c25df4 ""
   "sections/tromboneTikz.tex" 1616343421 7282 d5f629eb24063e566975a4210876b241 ""
   (generated)
+  "DAFx20_tmpl.log"
   "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.log"
   "/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf"
-  "DAFx20_tmpl.aux"
-  "DAFx20_tmpl.pdf"
   "DAFx20_tmpl.out"
-  "DAFx20_tmpl.log"
+  "DAFx20_tmpl.pdf"
+  "DAFx20_tmpl.aux"

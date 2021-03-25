@@ -56,14 +56,12 @@ If $\alpha \neq 0$, some other definition for $p_{M+1}^n$ and $q_{-1}^n$ needs t
 \end{subequations}
 which can then be used to calculate $v_{M+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_M^{n+1}$ and $q_0^{n+1}$. This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M+1}^n = q_1^n$ and $q_{-1}^n = p_{M-1}^n$ as stated before.
 
-One can change the 
-
-
 \subsection{Adding and removing grid points}
 As $L$ changes, $L_p$ and $L_q$ change equally
-$L_\text{diff} = L^n-L^{n-1}$, $L_p^n = L_p^{n-1} + 0.5 L_\text{diff}$, $L_q^n =  L_q^{n-1} + 0.5L_\text{diff}$
-
-
+\begin{equation}
+    L_\text{diff} = L^n-L^{n-1}
+    L_p^n = L_p^{n-1} + 0.5 L_\text{diff} L_q^n =  L_q^{n-1} + 0.5L_\text{diff}    
+\end{equation}
 As the geometry varies it matters a lot where points are added and removed. 
 
 Experiments with adding / removing grid points where the geometry varies have been left for future work
