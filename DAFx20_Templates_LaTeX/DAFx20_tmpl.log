@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  21 MAR 2021 17:17
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  25 MAR 2021 09:08
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -991,27 +991,27 @@ LaTeX Warning: Label `eq:discVelocityV' multiply defined.
 )
 \openout1 = `DAFx20_tmpl.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 301.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 301.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 302.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 302.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 301.
-LaTeX Font Info:    ... okay on input line 301.
-LaTeX Font Info:    Try loading font information for T1+ptm on input line 301.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 302.
+LaTeX Font Info:    ... okay on input line 302.
+LaTeX Font Info:    Try loading font information for T1+ptm on input line 302.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1ptm.fd
 File: t1ptm.fd 2001/06/04 font definitions for T1/ptm.
 )
@@ -1044,7 +1044,7 @@ Package grfext Info: Graphics extension search list:
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
 \AtBeginShipoutBox=\box41
-Package hyperref Info: Link coloring OFF on input line 301.
+Package hyperref Info: Link coloring OFF on input line 302.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
  (/usr/local/texlive/2016/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1052,83 +1052,83 @@ Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
 \c@section@level=\count149
 )
-LaTeX Info: Redefining \ref on input line 301.
-LaTeX Info: Redefining \pageref on input line 301.
-LaTeX Info: Redefining \nameref on input line 301.
+LaTeX Info: Redefining \ref on input line 302.
+LaTeX Info: Redefining \pageref on input line 302.
+LaTeX Info: Redefining \nameref on input line 302.
  (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.out) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.out)
 \@outlinefile=\write4
 \openout4 = `DAFx20_tmpl.out'.
 
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 314.
-LaTeX Font Info:    Try loading font information for U+msa on input line 314.
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 315.
+LaTeX Font Info:    Try loading font information for U+msa on input line 315.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 314.
+LaTeX Font Info:    Try loading font information for U+msb on input line 315.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 314.
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 315.
  (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/t1pcr.fd
 File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
 )
-Overfull \hbox (11.49094pt too wide) in paragraph at lines 314--314
+Overfull \hbox (11.49094pt too wide) in paragraph at lines 315--315
  [][] 
  []
 
-LaTeX Font Info:    Try loading font information for TS1+ptm on input line 314.
+LaTeX Font Info:    Try loading font information for TS1+ptm on input line 315.
 (/usr/local/texlive/2016/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `T1/ptm/b/n' tried instead on input line 315.
- (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/abstract.tex) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/introduction.tex) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/continuous.tex (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/lipSystem.tex
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-Missing character: There is no ; in font nullfont!
-)) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/discrete.tex [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+(Font)              Font shape `T1/ptm/b/n' tried instead on input line 316.
+ (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/abstract.tex) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/introduction.tex) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/continuous.tex [1{/usr/local/texlive/2016/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
 
-]) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/dynamicGrid.tex
+] (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/lipSystem.tex
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+Missing character: There is no ; in font nullfont!
+)) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/discrete.tex [2]) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/dynamicGrid.tex
 Package epstopdf Info: Source file: <Figures/tromboneSchematic.eps>
-(epstopdf)                    date: 2021-02-18 10:13:39
-(epstopdf)                    size: 108005 bytes
+(epstopdf)                    date: 2021-03-25 09:08:00
+(epstopdf)                    size: 110660 bytes
 (epstopdf)             Output file: <Figures/tromboneSchematic-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-02-18 10:13:48
-(epstopdf)                    size: 111929 bytes
+(epstopdf)                    date: 2021-03-25 09:08:03
+(epstopdf)                    size: 111376 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures/tromboneSchematic-eps-converted-to.pdf Figures/tromboneSchematic.eps>
 (epstopdf)             \includegraphics on input line 3.
 Package epstopdf Info: Output file is already uptodate.
- <Figures/tromboneSchematic-eps-converted-to.pdf, id=117, 1304.875pt x 351.3125pt>
+ <Figures/tromboneSchematic-eps-converted-to.pdf, id=151, 1304.875pt x 351.3125pt>
 File: Figures/tromboneSchematic-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures/tromboneSchematic-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/tromboneSchematic-eps-converted-to.pdf used on input line 3.
 (pdftex.def)             Requested size: 497.92322pt x 134.05763pt.
- [2]) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/implementation.tex (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/tromboneTikz.tex
+) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/implementation.tex (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/tromboneTikz.tex
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1154,16 +1154,19 @@ Missing character: There is no ; in font nullfont!
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 )) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/discussion.tex) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/conclusion.tex)
-Overfull \hbox (0.84518pt too wide) in paragraph at lines 3--325
+Overfull \hbox (0.84518pt too wide) in paragraph at lines 3--326
 \T1/ptm/m/n/9 Investigate the pos-si-bil-ity of adding / re-mov-ing grid points at points
  []
 
-(/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.bbl [3 </Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/Figures/tromboneSchematic-eps-converted-to.pdf>]) [4]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 330.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 330.
+(/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.bbl [3]) [4 </Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/Figures/tromboneSchematic-eps-converted-to.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 331.
+ [5
+
+]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 331.
  (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 330.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 330.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 331.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 331.
 Package rerunfilecheck Info: File `DAFx20_tmpl.out' has not changed.
 (rerunfilecheck)             Checksum: 8CED886639C82F8D42F171881369AAF7;1048.
 
@@ -1171,20 +1174,20 @@ Package rerunfilecheck Info: File `DAFx20_tmpl.out' has not changed.
 LaTeX Warning: There were multiply-defined labels.
 
  )
-(\end occurred when \ifx on line 147 was incomplete) 
+(\end occurred when \ifx on line 148 was incomplete) 
 Here is how much of TeX's memory you used:
- 20384 strings out of 493014
- 377207 string characters out of 6133351
- 442455 words of memory out of 5000000
- 23421 multiletter control sequences out of 15000+600000
- 40541 words of font info for 55 fonts, out of 8000000 for 9000
+ 20399 strings out of 493014
+ 377457 string characters out of 6133351
+ 452267 words of memory out of 5000000
+ 23427 multiletter control sequences out of 15000+600000
+ 41619 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,16n,92p,863b,1250s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (4 pages, 284916 bytes).
+ 55i,17n,92p,863b,1250s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (5 pages, 300109 bytes).
 PDF statistics:
- 278 PDF objects out of 1000 (max. 8388607)
- 233 compressed objects within 3 object streams
- 73 named destinations out of 1000 (max. 500000)
+ 302 PDF objects out of 1000 (max. 8388607)
+ 254 compressed objects within 3 object streams
+ 81 named destinations out of 1000 (max. 500000)
  158 words of extra memory for PDF output out of 10000 (max. 10000000)
 

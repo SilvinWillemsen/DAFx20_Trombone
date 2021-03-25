@@ -16,9 +16,11 @@
 \gdef\HyperFirstAtBeginDocument#1{#1}
 \providecommand\HyField@AuxAddToFields[1]{}
 \providecommand\HyField@AuxAddToCoFields[2]{}
-\citation{Levine1948}
-\citation{Silva2009}
-\citation{Harrison2018}
+\citation{campbell2004brass}
+\citation{msallam1997physical}
+\citation{msallam2000physical}
+\citation{campbell2004brass}
+\citation{Willemsen2021}
 \select@language{english}
 \@writefile{toc}{\select@language{english}}
 \@writefile{lof}{\select@language{english}}
@@ -35,35 +37,31 @@
 \newlabel{eq:contDirichlet}{{2b}{1}{Continuous System}{equation.2.2b}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1} Coupling to a Lip Reed}{1}{subsection.2.1}}
 \newlabel{eq:lipReedCont}{{3}{1}{Coupling to a Lip Reed}{equation.2.3}{}}
-\newlabel{eq:lipBoundary}{{7}{1}{Coupling to a Lip Reed}{equation.2.7}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$.\relax }}{1}{figure.caption.2}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{fig:lipSystem}{{1}{1}{Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$.\relax }{figure.caption.2}{}}
+\citation{Levine1948}
+\citation{Silva2009}
 \citation{Harrison2018}
-\citation{Willemsen2021}
+\citation{Harrison2018}
+\newlabel{eq:lipBoundary}{{8}{2}{Coupling to a Lip Reed}{equation.2.8}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$.\relax }}{2}{figure.caption.2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:lipSystem}{{1}{2}{Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$.\relax }{figure.caption.2}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.2} Radiation}{2}{subsection.2.2}}
 \@writefile{toc}{\contentsline {section}{\numberline {3} Discretisation}{2}{section.3}}
 \newlabel{sec:discrete}{{3}{2}{Discretisation}{section.3}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1} Numerical Methods}{2}{subsection.3.1}}
 \newlabel{sec:numMeth}{{3.1}{2}{Numerical Methods}{subsection.3.1}{}}
-\newlabel{eq:discTimeOperators}{{9}{2}{Numerical Methods}{equation.3.9}{}}
-\newlabel{eq:discSpaceOperators}{{10}{2}{Numerical Methods}{equation.3.10}{}}
+\newlabel{eq:discTimeOperators}{{10}{2}{Numerical Methods}{equation.3.10}{}}
+\newlabel{eq:discSpaceOperators}{{11}{2}{Numerical Methods}{equation.3.11}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2} Discrete Tube}{2}{subsection.3.2}}
 \newlabel{sec:discSyst}{{3.2}{2}{Discrete Tube}{subsection.3.2}{}}
-\newlabel{eq:FDS}{{15}{2}{Discrete Tube}{equation.3.15}{}}
-\newlabel{eq:discPressure}{{15a}{2}{Discrete Tube}{equation.3.15a}{}}
-\newlabel{eq:discVelocity}{{15b}{2}{Discrete Tube}{equation.3.15b}{}}
-\newlabel{eq:pressureUpdate}{{16a}{2}{Discrete Tube}{equation.3.16a}{}}
-\newlabel{eq:velocityUpdate}{{16b}{2}{Discrete Tube}{equation.3.16b}{}}
-\newlabel{eq:discNeumann}{{18a}{2}{Discrete Tube}{equation.3.18a}{}}
-\newlabel{eq:discDirich}{{18b}{2}{Discrete Tube}{equation.3.18b}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.3} Lip reed}{2}{subsection.3.3}}
-\newlabel{eq:discreteLipSystem}{{19}{2}{Lip reed}{equation.3.19}{}}
-\newlabel{eq:discReed}{{19a}{2}{Lip reed}{equation.3.19a}{}}
-\newlabel{eq:pDiff}{{19b}{2}{Lip reed}{equation.3.19b}{}}
-\newlabel{eq:bernoulli}{{19c}{2}{Lip reed}{equation.3.19c}{}}
-\newlabel{eq:Ur}{{19d}{2}{Lip reed}{equation.3.19d}{}}
-\newlabel{eq:UbUr}{{19e}{2}{Lip reed}{equation.3.19e}{}}
+\newlabel{eq:numberOfIntervals}{{16}{2}{Discrete Tube}{equation.3.16}{}}
+\newlabel{eq:FDS}{{17}{2}{Discrete Tube}{equation.3.17}{}}
+\newlabel{eq:discPressure}{{17a}{2}{Discrete Tube}{equation.3.17a}{}}
+\newlabel{eq:discVelocity}{{17b}{2}{Discrete Tube}{equation.3.17b}{}}
+\newlabel{eq:pressureUpdate}{{18a}{2}{Discrete Tube}{equation.3.18a}{}}
+\newlabel{eq:velocityUpdate}{{18b}{2}{Discrete Tube}{equation.3.18b}{}}
+\citation{Willemsen2021}
+\citation{Willemsen2021}
 \citation{Willemsen2021}
 \citation{Willemsen2021}
 \citation{Smyth2011}
@@ -77,17 +75,22 @@
 \citation{*}
 \bibstyle{IEEEbib}
 \bibdata{DAFx20_tmpl}
-\bibcite{Levine1948}{1}
-\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M_p}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ are the result of the interpolation of known pressure values at $n$ \relax }}{3}{figure.caption.3}}
-\newlabel{fig:dynamicGridSchematic}{{2}{3}{Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M_p}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ are the result of the interpolation of known pressure values at $n$ \relax }{figure.caption.3}{}}
+\bibcite{campbell2004brass}{1}
+\newlabel{eq:discNeumann}{{20a}{3}{Discrete Tube}{equation.3.20a}{}}
+\newlabel{eq:discDirich}{{20b}{3}{Discrete Tube}{equation.3.20b}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.3} Lip reed}{3}{subsection.3.3}}
+\newlabel{eq:discreteLipSystem}{{21}{3}{Lip reed}{equation.3.21}{}}
+\newlabel{eq:discReed}{{21a}{3}{Lip reed}{equation.3.21a}{}}
+\newlabel{eq:pDiff}{{21b}{3}{Lip reed}{equation.3.21b}{}}
+\newlabel{eq:bernoulli}{{21c}{3}{Lip reed}{equation.3.21c}{}}
+\newlabel{eq:Ur}{{21d}{3}{Lip reed}{equation.3.21d}{}}
+\newlabel{eq:UbUr}{{21e}{3}{Lip reed}{equation.3.21e}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {4} Dynamic grid}{3}{section.4}}
 \newlabel{sec:dynamicGrid}{{4}{3}{Dynamic grid}{section.4}{}}
-\newlabel{eq:discPressureP}{{20a}{3}{Dynamic grid}{equation.4.20a}{}}
-\newlabel{eq:discVelocityV}{{20b}{3}{Dynamic grid}{equation.4.20b}{}}
-\newlabel{eq:discPressureP}{{20c}{3}{Dynamic grid}{equation.4.20c}{}}
-\newlabel{eq:discVelocityV}{{20d}{3}{Dynamic grid}{equation.4.20d}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Geometry of a measured trombone taken from \cite  {Smyth2011}. Numbers correspond to Figure \ref  {fig:tromboneSchematic}.\relax }}{3}{table.caption.4}}
-\newlabel{tab:geometry}{{1}{3}{Geometry of a measured trombone taken from \cite {Smyth2011}. Numbers correspond to Figure \ref {fig:tromboneSchematic}.\relax }{table.caption.4}{}}
+\newlabel{eq:discPressureP}{{22a}{3}{Dynamic grid}{equation.4.22a}{}}
+\newlabel{eq:discVelocityV}{{22b}{3}{Dynamic grid}{equation.4.22b}{}}
+\newlabel{eq:discPressureP}{{22c}{3}{Dynamic grid}{equation.4.22c}{}}
+\newlabel{eq:discVelocityV}{{22d}{3}{Dynamic grid}{equation.4.22d}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.1} Adding and removing grid points}{3}{subsection.4.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {5} Implementation}{3}{section.5}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1} Parameters}{3}{subsection.5.1}}
@@ -95,14 +98,22 @@
 \@writefile{toc}{\contentsline {section}{\numberline {6} Results and Discussion}{3}{section.6}}
 \@writefile{toc}{\contentsline {section}{\numberline {7} Conclusion and Future Work}{3}{section.7}}
 \newlabel{sec:conclusion}{{7}{3}{Conclusion and Future Work}{section.7}{}}
-\bibcite{Silva2009}{2}
-\bibcite{Harrison2018}{3}
+\bibcite{msallam1997physical}{2}
+\bibcite{msallam2000physical}{3}
 \bibcite{Willemsen2021}{4}
-\bibcite{Smyth2011}{5}
-\bibcite{Benade1968}{6}
-\bibcite{JUCE}{7}
+\bibcite{Levine1948}{5}
+\bibcite{Silva2009}{6}
+\bibcite{Harrison2018}{7}
+\bibcite{Smyth2011}{8}
+\bibcite{Benade1968}{9}
+\bibcite{smyth2011trombone}{10}
+\bibcite{JUCE}{11}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ are the result of the interpolation of known pressure values at $n$ \relax }}{4}{figure.caption.3}}
+\newlabel{fig:dynamicGridSchematic}{{2}{4}{Schematic showing data flow of how different grid points at time index $n+1$ are calculated. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ are the result of the interpolation of known pressure values at $n$ \relax }{figure.caption.3}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Geometry of a measured trombone taken from \cite  {Smyth2011}. Numbers correspond to Figure \ref  {fig:tromboneSchematic}.\relax }}{4}{table.caption.4}}
+\newlabel{tab:geometry}{{1}{4}{Geometry of a measured trombone taken from \cite {Smyth2011}. Numbers correspond to Figure \ref {fig:tromboneSchematic}.\relax }{table.caption.4}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {8} References}{4}{section.8}}
 \@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Schematic of the trombone. Numbers correspond to the parts of the tube found in Table \ref  {tab:geometry} and dashed lines highlight where parts are separated. The scheme is split in the middle of the slide crook with the colours corresponding to those in \ref  {fig:dynamicGridSchematic}.\relax }}{4}{figure.caption.5}}
 \newlabel{fig:tromboneSchematic}{{3}{4}{Schematic of the trombone. Numbers correspond to the parts of the tube found in Table \ref {tab:geometry} and dashed lines highlight where parts are separated. The scheme is split in the middle of the slide crook with the colours corresponding to those in \ref {fig:dynamicGridSchematic}.\relax }{figure.caption.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces List of parameter values used for the simulation. Taken from $^\star $\cite  {Smyth2011}, *\cite  {Harrison2018} or **\cite  {Benade1968} with temperature $T=26.85^\circ C$. \relax }}{4}{table.caption.6}}
-\newlabel{tab:parameters}{{2}{4}{List of parameter values used for the simulation. Taken from $^\star $\cite {Smyth2011}, *\cite {Harrison2018} or **\cite {Benade1968} with temperature $T=26.85^\circ C$. \relax }{table.caption.6}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {8} References}{4}{section.8}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces List of parameter values used for the simulation. Taken from $^\star $\cite  {Smyth2011}, *\cite  {Harrison2018} or **\cite  {Benade1968} with temperature $T=26.85^\circ C$. \relax }}{5}{table.caption.6}}
+\newlabel{tab:parameters}{{2}{5}{List of parameter values used for the simulation. Taken from $^\star $\cite {Smyth2011}, *\cite {Harrison2018} or **\cite {Benade1968} with temperature $T=26.85^\circ C$. \relax }{table.caption.6}{}}
