@@ -62,7 +62,7 @@ Expanding the operators, we obtain the following recursion
     \end{align}
 \end{subequations}
 where $\lambda = ck/h$ is referred to as the Courant number and
-\begin{equation}
+\begin{equation}\label{eq:CFL}
     \lambda \leq 1
 \end{equation}
 in order for the scheme to be stable. 
@@ -78,25 +78,35 @@ Finally, the boundary conditions in \eqref{eq:contBound} can be discretised as
 \subsection{Lip reed}
 As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$.
 
-Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows \SWcomment[Still need to add collision here, but I'm in doubt as to whether I want to include it at all.. The effect on the system is negligible for the values I'm using and it's going to take up a lot of space to explain]:
+Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows:
 \def\nphSys{n+1/2}
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
     &\begin{aligned}
         M_\text{r}\delta_{tt}y^{\nphSys} =&-M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys} -M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}\\
-        &+S_\text{r}\Delta p^{\nphSys}
+        &+\left(\mu_{t+}\psi^n\right)g^{n+1/2}+S_\text{r}\Delta p^{\nphSys},
     \end{aligned}\label{eq:discReed}\\
-    &\Delta p^{\nphSys} = P_\text{m} - \mu_{t+}p_0^n\label{eq:pDiff}\\
+    &\Delta p^{\nphSys} = P_\text{m} - \mu_{t+}p_0^n,\label{eq:pDiff}\\
     &\begin{aligned}
-        U_\text{B}^{\nphSys} =&\ w[\eta^{\nphSys}]_+\text{sgn}(\Delta p^{\nphSys})\label{eq:bernoulli}\\
+        U_\text{B}^{\nphSys} =&\ w_\text{r}[-\eta^{\nphSys}]_+\text{sgn}(\Delta p^{\nphSys})\label{eq:bernoulli}\\
         &
-        \cdot\sqrt{2|\Delta p^{\nphSys}|/\rho_0}
+        \cdot\sqrt{2|\Delta p^{\nphSys}|/\rho_0},
     \end{aligned}\\
-    &U_\text{r}^{\nphSys}= S_\text{r}\delta_{t\cdot}y^{\nphSys}\label{eq:Ur}\\
-    &\mu_{x-}(S_{1/2}v_{1/2}^{\nphSys})= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys}\label{eq:UbUr}
+    &U_\text{r}^{\nphSys}= S_\text{r}\delta_{t\cdot}y^{\nphSys},\label{eq:Ur}\\
+    &\mu_{x-}(S_{1/2}v_{1/2}^{\nphSys})= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys},\label{eq:UbUr}
     \end{align}
 \end{subequations}
-Boundary condition \eqref{eq:discNeumann} can be modified to Eq. \eqref{eq:UbUr}, effectively coupling the lip reed to the tube. 
+where 
+\begin{subnumcases}{ \label{eq:gDef} g^{n+1/2} =}
+\begin{aligned}
+\kappa&\sqrt{\frac{K_\text{c}(\alpha+1)}{2}}\\
+&\cdot(\eta^{n+1/2})^{\frac{\alpha-1}{2}}
+\end{aligned} & if $\eta^{n+1/2} \geq 0$ \label{eq:collCorr1}\\
+-2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$ \label{eq:collCorr}
+\end{subnumcases}
+and $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. Finally, $\eta^\star = -y^{\star} - H_0$ where $y^{\star}$ is the value of $y^{n+3/2}$ calculated using system \eqref{eq:discreteLipSystem} (after expansion) without the collision potential. This means that system \eqref{eq:discreteLipSystem} needs to be calculated twice every iteration, once without the collision term and once with. 
+
+Finally, boundary condition \eqref{eq:discNeumann} can be modified to Eq. \eqref{eq:UbUr}, effectively coupling the lip reed to the tube. 
 % \begin{subnumcases}{\label{eq:discreteLipSystem}}
 %     M_\text{r}\delta_{tt}y^{\nphSys} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys} -M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}\label{eq:discReed}\\\qquad \qquad \qquad \ \ \ 
 %     +\ S_\text{r}\Delta p^{\nphSys}\nonumber\\

@@ -71,6 +71,7 @@
 \usepackage{cases}
 \usepackage{tikz}
 \usetikzlibrary{decorations.markings}
+\usepackage{algorithm2e, setspace}
 
 \makeatletter
 \renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
@@ -89,7 +90,7 @@
 \def\lp{{l_p}}
 \def\lq{{l_q}}
 \def\Nfrac{\mathcal{N}}
-
+\def\flip{\leftarrow}
 % \def\flip{\leftarrow}
 % \def\U{\mathbfcal{U}}
 
@@ -323,7 +324,10 @@
   \input{sections/implementation.tex}
   \input{sections/discussion.tex}
   \input{sections/conclusion.tex}
-
+\section{Acknowledgements}
+This work is supported by NordForsk's Nordic
+University Hub Nordic Sound and Music Computing Network
+NordicSMC, project number 86892.
 \nocite{*}
 \bibliographystyle{IEEEbib}
 \bibliography{DAFx20_tmpl} % requires file DAFx20_tmpl.bib

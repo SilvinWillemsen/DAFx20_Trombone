@@ -1,11 +1,19 @@
-\section{Implementation}
+\section{Implementation}\label{sec:implementation}
+This section provides some details on the implementation of the algorithm. First, the parameter values used in the simulation are provided, after which for the models.
 
 \subsection{Parameters}
-A schematic showing the trombone geometry is shown in Figure \ref{fig:tromboneSchematic} and the lengths and radii used in Table \ref{tab:geometry}.
+For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
+The system is split at the end of the trombone slide such that the ranges for the lengths of the two tubes are $L_p \in[0.797, 1.327]$ and $L_q \in [1.796, 2.326]$.
 
-Other parameters used in the simulation can be found in Table \ref{tab:parameters}.
+Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here is $\lambda$ which has been set slightly lower than the stability contidion in \eqref{eq:CFL}, i.e., $\lambda = 0.999$. Although the system 
 
+such a small deviation from \eqref{eq:CFL} has no audible influence on the output sound At higher speeds of change the system gets unstable, so this has been done to prevent that. 
 
+As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube (which depends on $L$). This is done according to
+\begin{equation}
+    \omega_0^n = \mathcal{F}\frac{2\pi c}{\rho_0 L^n}
+\end{equation}
+where $\mathcal{F} \approx 2.2$ \SWcomment[double check this] was heuristically found to best match the 4th resonating mode of the tube and generates a recognisable brass sound.
 \begin{table}[t]
     \small
     \begin{center}
@@ -21,7 +29,7 @@ Other parameters used in the simulation can be found in Table \ref{tab:parameter
         Inner slide (5) & 71.1 & 0.69\\
         Gooseneck (6) & 24.1 & 0.71\\
         Tuning slide (7) & 25.4 & 0.75, 1.07\\
-        Bell flare (8) & 56.7 \SWcomment[$\leftarrow$check]& 1, 10.8\\\hline
+        Bell flare (8) & 50.2& 1, 10.8\\\hline
     \end{tabular}
     \caption{Geometry of a measured trombone taken from \cite{Smyth2011}. Numbers correspond to Figure \ref{fig:tromboneSchematic}.\label{tab:geometry}}
     \end{center}
@@ -36,14 +44,14 @@ Other parameters used in the simulation can be found in Table \ref{tab:parameter
         \hline
         Name & Symbol (unit) & Value\\ \hline
         \multicolumn{3}{|l|}{\bf Tube}\\ \hline
-        Length & $L$ (m) & $2.685\leq L \leq 3.718$$^\star$\\
+        Length & $L$ (m) & $2.593\leq L \leq 3.653$$^\star$\\
         Air density &$\rho_0$ (kg/m$^3$) & 1.1769** 
         \\
         Wave speed & $c$ (m/s) & 347.23**\\
         Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry}. \\\hline
         \multicolumn{3}{|l|}{\bf Lip reed}\\ \hline
         Mass & $M_\text{r}$ (kg) & $5.37\cdot10^{-5}$*\\
-        Frequency & $\omega_0$ (rad/s) & $\SWcomment[??] \leq \omega_0 \leq \SWcomment[??]$\\
+        Frequency & $\omega_0$ (rad/s) & $ 1194\leq \omega_0 \leq 1683$\\
         Mouth pressure & $P_\text{m}$ (Pa) & $0 \leq P_\text{m} \leq 6000\SWcomment[??]$\\
         Damping & $\sigma_\text{r}$ (s$^{-1}$) & $5$*\\
         Eff. surface area & $S_\text{r}$ (m$^{2}$) & $1.46\cdot 10^{-5}$*\\
@@ -51,13 +59,80 @@ Other parameters used in the simulation can be found in Table \ref{tab:parameter
         Equilibrium sep. & $H_0$ (m) &  $2.9 \cdot 10^{-4}$* \\
         Coll. stiffness& $K_\text{c}$ (N/m) & $10^4$\\
         Nonlin. coll. coeff.& $\alpha_\text{c}$ (-)  &3\\\hline
-
+        \multicolumn{3}{|l|}{\bf Miscellaneous}\\ \hline
+        Sample rate & $f_\text{s}$ (Hz) & 44100\\
+        \hline
     \end{tabular}
     \caption{List of parameter values used for the simulation. 
     Taken from $^\star$\cite{Smyth2011}, *\cite{Harrison2018} or **\cite{Benade1968} with temperature $T=26.85^\circ C$. \label{tab:parameters}}
     \end{center}
 \end{table}
 
+
+
+The output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. The most logical would be to listen to the rightmost grid point, i.e., the radiating boundary $q_{M_q}^n$ as this is where the sound enters the listening space in the real world as well. 
+
 \subsection{Limit on speed of change}
-u
+To reduce audible artefacts \SWcomment[explain], a limit can be placed on \eqref{eq:lDiff} as
+\begin{equation}  
+    L_\text{diff} \leq \Nfrac_\text{maxdiff} h
+\end{equation}
+where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz. \SWcomment[still sub-audio rate?]
+
+\subsection{State correction}
+The centered difference and averaging operators in Eq. \eqref{eq:scForce} introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored as well, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied. One could argue that only two points at the inner boundaries are needed to create $\mathbf{r}^{n-1}$, but for generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{p}^{n+1}$. 
+
+
+\subsection{Real-time implementation}
+The algorithm has been implemented in C++ using the JUCE framework. 
+
 \subsection{Order of Calculation}
+
+Algorithm \ref{alg:calcOrder} shows some pseudocode 
+\begin{algorithm}[ht]
+    \setstretch{1.1}
+    \fbox{\parbox{0.8\linewidth}
+    {
+        \While{application is running}
+        {
+            \begin{minipage}[c]{0.9\linewidth}
+                Retrieve new parameters ($L$, $\omega_0$ and $P_\text{m}$) \\
+                Calc. $\Nfrac^n$ and $N^n$ (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals}) \\
+                Calc. $\alpha$ (Eq. \eqref{eq:alphaDef})\\
+                \If{$ N^n \neq N^{n-1} $}
+                {
+                    Add or remove point (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
+                    Update $M$ and $M_w$
+                }
+                % \If{$\lfloor N^n\rfloor > \lfloor N^{n-1} \rfloor$}
+                % {
+                %     Add point (Eq. \eqref{eq:addingPoint})\\
+                %     Update $M$ and $M_w$
+                % }
+                % \ElseIf{$\lfloor N^n\rfloor < \lfloor N^{n-1} \rfloor$}
+                % {
+                %     Remove point (Eq. \eqref{eq:removingPoint})\\
+                %     Update $M$ and $M_w$
+                % }
+                Calc. $\beta$ (Eq. \eqref{eq:betaDef})\\
+                Update $\mathbf{B}$ and $\mathbf{C}_\pm$ (Eqs. \eqref{eq:bMat} and \eqref{eq:CMat})\\
+                Calc. scheme (Eq. \eqref{eq:totalSystem})\\
+                Retrieve output\\
+                Update states ($\mathbf{U}^{n-1} = \mathbf{U}^n$, $\mathbf{U}^n = \mathbf{U}^{n+1}$)\\
+                Update $N$ ($N^{n-1} = N^n$)\\
+                Increment $n$
+            \end{minipage} 
+            % \begin{minipage}[c]{0.4\linewidth}
+            % -\\
+            % \vspace{2em}(Eq. \eqref{eq:addingPoint})\\
+            
+            % (Eq. \eqref{eq:removingPoint})\\
+
+            % \end{minipage}
+            }
+        }
+    }
+    \vspace{0.12cm}
+    \caption{\SWcomment[Copy-paste from other paper] Pseudocode showing the order of calculations.\label{alg:calcOrder}}
+\end{algorithm}
+

@@ -17,6 +17,8 @@
     \pgfmathsetmacro{\tinyRadius}{\stringWidth*0.1};
     \pgfmathsetmacro{\stringWidthMinTinyRad}{((\stringWidth-(2*\tinyRadius)))*0.5};
     
+    \def\axisLineWidth{0.07};
+
     % draw airflow
     
     %draw airflow
@@ -84,10 +86,13 @@
 
     \node[rotate = 0] at (0.5, 1) (Sr) {$S_\text{r}$};
 
-    % % eta line
-    % \draw[-] (0.5*\massWidth, 0) -- (0.5*\massWidth, -2)
-    % node[] at (0.5*\massWidth + 0.5, -1) (eta) {$\eta$};
+    % eta line
+    \draw[-, color = black] (0.5*\massWidth+2*\axisLineWidth, -0.5) -- (0.5*\massWidth+2*\axisLineWidth, -1.95)
+    node[anchor = west] at (0.5*\massWidth +0.07, -1.33) (eta) {$-\eta$};
 
+    \draw[-] (0.5 * \massWidth + \axisLineWidth, -0.5) -- (0.5 * \massWidth + 3*\axisLineWidth, -0.5) {}; 
+    
+    \draw[-] (0.5 * \massWidth +\axisLineWidth, -1.95) -- (0.5 * \massWidth +3*\axisLineWidth, -1.95); 
     \def\xOffset{0.3};
     % draw spring
     \filldraw[black] (-0.5 + \xOffset, 2.5) circle (1pt) node[anchor=center](topSpring){};    
@@ -130,7 +135,6 @@
 
     
     % y and H0
-    \def\axisLineWidth{0.07};
     \draw[dashed, color = gray] (3.65, 0) -- (1.5, 0);
     \node at (4, 1.5) {$y$};
     
@@ -155,6 +159,6 @@
 % \end{scope}
     
     \end{tikzpicture}
-    \caption{Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$.}
+    \caption{Lipsystem with the equilibrium at 0 and the distance from the lower lip $H_0$. The various symbols relate to those used in Eq. \eqref{eq:lipReedCont}.}
     \label{fig:lipSystem}
 \end{figure}
