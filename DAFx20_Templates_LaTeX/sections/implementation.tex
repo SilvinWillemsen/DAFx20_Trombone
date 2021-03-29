@@ -87,7 +87,7 @@ Algorithm \ref{alg:calcOrder} shows pseudocode showing the order in which the di
     {
         \While{application is running}
         {
-            \begin{minipage}[c]{0.5\linewidth}
+            \begin{minipage}[c]{0.48\linewidth}
                 Retrieve new parameters\\
                 Update $L_p^n$ and $L_q^n$\\
                 Calc. $\Nfrac^n$ and $N^n$\\
@@ -104,51 +104,39 @@ Algorithm \ref{alg:calcOrder} shows pseudocode showing the order in which the di
                 Calc. $y^{n+3/2}$ with collision \\
                 Calc. $U_\text{B}^{n+1/2}$ and $U_\text{r}^{n+1/2}$ \\
                 Calc. $\mathbf{p}^{n+1}$ and $\mathbf{q}^{n+1}$ \\
-                Retrieve output\\
-                Update system states ($\mathbf{p}^{n-1} = \mathbf{p}^{n}$, $\mathbf{p}^n=\mathbf{p}^{n+1}$)\\
-                (same for $\mathbf{v}^{n-1/2} = \hdots$, $y^{n-1/2}$, $y^{n+1/2}$, and $\psi^n$),\\
-                % \begin{minipage}[c]{0.4\linewidth} 
-                % Update system states\\
-                % \\
-                % \\
-                % \\
-                % \end{minipage} \begin{minipage}[c]{0.5\linewidth} 
-                % $\mathbf{p}^{n-1} = \mathbf{p}^n$, $\mathbf{p}^n = \mathbf{p}^{n+1}$,\\
-                % $\mathbf{v}^{n-1/2} = \mathbf{v}^{n+1/2}$,\\
-                % $y^{n-1/2} = y^{n+1/2}$,\\
-                % $y^{n+1/2} = y^{n+3/2}$, \\
-                % $\psi^{n} = 
-                % \psi^{n+1}$, 
-                % \end{minipage}\\
-                Update $N$ ($N^{n-1} = N^n$)\\
-                Increment $n$            % \begin{minipage}[c]{0.4\linewidth}
-                % -\\
-                % \vspace{2em}(Eq. \eqref{eq:addingPoint})\\
-                
-                % (Eq. \eqref{eq:removingPoint})\\
-
+                Retrieve output
             \end{minipage}
-            \begin{minipage}[c]{0.41\linewidth}
-                 ($L^n$, $\omega_0^n$ and $P_\text{m}^n$) \\
-                 (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} \& \eqref{eq:updateLs})\\
-                 (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals})\\
-                 (Eq. \eqref{eq:alphaDef})\\
-                 \vspace{-0.3em}\\
-                 (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
-                 (Eq. \eqref{eq:MMq})\\
-                 \vspace{-0.2em}\\
-                 (Eqs. \eqref{eq:connectionInterpol})\\
-                 (Eqs. \eqref{eq:discVelocityV} and \eqref{eq:discVelocityW})\\
-                 (Eqs. \eqref{eq:discreteLipSystem})\\
-                 (Eq. \eqref{eq:gDef})\\
-                 (Eqs. \eqref{eq:discreteLipSystem})\\
-                 (Eqs. \eqref{eq:bernoulli} and \eqref{eq:Ur})\\
-                 (Eqs. \eqref{eq:pressuresWithSC})\\
-                 \\
-                 \\
-                 \\
-                 \\
-                 \vspace{1.4em}\\
+            \begin{minipage}[c]{0.43\linewidth}
+                ($L^n$, $\omega_0^n$ and $P_\text{m}^n$) \\
+                (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} \& \eqref{eq:updateLs})\\
+                (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals})\\
+                (Eq. \eqref{eq:alphaDef})\\
+                \vspace{-0.2em}\\
+                (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
+                (Eq. \eqref{eq:MMq})\\
+                \vspace{-0.15em}\\
+                (Eqs. \eqref{eq:connectionInterpol})\vspace{0.05em}\\
+                (Eqs. \eqref{eq:discVelocityV} and \eqref{eq:discVelocityW})\\
+                (Eqs. \eqref{eq:discreteLipSystem})\\
+                (Eq. \eqref{eq:gDef})\\
+                (Eqs. \eqref{eq:discreteLipSystem})\\
+                (Eqs. \eqref{eq:bernoulli} and \eqref{eq:Ur})\\
+                (Eqs. \eqref{eq:pressuresWithSC})
+                \vspace{0.25em}\\
+           \end{minipage}
+           \\
+           \begin{minipage}[c]{0.4\linewidth}
+                Update system states\\
+                \\
+                \\
+                Update $N$ \\
+                Increment $n$      
+            \end{minipage}
+            \begin{minipage}[c]{0.5\linewidth}
+                ($\mathbf{p}^{n-1} = \mathbf{p}^{n}$, $\mathbf{p}^n=\mathbf{p}^{n+1}$)
+                (same for $\mathbf{v}^{n-1/2} = \hdots$,\\
+                $y^{n-1/2}$, $y^{n+1/2}$, and $\psi^n$)\\
+                ($N^{n-1} = N^n$)\\
             \end{minipage}
             }
         }
