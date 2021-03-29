@@ -38,7 +38,7 @@ Here, forward and backward averaging operators are extremely useful in the conte
 effectively placing the grid function on an \textit{interleaved grid} which will be further elaborated on in the following. 
 
 \subsection{Discrete Tube}\label{sec:discSyst}
-We start discretising system \eqref{eq:firstOrderSystem} by placing velocity $v$ on an interleaved grid, following \cite{Harrison2018}, both in space and time. Domain $x\in [0, L]$ can be discretised to $l = [0, \hdots, N]$ where number of intervals between grid points is calculated using 
+We start discretising system \eqref{eq:firstOrderSystem} by placing velocity $v$ on an interleaved grid, following \cite{Harrison2018}, both in space and time. Domain $x\in [0, L]$ can be discretised to $l = [0, \hdots, N]$ where number of intervals between grid points is calculated using \SWcomment[(same issue here as in the other paper)]
 \begin{equation}\label{eq:numberOfIntervals}
     N=\lfloor L/h\rfloor.
 \end{equation}
@@ -96,17 +96,17 @@ Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as fol
     &\mu_{x-}(S_{1/2}v_{1/2}^{\nphSys})= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys},\label{eq:UbUr}
     \end{align}
 \end{subequations}
-where 
+where $\omega_0 = \omega_0^{n+1/2}$ and $P_\text{m} = P_\text{m}^{n+1/2}$ and
 \begin{subnumcases}{ \label{eq:gDef} g^{n+1/2} =}
 \begin{aligned}
 \kappa&\sqrt{\frac{K_\text{c}(\alpha+1)}{2}}\\
 &\cdot(\eta^{n+1/2})^{\frac{\alpha-1}{2}}
 \end{aligned} & if $\eta^{n+1/2} \geq 0$ \label{eq:collCorr1}\\
--2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$ \label{eq:collCorr}
+-2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$ \label{eq:collCorr2}
 \end{subnumcases}
-and $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. Finally, $\eta^\star = -y^{\star} - H_0$ where $y^{\star}$ is the value of $y^{n+3/2}$ calculated using system \eqref{eq:discreteLipSystem} (after expansion) without the collision potential. This means that system \eqref{eq:discreteLipSystem} needs to be calculated twice every iteration, once without the collision term and once with. 
+and $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. Finally, $\eta^\star = -y^{\star} - H_0$ where $y^{\star}$ is the value of $y^{n+3/2}$ calculated using system \eqref{eq:discreteLipSystem} (after expansion) without the collision potential. This means that system \eqref{eq:discreteLipSystem} needs to be calculated twice every iteration, once without the collision term and once with. The process of calculating the pressure difference $\Delta p^{n+1/2}$ in \eqref{eq:discreteLipSystem} will not be given here, but the interested reader is referred to \cite[Ch. 5]{Harrison2018} for a derivation.
 
-Finally, boundary condition \eqref{eq:discNeumann} can be modified to Eq. \eqref{eq:UbUr}, effectively coupling the lip reed to the tube. 
+Finally, to couple the lip reed to the tube, boundary condition \eqref{eq:discNeumann} can be modified to Eq. \eqref{eq:UbUr}. 
 % \begin{subnumcases}{\label{eq:discreteLipSystem}}
 %     M_\text{r}\delta_{tt}y^{\nphSys} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys} -M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}\label{eq:discReed}\\\qquad \qquad \qquad \ \ \ 
 %     +\ S_\text{r}\Delta p^{\nphSys}\nonumber\\

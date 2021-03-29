@@ -23,9 +23,9 @@ To excite the system, a lip reed can be modelled as a simple mass-spring-damper 
     M_\text{r}\ddot y = -M_\text{r}\omega_0^2 y - M_\text{r} \sigma_\text{r} \dot y +\psi(\dot \psi/
 \dot \eta)+ S_\text{r}\Delta p,
 \end{equation}
-with displacement from the equilibrium $y = y(t)$, lip mass $M_\text{r}$ (in kg), externally supplied (angular) frequency of oscillation $w_0$ \SWcomment[$= w_0(t)$] $= \sqrt{K/M_\text{r}}$ (in rad/s) and stiffness $K$ \SWcomment[$= K(t)$] (in N/m).
+with displacement from the equilibrium $y = y(t)$, lip mass $M_\text{r}$ (in kg), externally supplied (angular) frequency of oscillation $w_0$ \SWcomment[$= w_0(t)$] $= \sqrt{K_\text{r}/M_\text{r}}$ (in rad/s) and stiffness $K$ \SWcomment[$= K(t)$] (in N/m).
 
-We extend the existing models of lip reeds \cite{} by introducing a nonlinear collision between the lips based on potential quadratisation proposed by \cite{Ducceschi2021}. The collision potential is defined as
+We extend the existing models of lip reeds \cite{campbell2004brass} by introducing a nonlinear collision between the lips based on potential quadratisation proposed by \cite{Ducceschi2021}. The collision potential is defined as
 \begin{equation}
     \psi = \left(\frac{2K_\text{c}}{\alpha_\text{c}+1}[\eta]_+^{\alpha_\text{c}+1}
     \right)^{1/2}
@@ -40,7 +40,7 @@ Finally, $S_\text{r}$ (in m$^2$) is the effective surface area and
 \begin{equation}
     \Delta p = P_\text{m} - p(0,t)
 \end{equation}
-is the difference between the pressure in the mouth $P_\text{m}$ and the pressure in the mouth piece $p(0, t)$ (all in Pa). This pressure difference causes a volume flow velocity following the Bernoulli equation
+is the difference between the externally supplied pressure in the mouth $P_\text{m} \SWcomment[= P_\text{m}(t)]$ and the pressure in the mouth piece $p(0, t)$ (all in Pa). This pressure difference causes a volume flow velocity following the Bernoulli equation
 \begin{equation}
     U_\text{B} = w_\text{r}[-\eta]_+\text{sgn}(\Delta p) \sqrt{\frac{2|\Delta p|}{\rho_0}},
 \end{equation}

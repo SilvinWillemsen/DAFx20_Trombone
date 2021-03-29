@@ -1,10 +1,12 @@
 \section{Results and Discussion}\label{sec:resDisc}
+Informal evaluation by the authors concluded that although the sound has brass-like qualities, it does not sound fully realistic. The model could be extended by adding viscothermal losses \cite{Harrison2016} or nonlinear effects \cite{msallam1997physical}.
+
+The limit placed on the speed of change of $L^n$ in \eqref{eq:Nmaxdiff} does not affect the feeling of real-time change when controlling the application.
+
 The main difference with \cite{Willemsen2021}, is that the method is applied to a system of first-order equations rather than the second-order 1D wave equation.
 
-\SWcomment[speculative section coming up] As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. The middle of the slide crook was chosen, both because it would be reasonable for the air to ``go away from'' or ``go towards'' that point as the slide is extended or contracted, and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative..] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.
-
+As the geometry varies it matters a lot where points are added and removed as this might influence the way that the method is implemented. \SWcomment[speculative section coming up] The middle of the slide crook was chosen, both because it would be reasonable for the air on the tube to ``go away from'' or ``go towards'' that point as the slide is extended or contracted, and because the geometry does not vary there. Experiments with adding / removing grid points where the geometry varies have been left for future work. \SWcomment[even more speculative.. $\rightarrow$] It could be argued that it makes more sense to add points at the ends of the inner slides as ``tube material'' is also added there. This would mean that the system should be split in three parts: ``inner slide", ``outer slide" and ``rest", and would complicate things even more.
 
 Experiments have been done with alternating between calculating the virtual grid points using the pressure and the velocity, where rather than adding points to the left and right system in alternating fashion, points were added to pressures $p$ and $q$ and velocities $v$ and $w$ respectively.
 
 
-Informal evaluation by the authors concluded that although the sound has brass-like qualities, it does not sound fully realistic. The model could be extended by adding viscothermal losses \cite{HarissonJASA}.

@@ -1,19 +1,17 @@
 \section{Implementation}\label{sec:implementation}
-This section provides some details on the implementation of the algorithm. First, the parameter values used in the simulation are provided, after which for the models.
+This section provides some details on the implementation of the algorithm.
 
 \subsection{Parameters}
 For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
-The system is split at the end of the trombone slide such that the ranges for the lengths of the two tubes are $L_p \in[0.797, 1.327]$ and $L_q \in [1.796, 2.326]$.
+The system is split at the end of the trombone slide such that the ranges for the lengths of the two tubes are $L_p^n \in[0.797, 1.327]$ and $L_q^n \in [1.796, 2.326]$.
 
-Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here is $\lambda$ which has been set slightly lower than the stability contidion in \eqref{eq:CFL}, i.e., $\lambda = 0.999$. Although the system 
+Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here, is $\lambda$ which has been set slightly lower than the stability condition in \eqref{eq:CFL}, i.e., $\lambda = 0.9999$. Although the implementation works when $\lambda = 1$, this is done to tolerate (much) higher speeds of change in $L^n$ before instability occurs (see Section \ref{sec:limit}). Not satisfying condition \eqref{eq:CFL} causes bandlimiting and dispersive effects \cite{bilbao2009}, but such a small deviation from the condition has no audible influence on the output sound and outweighs the problems caused by instability.
 
-such a small deviation from \eqref{eq:CFL} has no audible influence on the output sound At higher speeds of change the system gets unstable, so this has been done to prevent that. 
-
-As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube (which depends on $L$). This is done according to
+As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube (which depends on $L^n$). This is done according to
 \begin{equation}
-    \omega_0^n = \mathcal{F}\frac{2\pi c}{\rho_0 L^n}
+    \omega_0^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}
 \end{equation}
-where $\mathcal{F} \approx 2.2$ \SWcomment[double check this] was heuristically found to best match the 4th resonating mode of the tube and generates a recognisable brass sound.
+where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} \approx 2.4$ \SWcomment[double check this] was heuristically found to best match the 4\textsuperscript{th} resonating mode of the tube and generates a recognisable brass sound.
 \begin{table}[t]
     \small
     \begin{center}
@@ -68,61 +66,71 @@ where $\mathcal{F} \approx 2.2$ \SWcomment[double check this] was heuristically 
     \end{center}
 \end{table}
 
+The output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. The most logical would be to listen to the rightmost grid point, i.e., the radiating boundary $q_{M_q}^n$ as this is also where the sound enters the listening space in the real world. 
 
-
-The output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. The most logical would be to listen to the rightmost grid point, i.e., the radiating boundary $q_{M_q}^n$ as this is where the sound enters the listening space in the real world as well. 
-
-\subsection{Limit on speed of change}
-To reduce audible artefacts \SWcomment[explain], a limit can be placed on \eqref{eq:lDiff} as
-\begin{equation}  
-    L_\text{diff} \leq \Nfrac_\text{maxdiff} h
+\subsection{Limit on speed of change}\label{sec:limit}
+To reduce audible artefacts and instability issues form adding and removing points \SWcomment[also to stay in the sub-audio rate regime], a limit can be placed on \eqref{eq:lDiff} as
+\begin{equation}\label{eq:Nmaxdiff} 
+    L_\text{diff}^n \leq \Nfrac_\text{maxdiff} h
 \end{equation}
 where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz. \SWcomment[still sub-audio rate?]
 
-\subsection{State correction}
-The centered difference and averaging operators in Eq. \eqref{eq:scForce} introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored as well, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied. One could argue that only two points at the inner boundaries are needed to create $\mathbf{r}^{n-1}$, but for generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{p}^{n+1}$. 
+\subsection{State correction}\label{sec:impStateCorr}
+The centered operators in Eq. \eqref{eq:scForce} and with that the introduction of states at $n+1$ seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}.
 
+The the aforementioned operators also introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed to create $\mathbf{r}^{n-1}$, but for generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^{n}$ respectively. 
+
+\SWcomment[check centered and centred (both papers)]
 
 \subsection{Real-time implementation}
 The algorithm has been implemented in C++ using the JUCE framework. 
 
+It might happen that the denominator in \eqref{eq:collCorr2} is zero, especially when the system has not been activated for a while. In this case $g^{n+1/2}$ is set to 0 and \eqref{eq:collCorr} is not executed.
+
 \subsection{Order of Calculation}
 
-Algorithm \ref{alg:calcOrder} shows some pseudocode 
+Algorithm \ref{alg:calcOrder} shows some pseudocode
+
 \begin{algorithm}[ht]
     \setstretch{1.1}
-    \fbox{\parbox{0.8\linewidth}
+    \fbox{\parbox{0.88\linewidth}
     {
         \While{application is running}
         {
-            \begin{minipage}[c]{0.9\linewidth}
-                Retrieve new parameters ($L$, $\omega_0$ and $P_\text{m}$) \\
-                Calc. $\Nfrac^n$ and $N^n$ (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals}) \\
-                Calc. $\alpha$ (Eq. \eqref{eq:alphaDef})\\
-                \If{$ N^n \neq N^{n-1} $}
-                {
-                    Add or remove point (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
-                    Update $M$ and $M_w$
-                }
-                % \If{$\lfloor N^n\rfloor > \lfloor N^{n-1} \rfloor$}
-                % {
-                %     Add point (Eq. \eqref{eq:addingPoint})\\
-                %     Update $M$ and $M_w$
-                % }
-                % \ElseIf{$\lfloor N^n\rfloor < \lfloor N^{n-1} \rfloor$}
-                % {
-                %     Remove point (Eq. \eqref{eq:removingPoint})\\
-                %     Update $M$ and $M_w$
-                % }
-                Calc. $\beta$ (Eq. \eqref{eq:betaDef})\\
-                Update $\mathbf{B}$ and $\mathbf{C}_\pm$ (Eqs. \eqref{eq:bMat} and \eqref{eq:CMat})\\
-                Calc. scheme (Eq. \eqref{eq:totalSystem})\\
-                Retrieve output\\
-                Update states ($\mathbf{U}^{n-1} = \mathbf{U}^n$, $\mathbf{U}^n = \mathbf{U}^{n+1}$)\\
-                Update $N$ ($N^{n-1} = N^n$)\\
-                Increment $n$
-            \end{minipage} 
-            % \begin{minipage}[c]{0.4\linewidth}
+            Retrieve new parameters ($L^n$, $\omega_0^n$ and $P_\text{m}^n$) \\
+            Update $L_p^n$ and $L_q^n$ (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} and \eqref{eq:updateLs})\\
+            Calc. $\Nfrac^n$ and $N^n$ (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals}) \\
+            Calc. $\alpha$ (Eq. \eqref{eq:alphaDef})\\
+            \If{$ N^n \neq N^{n-1} $}
+            {
+                Add or remove point (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
+                Update $M$ and $M_q$ (Eq. \eqref{eq:MMq})
+            }
+            Calc. $p_{M+1}^n$ and $q_{-1}^n$ (Eqs. \eqref{eq:connectionInterpol})\\
+            Calc. $\mathbf{v}^{n+1/2}$ and  $\mathbf{w}^{n+1/2}$ (Eqs. \eqref{eq:discVelocityV} and \eqref{eq:discVelocityW})\\
+            Calc. $y^{n+3/2}$ w/o collision (Eqs. \eqref{eq:discreteLipSystem})\\
+            Calc $g^{n+1/2}$ (Eq. \eqref{eq:gDef})\\
+            Calc. $y^{n+3/2}$ with collision (Eqs. \eqref{eq:discreteLipSystem})\\
+            Calc. $U_\text{B}$ and $U_\text{r}$ (Eqs. \eqref{eq:bernoulli} and \eqref{eq:Ur})\\
+            Calc. $\mathbf{p}^{n+1}$ and $\mathbf{q}^{n+1}$ (Eqs. \eqref{eq:pressuresWithSC})\\ 
+            Retrieve output\\
+            Update system states ($\mathbf{p}^{n-1} = \mathbf{p}^{n}$, $\mathbf{p}^n=\mathbf{p}^{n+1}$)\\
+            (same for $\mathbf{v}^{n-1/2} = \hdots$, $y^{n-1/2}$, $y^{n+1/2}$, and $\psi^n$),\\
+            % \begin{minipage}[c]{0.4\linewidth} 
+            % Update system states\\
+            % \\
+            % \\
+            % \\
+            % \end{minipage} \begin{minipage}[c]{0.5\linewidth} 
+            % $\mathbf{p}^{n-1} = \mathbf{p}^n$, $\mathbf{p}^n = \mathbf{p}^{n+1}$,\\
+            % $\mathbf{v}^{n-1/2} = \mathbf{v}^{n+1/2}$,\\
+            % $y^{n-1/2} = y^{n+1/2}$,\\
+            % $y^{n+1/2} = y^{n+3/2}$, \\
+            % $\psi^{n} = 
+            % \psi^{n+1}$, 
+            % \end{minipage}\\
+            Update $N$ ($N^{n-1} = N^n$)\\
+            Increment $n$            % \begin{minipage}[c]{0.4\linewidth}
             % -\\
             % \vspace{2em}(Eq. \eqref{eq:addingPoint})\\
             
@@ -133,6 +141,6 @@ Algorithm \ref{alg:calcOrder} shows some pseudocode
         }
     }
     \vspace{0.12cm}
-    \caption{\SWcomment[Copy-paste from other paper] Pseudocode showing the order of calculations.\label{alg:calcOrder}}
+    \caption{Pseudocode showing the order of calculations of the algorithm implementing the trombone .\label{alg:calcOrder}}
 \end{algorithm}
 
