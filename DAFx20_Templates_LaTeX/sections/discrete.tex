@@ -76,9 +76,7 @@ Finally, the boundary conditions in \eqref{eq:contBound} can be discretised as
 \end{subequations}
 
 \subsection{Lip reed}
-As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$.
-
-Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are discretised as follows:
+As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$. Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are then discretised as follows:
 \def\nphSys{n+1/2}
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
@@ -102,9 +100,12 @@ where $\omega_0 = \omega_0^{n+1/2}$ and $P_\text{m} = P_\text{m}^{n+1/2}$ and
 \kappa&\sqrt{\frac{K_\text{c}(\alpha+1)}{2}}\\
 &\cdot(\eta^{n+1/2})^{\frac{\alpha-1}{2}}
 \end{aligned} & if $\eta^{n+1/2} \geq 0$ \label{eq:collCorr1}\\
--2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$ \label{eq:collCorr2}
+-2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$\label{eq:collCorr2}\\
+0, & $\begin{aligned} &\text{if } \eta^{n+1/2} < 0\\ &\text{and } \eta^{\star} = \eta^{n-1/2}
+\end{aligned}$\label{eq:collCorr3}
 \end{subnumcases}
-and $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. Finally, $\eta^\star = -y^{\star} - H_0$ where $y^{\star}$ is the value of $y^{n+3/2}$ calculated using system \eqref{eq:discreteLipSystem} (after expansion) without the collision potential. This means that system \eqref{eq:discreteLipSystem} needs to be calculated twice every iteration, once without the collision term and once with. The process of calculating the pressure difference $\Delta p^{n+1/2}$ in \eqref{eq:discreteLipSystem} will not be given here, but the interested reader is referred to \cite[Ch. 5]{Harrison2018} for a derivation.
+%
+where $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. It should be noted that condition \eqref{eq:collCorr3} has been added to the definition of $g$ from \cite{Ducceschi2021} to prevent a division by 0 in \eqref{eq:collCorr2}. Finally, $\eta^\star = -y^{\star} - H_0$ where $y^{\star}$ is the value of $y^{n+3/2}$ calculated using system \eqref{eq:discreteLipSystem} (after expansion) without the collision potential. This means that system \eqref{eq:discreteLipSystem} needs to be calculated twice every iteration, once without the collision term and once with. The process of calculating the pressure difference $\Delta p^{n+1/2}$ in \eqref{eq:discreteLipSystem} will not be given here, but the interested reader is referred to \cite[Ch. 5]{Harrison2018} for a derivation.
 
 Finally, to couple the lip reed to the tube, boundary condition \eqref{eq:discNeumann} can be modified to Eq. \eqref{eq:UbUr}. 
 % \begin{subnumcases}{\label{eq:discreteLipSystem}}
