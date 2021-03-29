@@ -1,31 +1,31 @@
 \begin{thebibliography}{10}
 
 \bibitem{campbell2004brass}
-Murray Campbell,
+M.~Campbell,
 \newblock ``Brass instruments as we know them today,''
 \newblock {\em Acta Acustica united with Acustica}, vol. 90, no. 4, pp.
   600--610, 2004.
 
 \bibitem{msallam1997physical}
-R{\'e}gis Msallam, Samuel Dequidt, St{\'e}phane Tassart, and Ren{\'e} Causse,
+R.~Msallam, S.~Dequidt, S.~Tassart, and R.~Causse,
 \newblock ``Physical model of the trombone including non-linear propagation
   effects,''
 \newblock in {\em ISMA: International Symposium of Music Acoustics}, 1997.
 
 \bibitem{msallam2000physical}
-R{\'e}gis Msallam, Samuel Dequidt, Rene Causse, and Stephan Tassart,
+R.~Msallam, S.~Dequidt, R.~Causse, and S.~Tassart,
 \newblock ``Physical model of the trombone including nonlinear effects.
   application to the sound synthesis of loud tones,''
 \newblock {\em Acta Acustica united with Acustica}, vol. 86, no. 4, pp.
   725--736, 2000.
 
 \bibitem{cook2002real}
-Perry~R Cook,
+P.~R Cook,
 \newblock {\em Real sound synthesis for interactive applications},
 \newblock CRC Press, 2002.
 
 \bibitem{harrison2015environment}
-Reginald~Langford Harrison, Stefan Bilbao, James Perry, and Trevor Wishart,
+R.~L. Harrison, S.~Bilbao, J.~Perry, and T.~Wishart,
 \newblock ``An environment for physical modeling of articulated brass
   instruments,''
 \newblock {\em Computer Music Journal}, vol. 39, no. 4, pp. 80--95, 2015.
@@ -36,6 +36,13 @@ S.~Willemsen, S.~Bilbao, M.~Ducceschi, and S.~Serafin,
   simulations,''
 \newblock submitted to \textit{Proc. of the 23rd Int. Conf. on Digital Audio
   Effects (DAFx)}, 2021.
+
+\bibitem{Ducceschi2021}
+M.~Ducceschi, S.~Bilbao, S.~Willemsen, and S.~Serafin,
+\newblock ``A non-iterative solver for collision dynamics based on energy
+  quadratisation,''
+\newblock accepted to \textit{Journal of the Acoustical Society of America
+  (JASA)}, 2021.
 
 \bibitem{Levine1948}
 H.~Levine and J.~Schwinger,
@@ -64,6 +71,24 @@ A.~H. Benade,
 \newblock ``On the propagation of sound waves in a cylindrical conduit,''
 \newblock {\em Journal of the Acoustical Society of America}, vol. 44, no. 2,
   pp. 616--623, 1968.
+
+\bibitem{bilbao2009}
+S.~Bilbao,
+\newblock {\em Numerical Sound Synthesis},
+\newblock John Wiley \& Sons, United Kingdom, 2009.
+
+\bibitem{bilbao2009dafx}
+S.~Bilbao,
+\newblock ``A modular percussion synthesis environment,''
+\newblock in {\em Proc. of the 12th Int. Conference on Digital Audio Effects
+  (DAFx)}, 2009.
+
+\bibitem{Harrison2016}
+S.~Bilbao and R.~L. Harrison,
+\newblock ``Passive time-domain numerical models of viscothermal wave
+  propagation in acoustic tubes of variable cross section,''
+\newblock {\em The Journal of the Acoustical Society of America}, vol. 140, pp.
+  728--740, 2016.
 
 \bibitem{smyth2011trombone}
 Tamara Smyth and Frederick~S Scott,

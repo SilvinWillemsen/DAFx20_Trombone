@@ -76,7 +76,7 @@ To reduce audible artefacts and instability issues form adding and removing poin
 where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz. \SWcomment[still sub-audio rate?]
 
 \subsection{State correction}\label{sec:impStateCorr}
-The centered operators in Eq. \eqref{eq:scForce} and with that the introduction of states at $n+1$ seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}.
+The centred operators in Eq. \eqref{eq:scForce} and with that the introduction of states at $n+1$ seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}.
 
 The the aforementioned operators also introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed to create $\mathbf{r}^{n-1}$, but for generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^{n}$ respectively. 
 

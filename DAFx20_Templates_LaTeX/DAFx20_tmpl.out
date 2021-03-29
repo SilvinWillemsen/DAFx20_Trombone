@@ -9,10 +9,15 @@
 \BOOKMARK [1][-]{section.4}{4 \040Dynamic grid}{}% 9
 \BOOKMARK [2][-]{subsection.4.1}{4.1 \040Changing the Tube Length}{section.4}% 10
 \BOOKMARK [2][-]{subsection.4.2}{4.2 \040Adding and removing grid points}{section.4}% 11
-\BOOKMARK [1][-]{section.5}{5 \040Implementation}{}% 12
-\BOOKMARK [2][-]{subsection.5.1}{5.1 \040Parameters}{section.5}% 13
-\BOOKMARK [2][-]{subsection.5.2}{5.2 \040Limit on speed of change}{section.5}% 14
-\BOOKMARK [2][-]{subsection.5.3}{5.3 \040Order of Calculation}{section.5}% 15
-\BOOKMARK [1][-]{section.6}{6 \040Results and Discussion}{}% 16
-\BOOKMARK [1][-]{section.7}{7 \040Conclusion and Future Work}{}% 17
-\BOOKMARK [1][-]{section.8}{8 \040References}{}% 18
+\BOOKMARK [2][-]{subsection.4.3}{4.3 \040Drift of w}{section.4}% 12
+\BOOKMARK [2][-]{subsection.4.4}{4.4 \040State Correction}{section.4}% 13
+\BOOKMARK [1][-]{section.5}{5 \040Implementation}{}% 14
+\BOOKMARK [2][-]{subsection.5.1}{5.1 \040Parameters}{section.5}% 15
+\BOOKMARK [2][-]{subsection.5.2}{5.2 \040Limit on speed of change}{section.5}% 16
+\BOOKMARK [2][-]{subsection.5.3}{5.3 \040State correction}{section.5}% 17
+\BOOKMARK [2][-]{subsection.5.4}{5.4 \040Real-time implementation}{section.5}% 18
+\BOOKMARK [2][-]{subsection.5.5}{5.5 \040Order of Calculation}{section.5}% 19
+\BOOKMARK [1][-]{section.6}{6 \040Results and Discussion}{}% 20
+\BOOKMARK [1][-]{section.7}{7 \040Conclusion and Future Work}{}% 21
+\BOOKMARK [1][-]{section.8}{8 \040Acknowledgements}{}% 22
+\BOOKMARK [1][-]{section.9}{9 \040References}{}% 23
