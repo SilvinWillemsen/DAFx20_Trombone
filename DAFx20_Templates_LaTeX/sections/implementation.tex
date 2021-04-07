@@ -1,5 +1,14 @@
 \section{Implementation}\label{sec:implementation}
-The algorithm has been implemented in C++ using the JUCE framework. A demo of the implementation can be found via \cite{DEMO}. First, this section provides the parameter values used in the simulation after which different aspects of the implementation that require extra attention are highlighted.
+The algorithm has been implemented in C++ using the JUCE framework. A screenshot of the graphical user interface (GUI) can be found in Figure \ref{fig:GUI} and a demo of the implementation can be found via \cite{DEMO} \SWcomment[$\leftarrow$ will update this and the figure]. The geometry of the tube is plotted along with paths showing the pressure states in blue and the velocity (scaled by the geometry $S$) in green. The audio thread of the application runs at 44100 Hz whereas the graphics are updated at a rate of 15 Hz.
+
+\begin{figure}[t]
+    \centering
+    \fbox{\includegraphics[width = 0.9\columnwidth]{Figures/GUI.png}}
+    \caption{Screenshot of the graphical user interface. The geometry as well as the states of the pressure (in blue) and velocity scaled by $S$ (in green) are shown. For clarity, the start and end of the outer slide is denoted by dashed lines. The drift of $w$ is visible from the ``kink'' in the green line right in the middle of the outer slide.}
+    \label{fig:GUI}
+\end{figure}
+
+The rest of this section provides the parameter values used in the simulation after which different aspects of the implementation that require extra attention are highlighted.
 
 \subsection{Parameters}
 For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
@@ -49,15 +58,17 @@ where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} \approx 2.4$ \SWcomme
         Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry}. \\\hline
         \multicolumn{3}{|l|}{\bf Lip reed}\\ \hline
         Mass & $M_\text{r}$ (kg) & $5.37\cdot10^{-5}$*\\
-        Frequency & $\omega_0$ (rad/s) & $ 1194\leq \omega_0 \leq 1683$\\
-        Mouth pressure & $P_\text{m}$ (Pa) & $0 \leq P_\text{m} \leq 6000\SWcomment[??]$\\
+        Frequency & $\omega_0$ (rad/s) & $ 50\leq \omega_0/2\pi \leq 1000$\\
+        Mouth pressure & $P_\text{m}$ (Pa) & $0 \leq P_\text{m} \leq 6000$\\
         Damping & $\sigma_\text{r}$ (s$^{-1}$) & $5$*\\
         Eff. surface area & $S_\text{r}$ (m$^{2}$) & $1.46\cdot 10^{-5}$*\\
         Width & $w_\text{r}$ (m) & $0.01$* \\
         Equilibrium sep. & $H_0$ (m) &  $2.9 \cdot 10^{-4}$* \\
         Coll. stiffness& $K_\text{c}$ (N/m) & $10^4$\\
         Nonlin. coll. coeff.& $\alpha_\text{c}$ (-)  &3\\\hline
-        \multicolumn{3}{|l|}{\bf Miscellaneous}\\ \hline
+        \multicolumn{3}{|l|}{\bf Other}\\ \hline
+        State corr. stiffness & $\omega_\text{sc}$ & $1$\\ 
+        State corr. damping & $\sigma_\text{sc}$ & $1$\\ 
         Sample rate & $f_\text{s}$ (Hz) & 44100\\
         \hline
     \end{tabular}
