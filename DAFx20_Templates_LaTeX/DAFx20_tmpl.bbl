@@ -6,6 +6,11 @@ M.~Campbell,
 \newblock {\em Acta Acustica united with Acustica}, vol. 90, no. 4, pp.
   600--610, 2004.
 
+\bibitem{Hirschberg96}
+A.~Hirschberg, J.~Gilbert, R.~Msallam, and A.~Wijnands,
+\newblock ``Shock waves in trombones,''
+\newblock {\em J. Acoust. Soc. Am.}, vol. 99, no. 3, pp. 1754--1758, 1996.
+
 \bibitem{msallam1997physical}
 R.~Msallam, S.~Dequidt, S.~Tassart, and R.~Causse,
 \newblock ``Physical model of the trombone including non-linear propagation
@@ -15,7 +20,7 @@ R.~Msallam, S.~Dequidt, S.~Tassart, and R.~Causse,
 \bibitem{msallam2000physical}
 R.~Msallam, S.~Dequidt, R.~Causse, and S.~Tassart,
 \newblock ``Physical model of the trombone including nonlinear effects.
-  application to the sound synthesis of loud tones,''
+  {A}pplication to the sound synthesis of loud tones,''
 \newblock {\em Acta Acustica united with Acustica}, vol. 86, no. 4, pp.
   725--736, 2000.
 
@@ -30,6 +35,12 @@ R.~L. Harrison, S.~Bilbao, J.~Perry, and T.~Wishart,
   instruments,''
 \newblock {\em Computer Music Journal}, vol. 39, no. 4, pp. 80--95, 2015.
 
+\bibitem{Bilbao2013}
+S.~Bilbao and J.~Chick,
+\newblock ``Finite difference time domain simulation for the brass instrument
+  bore,''
+\newblock {\em J. Acoust. Soc. Am.}, vol. 134, no. 6, pp. 3860--3871, 2013.
+
 \bibitem{Willemsen2021}
 S.~Willemsen, S.~Bilbao, M.~Ducceschi, and S.~Serafin,
 \newblock ``Dynamic grids for finite-difference schemes in musical instrument
@@ -37,12 +48,18 @@ S.~Willemsen, S.~Bilbao, M.~Ducceschi, and S.~Serafin,
 \newblock submitted to \textit{Proc. of the 23rd Int. Conf. on Digital Audio
   Effects (DAFx)}, 2021.
 
-\bibitem{Ducceschi2021}
-M.~Ducceschi, S.~Bilbao, S.~Willemsen, and S.~Serafin,
-\newblock ``A non-iterative solver for collision dynamics based on energy
-  quadratisation,''
-\newblock accepted to \textit{Journal of the Acoustical Society of America
-  (JASA)}, 2021.
+\bibitem{Webster19}
+A.~Webster,
+\newblock ``Acoustical impedance, and the theory of horns and of the
+  phonograph,''
+\newblock {\em Proceedings of the National Academy of Sciences of the United
+  States of America}, vol. 5, no. 7, pp. 275--282, 1919.
+
+\bibitem{Bilbao2016}
+S.~Bilbao and R.~Harrison,
+\newblock ``Passive time-domain numerical models of viscothermal wave
+  propagation in acoustic tubes of variable cross section,''
+\newblock {\em J. Acoust. Soc. Am.}, vol. 140, pp. 728--740, 2016.
 
 \bibitem{Levine1948}
 H.~Levine and J.~Schwinger,
@@ -61,6 +78,31 @@ R.~L. Harrison-Harsley,
   Time-Domain Methods},
 \newblock Ph.D. thesis, University of Edinburgh, 2018.
 
+\bibitem{Ducceschi2021}
+M.~Ducceschi, S.~Bilbao, S.~Willemsen, and S.~Serafin,
+\newblock ``A non-iterative solver for collision dynamics based on energy
+  quadratisation,''
+\newblock accepted to \textit{Journal of the Acoustical Society of America
+  (JASA)}, 2021.
+
+\bibitem{bilbao2009}
+S.~Bilbao,
+\newblock {\em Numerical Sound Synthesis},
+\newblock John Wiley \& Sons, United Kingdom, 2009.
+
+\bibitem{JUCE}
+{JUCE},
+\newblock ``{JUCE},''
+\newblock Available at \href{https://juce.com/}{https://juce.com/}, accessed
+  March 21, 2021.
+
+\bibitem{DEMO}
+{S. Willemsen},
+\newblock ``{Trombone Simulation - DAFx 2021},''
+\newblock Available at
+  \href{https://youtu.be/U8ZoAJ_TXS4}{https://youtu.be/U8ZoAJ\_TXS4}, accessed
+  April 8, 2021.
+
 \bibitem{Smyth2011}
 T.~Smyth and F.~S. Scott,
 \newblock ``Trombone synthesis by model and measurement,''
@@ -71,11 +113,6 @@ A.~H. Benade,
 \newblock ``On the propagation of sound waves in a cylindrical conduit,''
 \newblock {\em Journal of the Acoustical Society of America}, vol. 44, no. 2,
   pp. 616--623, 1968.
-
-\bibitem{bilbao2009}
-S.~Bilbao,
-\newblock {\em Numerical Sound Synthesis},
-\newblock John Wiley \& Sons, United Kingdom, 2009.
 
 \bibitem{bilbao2009dafx}
 S.~Bilbao,
@@ -89,17 +126,5 @@ S.~Bilbao and R.~L. Harrison,
   propagation in acoustic tubes of variable cross section,''
 \newblock {\em The Journal of the Acoustical Society of America}, vol. 140, pp.
   728--740, 2016.
-
-\bibitem{smyth2011trombone}
-Tamara Smyth and Frederick~S Scott,
-\newblock ``Trombone synthesis by model and measurement,''
-\newblock {\em EURASIP Journal on Advances in Signal Processing}, vol. 2011,
-  pp. 1--13, 2011.
-
-\bibitem{JUCE}
-{JUCE},
-\newblock ``{JUCE},''
-\newblock Available at \href{https://juce.com/}{https://juce.com/}, accessed
-  March 21, 2021.
 
 \end{thebibliography}

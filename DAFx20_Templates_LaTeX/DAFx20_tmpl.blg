@@ -3,46 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: DAFx20_tmpl.aux
 The style file: IEEEbib.bst
 Database file #1: DAFx20_tmpl.bib
-Warning--I didn't find a database entry for "DEMO"
-You've used 17 entries,
+You've used 21 entries,
             1838 wiz_defined-function locations,
-            562 strings with 6239 characters,
-and the built_in function-call counts, 3237 in all, are:
-= -- 289
-> -- 147
+            591 strings with 6904 characters,
+and the built_in function-call counts, 4096 in all, are:
+= -- 371
+> -- 177
 < -- 0
-+ -- 57
-- -- 40
-* -- 252
-:= -- 557
-add.period$ -- 17
-call.type$ -- 17
-change.case$ -- 14
++ -- 69
+- -- 48
+* -- 330
+:= -- 698
+add.period$ -- 21
+call.type$ -- 21
+change.case$ -- 18
 chr.to.int$ -- 0
-cite$ -- 17
-duplicate$ -- 134
-empty$ -- 317
-format.name$ -- 40
-if$ -- 695
+cite$ -- 21
+duplicate$ -- 162
+empty$ -- 401
+format.name$ -- 48
+if$ -- 882
 int.to.chr$ -- 0
-int.to.str$ -- 17
-missing$ -- 15
-newline$ -- 88
-num.names$ -- 17
-pop$ -- 39
+int.to.str$ -- 21
+missing$ -- 18
+newline$ -- 108
+num.names$ -- 21
+pop$ -- 42
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 32
+skip$ -- 37
 stack$ -- 0
-substring$ -- 185
-swap$ -- 16
+substring$ -- 273
+swap$ -- 19
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 33
-width$ -- 19
-write$ -- 182
-(There was 1 warning)
+while$ -- 41
+width$ -- 23
+write$ -- 225
