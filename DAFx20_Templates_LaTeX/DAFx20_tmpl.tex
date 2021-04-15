@@ -37,7 +37,7 @@
 % Please use the following commands to define title and author(s) of the paper.
 % paperauthorA MUST be the the first author of the paper
 % Please comment the unused definitions 
-\def\papertitle{A Physical model of the Trombone using Dynamic Grids for Finite Difference Schemes}
+\def\papertitle{A Physical model of the Trombone using Dynamic Grids for Finite-Difference Schemes}
 \def\paperauthorA{Silvin Willemsen}
 \def\paperauthorB{Stefan Bilbao}
 \def\paperauthorC{Michele Ducceschi}
@@ -82,7 +82,7 @@
 
 \def\SBcomment[#1]{\textcolor{Red}{#1}}
 \def\SWcomment[#1]{\textcolor{Cyan}{#1}}
-\def\MDcomment[#1]{\textcolor{Green}{#1}}
+\def\MDcomment[#1]{\textcolor{PineGreen}{#1}}
 \def\SScomment[#1]{\textcolor{Bittersweet}{#1}}
 \DeclareMathAlphabet\mathbfcal{OMS}{cmsy}{b}{n}
 
@@ -255,7 +255,7 @@
 %in the authors' line. However, if your paper does not require any \sthanks command, please use an empty (vertical space eating) \thanks command only in one of the authors
 %headers as follows:
 \threeaffiliations{
-\paperauthorA \,}{{Multisensory Experience Lab} \\ Aalborg University Copenhagen\\ Copenhagen, Denmark\\
+\hspace{1.5mm}\paperauthorA\thanks{\vspace{-3mm}}}{{Multisensory Experience Lab} \\ Aalborg University Copenhagen\\ Copenhagen, Denmark\\
 {\tt \href{mailto:sil@create.aau.dk}{sil@create.aau.dk}}
 }
 {\paperauthorB, \paperauthorC\,}
@@ -330,6 +330,9 @@ University Hub Nordic Sound and Music Computing Network
 NordicSMC, project number 86892.
 \nocite{*}
 \bibliographystyle{IEEEbib}
+{\section{References}
+{\fontsize{8pt}{10pt}\selectfont
 \bibliography{DAFx20_tmpl} % requires file DAFx20_tmpl.bib
-
+}
+}
 \end{document}

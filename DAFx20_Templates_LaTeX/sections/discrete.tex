@@ -2,7 +2,7 @@
 The continuous system described in the previous section is discretised using FDTD methods, through an approximation over a grid in space and time. Before presenting this discretisation, we briefly summarize the operation of FDTD methods.
 
 \subsection{Numerical Methods}\label{sec:numMeth}
-Consider a 1D system of length $L$ described by state variable $u = u(x,t)$ with spatial domain $x\in [0, L]$ and time $t\geq 0$. The spatial domain can be disctretised according to $x=lh$ with spatial index $l \in [0, \hdots, N]$, number of intervals between the grid points $N$, grid spacing $h$ (in m) and time as $t=nk$ with temporal index $n \in \mathbb{Z}^{0+}$ and time step $k$ (in s). The grid function $u_l^n$ represents an approximation to $u(x,t)$ at $x=lh$ and $t=nk$. 
+Consider a 1D system of (static) length $L$ described by state variable $u = u(x,t)$ with spatial domain $x\in [0, L]$ and time $t\geq 0$. The spatial domain can be disctretised according to $x=lh$ with spatial index $l \in \{0, \hdots, N\}$, number of intervals between the grid points $N$, grid spacing $h$ (in m) and time as $t=nk$ with temporal index $n \in \mathbb{Z}^{0+}$ and time step $k$ (in s). The grid function $u_l^n$ represents an approximation to $u(x,t)$ at $x=lh$ and $t=nk$. 
 
 Shift operators can then be applied to grid function $u_l^n$. Temporal and spatial shift operators are
 \begin{equation}
@@ -30,25 +30,27 @@ and space
 \begin{equation}
     \mu_{x+} = \frac{e_{x+} + 1}{2}, \ \mu_{x-} = \frac{1 + e_{x-}}{2}, \ \mu_{x\cdot} = \frac{e_{x+}+e_{x-}}{2}.
 \end{equation}
-Here, forward and backward averaging operators are extremely useful in the context of first-order systems as used in this paper. When applied to a grid function, the result may be interpreted as its value shifted by half a temporal or spatial step: 
-\begin{align}
-    \mu_{t+}u_l^n &= u_l^{n+1/2}, \quad \mu_{t-}u_l^n = u_l^{n-1/2},\\
-    \mu_{x+}u_l^n &= u_{l+1/2}^n, \quad \mu_{x-}u_l^n = u_{l-1/2}^n,
-\end{align}
-effectively placing the grid function on an \textit{interleaved grid} which will be further elaborated on in the following. \SBcomment[OK, the interleaved averaging expressions above aren't right...do you need this? Can't you just say that the operators $\mu_{t\pm}$ apply equally to interleaved grid functions and leave it at that? At the moment, the definition above seems like it is self-contradictory...] \SWcomment[I think what I was getting at is that you can put a grid function on the interleaved grid using these averaging operators. After some thinking though, this is more an approximation rather than an equality (just like $S_{l+1/2}$ and $\bar S_l$). The statement "the result may be interpreted as its value shifted by half a step" is therefore also wrong no?]
+% Here, forward and backward averaging operators are extremely useful in the context of first-order systems as used in this paper. When applied to a grid function, the result may be interpreted as its value shifted by half a temporal or spatial step: 
+% \begin{align}
+%     \mu_{t+}u_l^n &= u_l^{n+1/2}, \quad \mu_{t-}u_l^n = u_l^{n-1/2},\\
+%     \mu_{x+}u_l^n &= u_{l+1/2}^n, \quad \mu_{x-}u_l^n = u_{l-1/2}^n,
+% \end{align}
+% effectively placing the grid function on an \textit{interleaved grid} which will be further elaborated on in the following. \SBcomment[OK, the interleaved averaging expressions above aren't right...do you need this? Can't you just say that the operators $\mu_{t\pm}$ apply equally to interleaved grid functions and leave it at that? At the moment, the definition above seems like it is self-contradictory...] \SWcomment[I think what I was getting at is that you can put a grid function on the interleaved grid using these averaging operators. After some thinking though, this is more an approximation rather than an equality (just like $S_{l+1/2}$ and $\bar S_l$). The statement "the result may be interpreted as its value shifted by half a step" is therefore also wrong no?]\SBcomment[The problem above is really just notation. You could write (if you need to): $\bar{u}_{l}^{n+1/2}\triangleq\mu_{t+}u_{l}^{n}$, so there's an extra "bar" notation to indicate that $u$ and $\bar{u}$ are different sequences.]
  
-An approximation $\delta_{tt}$ to a second time derivative may be defined as
+Finally, an approximation $\delta_{tt}$ to a second time derivative may be defined as
 \begin{equation}
     \delta_{tt} = \delta_{t+}\delta_{t-} = \frac{1}{k^2}\left(e_{t+}-2+e_{t-}\right).
 \end{equation}
 
 \subsection{Discrete Tube}\label{sec:discSyst}
-As a first step, the domain $x\in [0, L]$ can be subdivided into $N$ equal segments of length $h$ (the grid spacing), so that
-\begin{equation}\label{eq:numberOfIntervals}
-    N=L/h.
-\end{equation}
-Interleaved grid functions approximating $p$ and $v$ may then be defined. $p_l^n$ $l=0,\hdots,N$ \SWcomment[Just a question about notation here.. Is there a difference between $l = {[}0, \hdots, N{]}$, $l = 0, \hdots, N$ and $l\in{[}0, \hdots, N{]}$ and when to use which?] approximates $p(x,t)$ at coordinates $x=lh$, $t=nk$ and $v_{l+1/2}^{n+1/2}$, $l=0\hdots,N-1$ approximates $v(x,t)$ at coordinates $x=(l+1/2)h$, $t=(n+1/2)k$. In addition, a discrete cross-sectional area $S_l\approx S(x=lh)$, $l=0,\hdots,N$ is assumed known.
-
+As a first step, the domain $x\in [0, L]$ can be subdivided into $N$ equal segments of length $h$ (the grid spacing). %, so that
+% \begin{equation}\label{eq:numberOfIntervals}
+%     N=L/h.
+% \end{equation} \SWcomment[I might just move this to your comment right below the Courant number (just as I did in the other paper now).]
+Interleaved grid functions approximating $p$ and $v$ may then be defined. Grid function $p_l^n$ with $l\in\{0,\hdots,N\}$
+% \SWcomment[Just a question about notation here.. Is there a difference between $l = {[}0, \hdots, N{]}$, $l = 0, \hdots, N$ and $l\in{[}0, \hdots, N{]}$ and when to use which?]\SBcomment[I generally use the notation with $\hdots$. You could say $l\in\{0,\hdots,N\}$, with the curly braces to indicate a set rather than a vector.] \SWcomment[Alright so $l\in{[}0, \hdots, N{]}$ is wrong? Used to use that in other papers (including the dynamic grid one)..]\SBcomment[Looks weird to me...square bracket usually means a vector to me. ] \SWcomment[Cool, also changed it in the other paper :)] 
+approximates $p(x,t)$ at coordinates $x=lh$, $t=nk$ and $v_{l+1/2}^{n+1/2}$ with $l\in\{0\hdots,N-1\}$ approximates $v(x,t)$ at coordinates $x=(l+1/2)h$, $t=(n+1/2)k$. In addition, a discrete cross-sectional area $S_l\approx S(x=lh)$ with $l\in \{0,\hdots,N\}$ is assumed known.
+%
 System \eqref{eq:firstOrderSystem} can then be discretised as
 \begin{subequations}\label{eq:FDS}
     \begin{align}
@@ -56,7 +58,7 @@ System \eqref{eq:firstOrderSystem} can then be discretised as
         \rho_0 \delta_{t-}v_{l+1/2}^{n+1/2}&=-\delta_{x+}p_l^n,\label{eq:discVelocity}
     \end{align}
 \end{subequations}
-where $S_{l+1/2} = \mu_{x+}S_l$ and $\bar S_l = \mu_{x-}S_{l+1/2}$ are approximations to the continuous cross-sectional area $S(x)$. The values for $\bar S_l$ at the boundaries, i.e., $\bar S_0$ and $\bar S_N$ are set equal to $S(0)$ and $S(L)$.
+where $S_{l+1/2} = \mu_{x+}S_l$ and $\bar S_l = \mu_{x-}S_{l+1/2}$ are approximations to the continuous cross-sectional area $S(x)$. The values for $\bar S_l$ at the boundaries, i.e., $\bar S_0$ and $\bar S_N$, are set equal to $S(0)$ and $S(L)$.
 
 Expanding the operators, we obtain the following recursion
 \begin{subequations}\label{eq:updateNormal}
@@ -65,13 +67,18 @@ Expanding the operators, we obtain the following recursion
         v_{l+1/2}^{n+1/2} &= v_{l+1/2}^{n-1/2}-\frac{\lambda}{\rho_0 c}(p_{l+1}^n - p_l^n),\label{eq:velocityUpdate}
     \end{align}
 \end{subequations}
-where $\lambda = ck/h$ is referred to as the Courant number and
+where $\lambda = ck/h$ is referred to as the Courant number and \cite{bilbao2009}
 \begin{equation}\label{eq:CFL}
-    \lambda \leq 1
+    \lambda \leq 1 \quad\Longrightarrow \quad  h\geq ck
 \end{equation}
-in order for the scheme to be stable \cite{}. \SBcomment[OK, right here would be the place to introduce the truncation of $N$, with reference to the CFL condition...]
+in order for the scheme to be stable. In implementation, the following steps are taken to calculate $\lambda$:
+\begin{equation}\label{eq:orderOfCalcGrid}
+    h := ck,\ \ N := \left\lfloor\frac{L}{h}\right\rfloor, \ \ h := \frac{L}{N}, \ \ \lambda := \frac{ck}{h},
+\end{equation}
+where $\lfloor \cdot \rfloor$ denotes the flooring operation and is necessary because $N$ is an integer. This causes \eqref{eq:CFL} to not be satisfied with equality for all choices of $L$.
+%\SBcomment[OK, right here would be the place to introduce the truncation of $N$, with reference to the CFL condition...]
 
-The update \eqref{eq:velocityUpdate} holds for $l=0,\hdots,N-1$. The update \eqref{eq:pressureUpdate} holds for $l=0,\hdots,N$, and thus, in analogy with the continuous case, two numerical boundary conditions are required in order to update $p_{0}^{n+1}$ and $p_{N}^{n+1}$. These are provided by numerical equivalents of the excitation and radiation condition, given below. 
+Equations \eqref{eq:pressureUpdate} and \eqref{eq:velocityUpdate} hold for $l\in \{0,\hdots,N\}$ and $l\in\{0,\hdots,N-1\}$ respectively, and thus, in analogy with the continuous case, two numerical boundary conditions are required in order to update $p_{0}^{n+1}$ and $p_{N}^{n+1}$. These are provided by numerical equivalents of the excitation condition (see Section \ref{sec:discLipReed} below) and the radiation condition (in \cite{Harrison2018}).
 % Finally, the boundary conditions in \eqref{eq:contBound} can be discretised as
 % \begin{subequations}
 %     \begin{align}
@@ -80,30 +87,30 @@ The update \eqref{eq:velocityUpdate} holds for $l=0,\hdots,N-1$. The update \eqr
 %     \end{align}    
 % \end{subequations}
 
-\subsection{Lip reed}
+\subsection{Lip reed}\label{sec:discLipReed}
 As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$. Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are then discretised as follows:
 \def\nphSys{n+1/2}
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
     &\begin{aligned}
-        M_\text{r}\delta_{tt}y^{\nphSys} =&-M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys} -M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}\\
-        &+\left(\mu_{t+}\psi^n\right)g^{n+1/2}+S_\text{r}\Delta p^{\nphSys},
+        M_\text{r}\delta_{tt}y^{\nphSys} =&-M_\text{r}(\omega_\text{r}^{n+1/2})^2\mu_{t\cdot}y^{\nphSys} \\
+        &\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!\!-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}+\left(\mu_{t+}\psi^n\right)g^{n+1/2}+S_\text{r}\Delta p^{\nphSys},
     \end{aligned}\label{eq:discReed}\\
-    &\Delta p^{\nphSys} = P_\text{m} - \mu_{t+}p_0^n,\label{eq:pDiff}\\
+    &\Delta p^{\nphSys} = P_\text{m}^{n+1/2} - \mu_{t+}p_0^n,\label{eq:pDiff}\\
     &\begin{aligned}
         U_\text{B}^{\nphSys} =&\ w_\text{r}[-\eta^{\nphSys}]_+\text{sgn}(\Delta p^{\nphSys})\label{eq:bernoulli}\\
         &
         \cdot\sqrt{2|\Delta p^{\nphSys}|/\rho_0},
     \end{aligned}\\
     &U_\text{r}^{\nphSys}= S_\text{r}\delta_{t\cdot}y^{\nphSys},\label{eq:Ur}\\
-    &\mu_{x-}(S_{1/2}v_{1/2}^{\nphSys})= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys},\label{eq:UbUr}
+    &\mu_{x-}(S_{1/2}v_{1/2}^{\nphSys})= U_\text{B}^{\nphSys} + U_\text{r}^{\nphSys}.\label{eq:UbUr}
     \end{align}
 \end{subequations}
-where $\omega_0 = \omega_0^{n+1/2}$ and $P_\text{m} = P_\text{m}^{n+1/2}$ and
+Here, following \cite{Ducceschi2021},
 \begin{subnumcases}{ \label{eq:gDef} g^{n+1/2} =}
 \begin{aligned}
-\kappa&\sqrt{\frac{K_\text{c}(\alpha+1)}{2}}\\
-&\cdot(\eta^{n+1/2})^{\frac{\alpha-1}{2}}
+\kappa&\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\\
+&\cdot(\eta^{n+1/2})^{\frac{\alpha_\text{c}-1}{2}}
 \end{aligned} & if $\eta^{n+1/2} \geq 0$ \label{eq:collCorr1}\\
 -2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$\label{eq:collCorr2}\\
 0, & $\begin{aligned} &\text{if } \eta^{n+1/2} < 0\\ &\text{and } \eta^{\star} = \eta^{n-1/2}
@@ -114,7 +121,7 @@ where $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. It should be not
 
 % Finally, to couple the lip reed to the tube, boundary condition \eqref{eq:discNeumann} can be modified to Eq. \eqref{eq:UbUr}. \SBcomment[Another reference to the Neumann condition to possibly remove here?] 
 % \begin{subnumcases}{\label{eq:discreteLipSystem}}
-%     M_\text{r}\delta_{tt}y^{\nphSys} = -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys} -M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}\label{eq:discReed}\\\qquad \qquad \qquad \ \ \ 
+%     M_\text{r}\delta_{tt}y^{\nphSys} = -M_\text{r}\omega_\text{r}^2\mu_{t\cdot}y^{\nphSys} -M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys}\label{eq:discReed}\\\qquad \qquad \qquad \ \ \ 
 %     +\ S_\text{r}\Delta p^{\nphSys}\nonumber\\
 %     \Delta p^{\nphSys} = P_\text{m} - \mu_{t+}p_0^n\label{eq:pDiff}\\
 %     U_\text{B}^{\nphSys} = w[y^{\nphSys}+H_0]_+\text{sgn}(\Delta p^{\nphSys})\label{eq:bernoulli}\\\qquad \qquad \ \ \ 
@@ -124,7 +131,7 @@ where $\kappa = 1$ if $\psi^n \geq 0$, otherwise $\kappa = -1$. It should be not
 % \end{subnumcases}
 
 % \begin{subnumcases}{\label{eq:discreteLipSystem}}
-%     M_\text{r}\delta_{tt}y^{\nphSys} & $= -M_\text{r}\omega_0^2\mu_{t\cdot}y^{\nphSys}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys}$\label{eq:discReed}\\
+%     M_\text{r}\delta_{tt}y^{\nphSys} & $= -M_\text{r}\omega_\text{r}^2\mu_{t\cdot}y^{\nphSys}-M_\text{r}\sigma_\text{r}\delta_{t\cdot}y^{\nphSys} + S_\text{r}\Delta p^{\nphSys}$\label{eq:discReed}\\
 %     \Delta p^{\nphSys} & $= P_\text{m} - \mu_{t+}p_0^n$\label{eq:pDiff}\\
 %     U_\text{B}^{\nphSys} & $= w[y^{\nphSys}+H_0]_+\text{sgn}(\Delta p^{\nphSys})\sqrt{\frac{2|\Delta p^{\nphSys}|}{\rho_0}}$\label{eq:bernoulli}\\
 %     U_\text{r}^{\nphSys} & $= S_\text{r}\delta_{t\cdot}y^{\nphSys}$\label{eq:Ur}\\

@@ -1,14 +1,27 @@
 \section{Continuous System}\label{sec:continuous}
-Wave propagation in an acoustic tube can be approximated using a 1-dimensional model, for wavelengths that are long relative to the largest lateral dimension of the tube. Consider a tube of \SWcomment[time-varying] length $L$ \SWcomment[$=L(t)$] (in m) defined over spatial domain $x\in [0, L]$ and time $t\geq 0$. Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order PDEs describing the wave propagation in an acoustic tube can then be written as
+Wave propagation in an acoustic tube can be approximated using a 1-dimensional model, for wavelengths that are long relative to the largest lateral dimension of the tube. Consider a tube of time-varying length $L$ $=L(t)$ (in m) defined over spatial domain $x\in [0, L]$ and time $t\geq 0$. Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order partial differential equations (PDEs) describing the wave propagation in an acoustic tube can then be written as:
 \begin{subequations}\label{eq:firstOrderSystem}
     \begin{align}
         \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
         \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}
     \end{align}
 \end{subequations}
-with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystem} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}. \SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?] For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystem}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
+with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystem} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}.  %\SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] 
+For simplicity, effects of viscothermal losses have been neglected in \eqref{eq:firstOrderSystem}. For a full time domain model of such effects in an acoustic tube, see, e.g. \cite{Bilbao2016}. 
 
-System \eqref{eq:firstOrderSystem} requires two boundary conditions, one at either end of the domain. These will be set according to an excitation model, and a radiation condition, as outlined below. Initial conditions are assumed quiescent.
+System \eqref{eq:firstOrderSystem} requires two boundary conditions, one at either end of the domain. The left boundary condition, at $x=0$, will be set according to an excitation model to be described in Section \ref{sec:lipReed}. The right boundary, at $x=L$, is set according to a radiation condition. %As the bell of brass instruments is in a way ``coupled'' to the air, the tube loses energy at the bell, or right boundary, in the form of radiation. 
+The radiation model used here, is the one for the unflanged cylindrical pipe proposed by Levine and Schwinger in \cite{Levine1948} and discretised by Silva \emph{et al.} in \cite{Silva2009}. As this model is not important for the contribution of this work it will not be detailed here in full. The interested reader is instead referred to \cite{Bilbao2013, Harrison2018} for a comprehensive explanation. % \SBcomment[OK, here, I don't get it...are you using the simple radiation model? Or is this just neglected?] \SWcomment[I am using the circuit shown in Fig. 4.1 in Harrisons thesis. I didn't want to use much space on explaining (and especially discretising) it as it is not novel, but if you think I should please let me know!]\SBcomment[Hey, you don't really need a circuit for this...it's a one-line differential equation. I think it's in Chapter 9 in NSS. Or maybe Reg did a different model? I forget. If it's a one-liner, might as well put it in. ]
+
+% \SWcomment[I Just cited both your 2013 paper and Harrison's thesis.] 
+
+% \SWcomment[I want to say something about the radiation being applied to the pressure and not the velocity (like Eq. \eqref{eq:lipBoundary}) so that my statement about the drift in \ref{sec:drift} makes sense.. First of all, is this correct (radiation = boundary condition for pressure)? And if so, how would I phrase that..?]\SBcomment[Hey, I'm not sure if you can say that a boundary condition is for pressure or for velocity. What happens is that the boundary condition relates pressure and velocity (through an impedance). The impedance is what appears in Silva's paper, e.g. Does this work?] \SWcomment[Hmm.. It's a bit hard for me to read that paper (which explains why I didn't want to include too much on this haha). Let me try to explain from a different angle. From the model behaviour I see that the pressure "wants to go to 0" at the radiating boundary and thus there is a sort of "boundary condition" imposed there through the radiation. It's like a damped mass spring trying to get to its equilibrium position. The velocity, however, does not exhibit this behaviour and thus "drifts" (as I talk about in \ref{sec:drift}). I just wonder if there is some way to describe that the radiation model imposes a "force" on the pressure "pulling" it to 0 (equilibrium), but that this does not happen for the velocity. I know it's there, just don't know how to put it into words :)]
+
+% \SWcomment[Ah, I think I might be on to something: in implementation, the radiation is used in the pressure update to calculate $q_{M_q}^{n+1}$, and not the velocity update. The velocity is used to calculate the radiation of course, but the radiation has a direct influence on $q_{M_q}^{n+1}$ not $w_{M_q-1/2}^{n+1/2}$.. (also see Eq. (4.18a) in Harrisons thesis)]
+
+% \SWcomment[I put a possible solution in section \ref{sec:drift} if you want to take a look. (As the radiating boundary is implemented on the pressure grid..)]
+
+% Finally, initial conditions are assumed quiescent.
+
 % Boundary conditions can then be imposed at the ends of domain, $x=0, L$. We assume the left boundary (at the mouthpiece) to be closed and the right (at the bell) to be open according to  
 % \begin{subequations}\label{eq:contBound}
 %     \begin{align}
@@ -18,38 +31,40 @@ System \eqref{eq:firstOrderSystem} requires two boundary conditions, one at eith
 % \end{subequations}
 % In the following, these (lossless) boundary conditions will be modified to be coupled to a lip reed and radiating respectively.\SBcomment[You can't use the left-end (Neumann) condition here; it's already set by the connection with the lip model! Also, the right condition is going to be set by the radiation condition. You can just remove this whole paragraph. Instead, you could write: "System XX requires two boundary conditions, one at either end of the domain. These will be set according to an excitation model, and a radiation condition, as outlined below. Initial conditions are assumed quiescent." ]
 
-\subsection{Coupling to a Lip Reed}
-To excite the system, a lip reed can be modelled as a mass-spring-damper system including two nonlinearities due to flow, and also collision of the lip against the mouthpiece. In the following, $y$ can be seen as the moving the upper lip where the lower lip is left static and rigid. See Figure \ref{fig:lipSystem} for a full schematic of the lip reed model. Using dots to indicate time-derivatives the lip reed is modelled as
+\subsection{Coupling to a Lip Reed}\label{sec:lipReed}
+To excite the system, a lip reed can be modelled as a mass-spring-damper system including two nonlinearities due to flow, and the collision of the lip against the mouthpiece. In the following, $y$ can be seen as the moving upper lip where the lower lip is left static and rigid. A diagram of the full lip-reed model is shown in Figure \ref{fig:lipSystem}. Using dots to indicate time-derivatives, the lip reed is modelled as
 \begin{equation}\label{eq:lipReedCont}
-    M_\text{r}\ddot y = -M_\text{r}\omega_0^2 y - M_\text{r} \sigma_\text{r} \dot y +\psi(\dot \psi/
+    M_\text{r}\ddot y = -M_\text{r}\omega_\text{r}^2 y - M_\text{r} \sigma_\text{r} \dot y +\psi(\dot \psi/
 \dot \eta)+ S_\text{r}\Delta p,
 \end{equation}
-with displacement from the equilibrium $y = y(t)$, lip mass $M_\text{r}$ (in kg), externally supplied (angular) frequency of oscillation $\omega_0$ \SWcomment[$= \omega_0(t)$] $= \sqrt{K_\text{r}/M_\text{r}}$ (in rad/s) and stiffness $K$ \SWcomment[$= K(t)$] (in N/m).
+with displacement from the equilibrium $y = y(t)$, lip mass $M_\text{r}$ (in kg), externally supplied (angular) frequency of oscillation $\omega_\text{r} = \omega_\text{r}(t)$ $= \sqrt{K_\text{r}/M_\text{r}}$ (in rad/s) and stiffness $K_\text{r}= K_\text{r}(t)$ (in N/m).
 
 We extend the existing models of lip reeds \cite{campbell2004brass} by introducing a nonlinear collision between the lips based on potential quadratisation proposed by \cite{Ducceschi2021}. The collision potential is defined as
 \begin{equation}
-    \psi = \left(\frac{2K_\text{c}}{\alpha_\text{c}+1}[\eta]_+^{\alpha_\text{c}+1}
+    \psi(\eta) = \left(\frac{2K_\text{c}}{\alpha_\text{c}+1}[\eta]_+^{\alpha_\text{c}+1}
     \right)^{1/2}
 \end{equation}
 % \begin{equation*}
 %     K_\text{c}>0, \quad \alpha_\text{c}\geq 1, \quad \eta\triangleq -y-H_0
 % \end{equation*}
-with collision stiffness $K_\text{c}>0$ and dimensionless nonlinear collision coefficient $\alpha_\text{c}\geq 1$, The inverted distance between the lips $\eta = \eta(t)$ (in m) is defined as $\eta\triangleq -y-H_0$, for static equilibrium separation $H_0$ (in m). $[\eta]_+ = 0.5 (\eta + |\eta|)$ indicates the ``positive part of $\eta$''. Notice, that if $\eta 
-\leq 0$ the collision potential will be non-zero. This quadratic form of a collision potential allows for a non-iterative implementation \cite{Ducceschi2021}. This will be explained further in Section \ref{sec:discrete}.
+with collision stiffness $K_\text{c}>0$ and dimensionless nonlinear collision coefficient $\alpha_\text{c}\geq 1$, The inverted distance between the lips $\eta = \eta(t) \triangleq -y-H_0$ (in m), for static equilibrium separation $H_0$ (in m). $[\eta]_+ = 0.5 (\eta + |\eta|)$ indicates the ``positive part of $\eta$''. Notice, that if $\eta 
+\geq 0$, the lips are closed and the collision potential will be non-zero. This quadratic form of a collision potential allows for a non-iterative implementation \cite{Ducceschi2021}. This will be explained further in Section \ref{sec:discrete}.
 
 Finally, $S_\text{r}$ (in m$^2$) is the effective surface area and 
 \begin{equation}
     \Delta p = P_\text{m} - p(0,t)
 \end{equation}
-is the difference between the externally supplied pressure in the mouth $P_\text{m} \SWcomment[= P_\text{m}(t)]$ and the pressure in the mouthpiece $p(0, t)$ (all in Pa). This pressure difference causes a volume flow velocity following the Bernoulli equation
+is the difference between the externally supplied pressure in the mouth $P_\text{m} = P_\text{m}(t)$ and the pressure in the mouthpiece $p(0, t)$ (all in Pa). This pressure difference causes a volume flow velocity following the Bernoulli equation
 \begin{equation}
     U_\text{B} = w_\text{r}[-\eta]_+\text{sgn}(\Delta p) \sqrt{\frac{2|\Delta p|}{\rho_0}},
 \end{equation}
-(in m/s) with effective lip-reed width $w_\text{r}$ (m). Notice that when $\eta \geq 0$, the lips are closed and the volume velocity $U_\text{B}$ is 0. Another volume flow is generated by the lip reed itself according to
+%\SWcomment[Should $U_\text{B}$ not be $U_\text{B}(\eta, t)$? At least $U_\text{B}(t)$ as used in \eqref{eq:lipBoundary}..]\SBcomment[i think it's ok to leave out the arguments here...]
+(in m$^3$/s) with effective lip-reed width $w_\text{r}$ (m). %Notice that when the lips are closed, $U_\text{B} = 0$.
+Another volume flow is generated by the lip reed itself according to
 \begin{equation}
     U_\text{r} = S_\text{r} \frac{dy}{dt}
 \end{equation}
-(in m/s).
+(in m$^3$/s).
 Assuming that the volume flow velocity is conserved, the total air volume entering the system is defined as
 \begin{equation}\label{eq:lipBoundary}
     S(0)v(0,t) = U_\text{B}(t) + U_\text{r}(t).
@@ -59,6 +74,3 @@ This condition serves as a boundary condition at $x=0$ for system \eqref{eq:firs
 
 \input{sections/lipSystem.tex}
 
-\subsection{Radiation}
-As the bell of brass instruments is in a way ``coupled" to the air, the tube loses energy at the bell, or right boundary. These losses can be modelled using a radiation model. The model used here, is the one for the unflanged cylindrical pipe proposed by Levine and Schwinger in \cite{Levine1948} and discretised by Silva \emph{et al.} in \cite{Silva2009}. As this model is not important for the contribution of this work it will not be detailed here in full. The interested reader is instead referred to \cite{Bilbao2013, Harrison2018} for a comprehensive explanation. % \SBcomment[OK, here, I don't get it...are you using the simple radiation model? Or is this just neglected?] \SWcomment[I am using the circuit shown in Fig. 4.1 in Harrisons thesis. I didn't want to use much space on explaining (and especially discretising) it as it is not novel, but if you think I should please let me know!]\SBcomment[Hey, you don't really need a circuit for this...it's a one-line differential equation. I think it's in Chapter 9 in NSS. Or maybe Reg did a different model? I forget. If it's a one-liner, might as well put it in. ]
-\SWcomment[I Just cited both your 2013 paper and Harrison's thesis]

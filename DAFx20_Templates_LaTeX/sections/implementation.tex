@@ -1,97 +1,8 @@
 \section{Implementation}\label{sec:implementation}
-The algorithm has been implemented in C++ using the JUCE framework. A screenshot of the graphical user interface (GUI) can be found in Figure \ref{fig:GUI} and a demo of the implementation can be found via \cite{DEMO} \SWcomment[$\leftarrow$ will update this and the figure]. The geometry of the tube is plotted along with paths showing the pressure states in blue and the velocity (scaled by the geometry $S$) in green. The audio thread of the application runs at 44100 Hz whereas the graphics are updated at a rate of 15 Hz.
+The algorithm has been implemented in C++ using the JUCE framework \cite{JUCE}. A demo of the implementation can be found via \cite{DEMO}. The audio output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the radiating boundary $q_{M_q}^n$ is chosen, as this is also where the sound enters the listening space in the real world. To mimic high-frequency losses\SWcomment[ due to air absorption?], a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
 
-\begin{figure}[t]
-    \centering
-    \fbox{\includegraphics[width = 0.9\columnwidth]{Figures/GUI.png}}
-    \caption{Screenshot of the graphical user interface. The geometry as well as the states of the pressure (in blue) and velocity scaled by $S$ (in green) are shown. For clarity, the start and end of the outer slide is denoted by dashed lines. The drift of $w$ is visible from the ``kink'' in the green line right in the middle of the outer slide.}
-    \label{fig:GUI}
-\end{figure}
+Algorithm \ref{alg:calcOrder} shows the order in which the different parts of the system presented in this paper are calculated. 
 
-The rest of this section provides the parameter values used in the simulation after which different aspects of the implementation that require extra attention are highlighted.
-
-\subsection{Parameters}
-For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
-The system is split at the end of the trombone slide such that the ranges for the lengths of the two tubes are $L_p^n \in[0.797, 1.327]$ and $L_q^n \in [1.796, 2.326]$.
-
-Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here, is $\lambda$ which has been set slightly lower than the stability condition in \eqref{eq:CFL}, i.e., $\lambda = 0.999$. Although the implementation works when $\lambda = 1$, this is done to tolerate (much) higher speeds of change in $L^n$ before instability occurs (see Section \ref{sec:limit}). Not satisfying condition \eqref{eq:CFL} causes bandlimiting and dispersive effects \cite{bilbao2009}, but such a small deviation from the condition has no audible influence on the output sound and outweighs the problems caused by instability.
-
-As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube, which depends on $L^n$ in the following way
-\begin{equation}
-    \omega_0^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}
-\end{equation}
-where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} \approx 2.4$ \SWcomment[double check this] was heuristically found to best match the 4\textsuperscript{th} resonating mode of the tube and generates a recognisable brass sound.
-\begin{table}[t]
-    \small
-    \begin{center}
-    \begin{tabular}{|l|c|c|}
-        \hline
-        Part of tube & Length (cm) & Radius (cm)\\\hline
-        Inner slide (1) & 70.8 & 0.69\\
-        Outer slide (extended) (2) & 53 & 0.72 
-        \\
-        Slide crook (3)& 17.7 & 0.74\\
-        Outer slide (extended) (4) & 53 & 0.72 
-        \\
-        Inner slide (5) & 71.1 & 0.69\\
-        Gooseneck (6) & 24.1 & 0.71\\
-        Tuning slide (7) & 25.4 & 0.75, 1.07\\
-        Bell flare (8) & 50.2& 1, 10.8\\\hline
-    \end{tabular}
-    \caption{Geometry of a measured trombone taken from \cite{Smyth2011}. Numbers correspond to Figure \ref{fig:tromboneSchematic}.\label{tab:geometry}}
-    \end{center}
-\end{table}
-
-\input{sections/tromboneTikz.tex}
-
-\begin{table}[t]
-    \small
-    \begin{center}
-    \begin{tabular}{|l|c|c|}
-        \hline
-        Name & Symbol (unit) & Value\\ \hline
-        \multicolumn{3}{|l|}{\bf Tube}\\ \hline
-        Length & $L$ (m) & $2.593\leq L \leq 3.653$$^\star$\\
-        Air density &$\rho_0$ (kg/m$^3$) & 1.1769** 
-        \\
-        Wave speed & $c$ (m/s) & 347.23**\\
-        Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry}. \\\hline
-        \multicolumn{3}{|l|}{\bf Lip reed}\\ \hline
-        Mass & $M_\text{r}$ (kg) & $5.37\cdot10^{-5}$*\\
-        Frequency & $\omega_0$ (rad/s) & $ 50\leq \omega_0/2\pi \leq 1000$\\
-        Mouth pressure & $P_\text{m}$ (Pa) & $0 \leq P_\text{m} \leq 6000$\\
-        Damping & $\sigma_\text{r}$ (s$^{-1}$) & $5$*\\
-        Eff. surface area & $S_\text{r}$ (m$^{2}$) & $1.46\cdot 10^{-5}$*\\
-        Width & $w_\text{r}$ (m) & $0.01$* \\
-        Equilibrium sep. & $H_0$ (m) &  $2.9 \cdot 10^{-4}$* \\
-        Coll. stiffness& $K_\text{c}$ (N/m) & $10^4$\\
-        Nonlin. coll. coeff.& $\alpha_\text{c}$ (-)  &3\\\hline
-        \multicolumn{3}{|l|}{\bf Other}\\ \hline
-        State corr. stiffness & $\omega_\text{sc}$ & $1$\\ 
-        State corr. damping & $\sigma_\text{sc}$ & $1$\\ 
-        Sample rate & $f_\text{s}$ (Hz) & 44100\\
-        \hline
-    \end{tabular}
-    \caption{List of parameter values used for the simulation. 
-    Taken from $^\star$\cite{Smyth2011}, *\cite{Harrison2018} or **\cite{Benade1968} with temperature $T=26.85^\circ C$. \label{tab:parameters}}
-    \end{center}
-\end{table}
-
-The output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. The most logical would be to listen to the rightmost grid point, i.e., the radiating boundary $q_{M_q}^n$ as this is also where the sound enters the listening space in the real world. 
-
-\subsection{Limit on speed of change}\label{sec:limit}
-To reduce audible artefacts and instability issues from adding and removing points \SWcomment[and to also stay in the sub-audio rate regime], a limit can be placed on \eqref{eq:lDiff} as
-\begin{equation}\label{eq:Nmaxdiff} 
-    L_\text{diff}^n \leq \Nfrac_\text{maxdiff} h
-\end{equation}
-where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz. \SWcomment[still sub-audio rate though?]
-
-\subsection{State correction}\label{sec:impStateCorr}
-The centred operators in Eq. \eqref{eq:scForce} and with that the introduction of states at $n+1$ seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}. The same also introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed to create $\mathbf{r}^{n-1}$, but for generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^{n}$ respectively. 
-
-\subsection{Order of Calculation}
-
-Algorithm \ref{alg:calcOrder} shows pseudocode showing the order in which the different parts of the system presented in this paper are calculated.
 \begin{algorithm}[ht]
     \setstretch{1.1}
     \fbox{\parbox{0.88\linewidth}
@@ -118,9 +29,9 @@ Algorithm \ref{alg:calcOrder} shows pseudocode showing the order in which the di
                 Retrieve output
             \end{minipage}
             \begin{minipage}[c]{0.43\linewidth}
-                ($L^n$, $\omega_0^n$ and $P_\text{m}^n$) \\
+                ($L^n$, $\omega_\text{r}^n$ and $P_\text{m}^n$) \\
                 (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} \& \eqref{eq:updateLs})\\
-                (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals})\\
+                (Eqs. \eqref{eq:nfrac} and \eqref{eq:orderOfCalcGrid})\\
                 (Eq. \eqref{eq:alphaDef})\\
                 \vspace{-0.2em}\\
                 (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
@@ -153,16 +64,107 @@ Algorithm \ref{alg:calcOrder} shows pseudocode showing the order in which the di
         }
     }
     \vspace{0.12cm}
-    \caption{Pseudocode showing the order of calculations of the algorithm implementing the trombone .\label{alg:calcOrder}}
+    \caption{\it Pseudocode showing the order of calculations of the algorithm implementing the trombone.\label{alg:calcOrder}}
 \end{algorithm}
 
+% We continue by providing the parameter values used in the simulation.
+\subsection{Parameters}
+For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
+The system is split in the middle of the slide crook such that the ranges for the lengths of the two tubes are $L_p^n \in[0.797, 1.327]$ and $L_q^n \in [1.796, 2.326]$.
+
+Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here is $\lambda$, which has been set slightly lower than the stability condition in \eqref{eq:CFL}, i.e., $\lambda = 0.999$. Although the implementation works when $\lambda = 1$, this is done to tolerate (much) higher speeds of change in $L^n$ before instability occurs (see Section \ref{sec:limit}). Not satisfying condition \eqref{eq:CFL} causes bandlimiting and dispersive effects \cite{bilbao2009}, but such a small deviation from the condition has no perceptual influence on the output sound and outweighs the problems caused by instability.
+
+As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube. This frequency depends on $L^n$ in the following way
+\begin{equation}\label{eq:lipReedCalc}
+    \omega_\text{r}^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}
+\end{equation}
+where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} = 2.4$ was heuristically found to best match the 4\textsuperscript{th} resonating mode of the tube and generates a recognisable brass sound.
+
+\begin{table}[t]
+    \small
+    \begin{center}
+    \caption{\it Geometry of a measured trombone taken from \cite{Smyth2011}. Numbers correspond to Figure \ref{fig:tromboneSchematic}.\label{tab:geometry}}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Part of tube & Length (cm) & Radius (cm)\\\hline
+        Inner slide (1) & 70.8 & 0.69\\
+        Outer slide (extended) (2) & 53 & 0.72 
+        \\
+        Slide crook (3)& 17.7 & 0.74\\
+        Outer slide (extended) (4) & 53 & 0.72 
+        \\
+        Inner slide (5) & 71.1 & 0.69\\
+        Gooseneck (6) & 24.1 & 0.71\\
+        Tuning slide (7) & 25.4 & 0.75, 1.07\\
+        Bell flare (8) & 50.2& 1, 10.8\\\hline
+    \end{tabular}
+    \end{center}
+\end{table}
+
+\input{sections/tromboneTikz.tex}
+
+\begin{table}[t]
+    \small
+    \begin{center}
+    \caption{\it List of parameter values used for the simulation. 
+    Taken from $^\star$\cite{Smyth2011}, *\cite{Harrison2018} or **\cite{Benade1968} with temperature $T=26.85^\circ C$. \label{tab:parameters}}
+    \begin{tabular}{|l|c|c|}
+        \hline
+        Name & Symbol (unit) & Value\\ \hline
+        \multicolumn{3}{|l|}{\bf Tube}\\ \hline
+        Length & $L$ (m) & $2.593\leq L \leq 3.653$$^\star$\\
+        Air density &$\rho_0$ (kg/m$^3$) & 1.1769** 
+        \\
+        Wave speed & $c$ (m/s) & 347.23**\\
+        Geometry & $S$ (m$^2$) & See Table \ref{tab:geometry}. \\\hline
+        \multicolumn{3}{|l|}{\bf Lip reed}\\ \hline
+        Mass & $M_\text{r}$ (kg) & $5.37\cdot10^{-5}$*\\
+        Frequency & $\omega_\text{r}$ (rad/s) & $ 20\leq \omega_\text{r}/2\pi \leq 1000$\\
+        Mouth pressure & $P_\text{m}$ (Pa) & $0 \leq P_\text{m} \leq 6000$\\
+        Damping & $\sigma_\text{r}$ (s$^{-1}$) & $5$*\\
+        Eff. surface area & $S_\text{r}$ (m$^{2}$) & $1.46\cdot 10^{-5}$*\\
+        Width & $w_\text{r}$ (m) & $0.01$* \\
+        Equilibrium sep. & $H_0$ (m) &  $2.9 \cdot 10^{-4}$* \\
+        Coll. stiffness& $K_\text{c}$ (N/m) & $10^4$\\
+        Nonlin. coll. coeff.& $\alpha_\text{c}$ (-)  &3\\\hline
+        \multicolumn{3}{|l|}{\bf Other}\\ \hline
+        % State corr. stiffness & $\omega_\text{sc}$ & $1$\\ 
+        State corr. damping & $\sigma_\text{sc}$ & $1$\\ 
+        Sample rate & $f_\text{s}$ (Hz) & 44100\\
+        \hline
+    \end{tabular}
+    \end{center}
+\end{table}
+
+\subsection{Limit on speed of change}\label{sec:limit}
+To reduce audible artefacts and instability issues from adding and removing points, and to stay in the sub-audio rate regime, a limit can be placed on \eqref{eq:lDiff} as
+\begin{equation}\label{eq:Nmaxdiff} 
+    L_\text{diff}^n \leq \Nfrac_\text{maxdiff} h
+\end{equation}
+where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz. \SWcomment[still sub-audio rate though?]
+
+\subsection{State correction}\label{sec:impStateCorr}
+The introduction of system states at $n+1$ through the centred operators in Eq. \eqref{eq:scForce} seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}. The same operators also introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed for the calculation and to create $\mathbf{r}$ in \eqref{eq:interpVecs} at $n-1$. For generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^n$ respectively. 
+
+\subsection{Graphical User Interface and Control Mapping}
+A screenshot of the graphical user interface (GUI) is shown in Figure \ref{fig:GUI}. The geometry of the tube is plotted along with paths showing the pressure states in blue and the velocity (scaled by the geometry $S$) in green. The audio thread of the application runs at 44100 Hz whereas the graphics are updated at a rate of 15 Hz. 
+
+The real-time application is controlled by interacting with the bottom panel using the mouse. The x-axis is mapped to tube-length $L^n$ and also modifies the lip-reed frequency $\omega_\text{r}$ according to Eq. \eqref{eq:lipReedCalc}. The y-axis changes the multiplier $\mathcal{F}$ in Eq. \eqref{eq:lipReedCalc} and the black line in the vertical middle of the control panel is mapped to $\mathcal{F} = 2.4$. The pressure is modulated by a slider at the bottom of the control panel. As of now, no focus has been put on intuitive parameter mapping; it has only been implemented for simple parameter exploration.
+
+\begin{figure}[t]
+    \centering
+    \setlength{\fboxsep}{0pt} 
+    \fbox{\includegraphics[width = \columnwidth]{Figures/GUI.png}}
+    \caption{\it Screenshot of the graphical user interface (GUI). The geometry (in orange) as well as the states of the pressure (in blue) and velocity scaled by $S$ (in green) are shown. For clarity, the start and end of the outer slide are denoted by dashed lines. The drift of $w$ as explained in Section \ref{sec:drift} is visible from the ``kink'' in the green line exactly in the middle of the outer slide.}
+    \label{fig:GUI}
+\end{figure}
 % \begin{algorithm}[ht]
 %     \setstretch{1.1}
 %     \fbox{\parbox{0.88\linewidth}
 %     {
 %         \While{application is running}
 %         {
-%             Retrieve new parameters ($L^n$, $\omega_0^n$ and $P_\text{m}^n$) \\
+%             Retrieve new parameters ($L^n$, $\omega_\text{r}^n$ and $P_\text{m}^n$) \\
 %             Update $L_p^n$ and $L_q^n$ (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} and \eqref{eq:updateLs})\\
 %             Calc. $\Nfrac^n$ and $N^n$ (Eqs. \eqref{eq:nfrac} and \eqref{eq:numberOfIntervals}) \\
 %             Calc. $\alpha$ (Eq. \eqref{eq:alphaDef})\\
