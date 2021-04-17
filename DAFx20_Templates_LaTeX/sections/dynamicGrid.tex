@@ -1,7 +1,7 @@
 \begin{figure*}[t]
     \centering
     \includegraphics[width = \textwidth]{Figures/tromboneSchematic.eps}
-    \caption{\it Schematic showing data flow of how different grid points at time index $n+1$ are calculated with $\alpha = 0.25$ in Eq. \eqref{eq:alphaDef}. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown (refer to Eq. \eqref{eq:updateNormal}). Furthermore, the points needed to calculate $p_{M}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M_p+1}^n$ and $q_{-1}^n$ 
+    \caption{\it Schematic showing data flow of how different grid points at time index $n+1$ are calculated with $\alpha = 0.25$ in Eq. \eqref{eq:alphaDef}. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown (refer to Eq. \eqref{eq:updateNormal}). Furthermore, the points needed to calculate $p_{M^n}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M^n+1}^n$ and $q_{-1}^n$ 
     are the result of the interpolation of known pressure values at $n$ using Eq. \eqref{eq:connectionInterpol}. %and velocity values at $n+1/2$ respectively
     %
     %\SWcomment[Seemingly, $q_0^n$ is not calculated from anything, but it is simply $q_0^{n+1}$ time-shifted back. The same would be shown for $v_{M_p+1/2}^{n-1/2}$, but the figure does not go back-in-time more than this.]
@@ -34,7 +34,7 @@ S_l \approx \begin{cases}
 \end{cases}
 \end{equation} 
 The conditions for the outer boundaries of this system, i.e., at $\lp = 0$ and $\lq = M_q^n$, are the same as for the full system. The inner boundaries, $\lp = M^n$ and $\lq = 0$ are connected according to the method described in \cite{Willemsen2021} to be explained shortly.
-To be able to calculate $p_{M^n}^{n+1}$ and $q_0^{n+1}$, the domains of $v$ and $w$ have been extended at the inner boundaries to include $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$. These, however, require points outside of the domains of $p_\lp^n$ and $q_\lq^n$, i.e., $p_{M^n+1}^n$ and $q_{-1}^n$. In \cite{Willemsen2021} we propose to calculate these \textit{virtual grid points} based on known values of the system. Despite the fact that \cite{Willemsen2021} presents the method using a second-order system, it can still be applied here. The process of how $p_{M^n}^{n+1}$ and $q_0^{n+1}$ are calculated is visualised in in Figure \ref{fig:dynamicGridSchematic}.
+To be able to calculate $p_{M^n}^{n+1}$ and $q_0^{n+1}$, the domains of $v$ and $w$ have been extended at the inner boundaries to include $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$. These, however, require points outside of the domains of $p_\lp^n$ and $q_\lq^n$, i.e., $p_{M^n+1}^n$ and $q_{-1}^n$. In \cite{Willemsen2021} we propose to calculate these \textit{virtual grid points} based on known values of the system. Despite the fact that \cite{Willemsen2021} presents the method using a second-order system, it can still be applied here. The process of how $p_{M^n}^{n+1}$ and $q_0^{n+1}$ are calculated is visualised in in Figure \ref{fig:dynamicGridSchematic}. Notice that all time steps use the same value of $M^n$ and $M_q^n$. In other words, the expansion of the temporal operators in \eqref{eq:discTimeOperators} do not affect the temporal indices $n$ in $M^n$ and $M_q^n$.
 
 \subsection{Changing the Tube Length}
 In the following, the location of a grid point $u_l$ along the grid (in m from the left boundary) at time index $n$ is denoted as $x_{u_l}^n$.
@@ -52,21 +52,21 @@ which is essentially the calculation of $N$ in Eq. \eqref{eq:orderOfCalcGrid} wi
 \begin{equation}\label{eq:alphaDef}
     \alpha = \alpha^n = \Nfrac^n - N^n,
 \end{equation}
-which describes the distance between the inner boundaries along the grid in terms of how many times $h$ would fit in-between (which is always less than once). If $\Nfrac^n = N^n$ and $\alpha = 0$, the inner boundary locations perfectly overlap, and $x_{p_M}^n = x_{q_0}^n$. This also means that the domain $x$ can be exactly divided into $N^n$ equal intervals of size $h = ck$. As the virtual grid points $p_{M+1}^n$ and $q_{-1}^n$ perfectly overlap with $q_{1}^n$ and $p_{M-1}^n$ respectively, these values can be used directly to calculate the inner boundaries. This situation effectively acts as a rigid connection between the inner boundaries defined as
+which describes the distance between the inner boundaries along the grid in terms of how many times $h$ would fit in-between (which is always less than once). If $\Nfrac^n = N^n$ and $\alpha = 0$, the inner boundary locations perfectly overlap, and $x_{p_{M^n}}^n = x_{q_0}^n$. This also means that the domain $x$ can be exactly divided into $N^n$ equal intervals of size $h = ck$. As the virtual grid points $p_{M^n+1}^n$ and $q_{-1}^n$ perfectly overlap with $q_{1}^n$ and $p_{M^n-1}^n$ respectively, these values can be used directly to calculate the inner boundaries. This situation effectively acts as a rigid connection between the inner boundaries defined as
 \begin{equation}\label{eq:rigidConn}
-    p_M^n = q_0^n, \quad \text{if} \ \  \alpha = 0.
+    p_{M^n}^n = q_0^n, \quad \text{if} \ \  \alpha = 0.
 \end{equation}
 %
-If $\alpha \neq 0$, some other definition for $p_{M+1}^n$ and $q_{-1}^n$ needs to be found. We use quadratic Lagrangian interpolation according to
+If $\alpha \neq 0$, some other definition for $p_{{M^n}+1}^n$ and $q_{-1}^n$ needs to be found. We use quadratic Lagrangian interpolation according to
 \begin{subequations}\label{eq:connectionInterpol}
 \begin{align}
-        &p_{M+1}^n = \frac{\alpha - 1}{\alpha + 1}p_{M}^n + q_0^n - \frac{\alpha - 1}{\alpha + 1}q_1^n,
+        &p_{M^n+1}^n = \frac{\alpha - 1}{\alpha + 1}p_{M^n}^n + q_0^n - \frac{\alpha - 1}{\alpha + 1}q_1^n,
     \label{eq:calcPMp1}\\
         &q_{-1}^n
-        =-\frac{\alpha - 1}{\alpha + 1}p_{M-1}^n + p_{M}^n+ \frac{\alpha - 1}{\alpha + 1}q_{0}^n\label{eq:calcQm1},
+        =-\frac{\alpha - 1}{\alpha + 1}p_{M^n-1}^n + p_{M^n}^n+ \frac{\alpha - 1}{\alpha + 1}q_{0}^n\label{eq:calcQm1},
 \end{align}
 \end{subequations}
-which can then be used to calculate $v_{M+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_M^{n+1}$ and $q_0^{n+1}$. This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M+1}^n = q_1^n$ and $q_{-1}^n = p_{M-1}^n$ as stated before.
+which can then be used to calculate $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_{M^n}^{n+1}$ and $q_0^{n+1}$. This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M^n+1}^n = q_1^n$ and $q_{-1}^n = p_{M^n-1}^n$ as stated before.
 
 \subsection{Adding and removing grid points}\label{sec:addRemove}
 As the tube length $L^n$ changes, $L_p^n$ and $L_q^n$ also change according to
@@ -81,13 +81,13 @@ which causes the number of points $M^n$ and $M_q^n$ to change as well, according
 
 The following state vectors are introduced for the pressure, defined for $n+1$ and $n$ %\SWcomment[($n-1$ is used later on for the state correction, say something about that here or leave for Section \ref{sec:impStateCorr}..?)]
 \begin{equation}
-    \mathbf{p}^n = [p_0^n, p_1^n, ..., p_M^n]^T,\ \mathbf{q}^n = [q_0^n, q_1^n, ..., q_{M_q}^n]^T
+    \mathbf{p}^n = [p_0^n, p_1^n, ..., p_{M^n}^n]^T,\ \mathbf{q}^n = [q_0^n, q_1^n, ..., q_{M_q^n}^n]^T
 \end{equation}
 and for the velocity, defined for $n+1/2$ and $n-1/2$
 \begin{equation}
     \begin{aligned}
-        \mathbf{v}^{n-1/2} &=  [v_{1/2}^{n-1/2}, v_{3/2}^{n-1/2}, ..., v_{M+1/2}^{n-1/2}]^T\\
-        \mathbf{w}^{n-1/2} &=  [w_{-1/2}^{n-1/2}, w_{1/2}^{n-1/2}, ..., w_{M_q-1/2}^{n-1/2}]^T
+        \mathbf{v}^{n-1/2} &=  [v_{1/2}^{n-1/2}, v_{3/2}^{n-1/2}, ..., v_{M^n+1/2}^{n-1/2}]^T\\
+        \mathbf{w}^{n-1/2} &=  [w_{-1/2}^{n-1/2}, w_{1/2}^{n-1/2}, ..., w_{M_q^n-1/2}^{n-1/2}]^T
     \end{aligned}
 \end{equation}
 and contain the different states over the discrete domains defined at the beginning of this section. Here, $T$ denotes the transpose operation.
@@ -109,9 +109,9 @@ If $N^n>N^{n-1}$, points are added to the left and right system in an alternatin
 where
 \begin{equation}\label{eq:interpVecs}
     \begin{aligned}
-        \!\!\!\!\mathbf{r}^n &= [p_{M-1}^n, p_M^n, q_0^n, q_1^n]^T,\\
-        \!\!\!\!\mathbf{z}_v^{n-1/2} &= [v_{M-1/2}^{n-1/2}, v_{M+1/2}^{n-1/2}, w_{1/2}^{n-1/2}, w_{3/2}^{n-1/2}]^T - \boldsymbol{\eta},\\
-        \!\!\!\!\mathbf{z}_w^{n-1/2} &= [v_{M-3/2}^{n-1/2}, v_{M-1/2}^{n-1/2}, w_{-1/2}^{n-1/2}, w_{1/2}^{n-1/2}]^T+ \boldsymbol{\eta}^{\flip},% \quad\text{and}\\
+        \!\!\!\!\mathbf{r}^n &= [p_{M^n-1}^n, p_{M^n}^n, q_0^n, q_1^n]^T,\\
+        \!\!\!\!\mathbf{z}_v^{n-1/2} &= [v_{M^n-1/2}^{n-1/2}, v_{M^n+1/2}^{n-1/2}, w_{1/2}^{n-1/2}, w_{3/2}^{n-1/2}]^T - \boldsymbol{\eta},\\
+        \!\!\!\!\mathbf{z}_w^{n-1/2} &= [v_{M^n-3/2}^{n-1/2}, v_{M^n-1/2}^{n-1/2}, w_{-1/2}^{n-1/2}, w_{1/2}^{n-1/2}]^T+ \boldsymbol{\eta}^{\flip},% \quad\text{and}\\
         %     \mathbf{v}_\star^n &= [w_1^n, w_0^n, u_M^n, u_{M-1}^n],
     \end{aligned}
 \end{equation}
@@ -123,23 +123,23 @@ cubic Lagrangian interpolator
 \end{equation}
 and 
 \begin{equation}\label{eq:offsetVec}
-    \boldsymbol{\eta} = \boldsymbol{\eta}^{n-1/2}= \left(w_{-1/2}^{n-1/2}-v_{M+1/2}^{n
+    \boldsymbol{\eta} = \boldsymbol{\eta}^{n-1/2}= \left(w_{-1/2}^{n-1/2}-v_{M^n+1/2}^{n
     -1/2}\right)\cdot[0, 0, 1, 1]^T 
 \end{equation}
-adds an offset to half of the $\mathbf{z}$ vectors depending on the difference between $v_{M+1/2}^{n-1/2}$ and $w_{-1/2}^{n-1/2}$. Why this is necessary will be further explained in Section \ref{sec:drift}. Finally, $I_3^\flip$ and $\boldsymbol{\eta}^{\flip}$ are flipped versions of \eqref{eq:customIp} and \eqref{eq:offsetVec} respectively.
+adds an offset to half of the $\mathbf{z}$ vectors depending on the difference between $v_{M^n+1/2}^{n-1/2}$ and $w_{-1/2}^{n-1/2}$. Why this is necessary will be further explained in Section \ref{sec:drift}. Finally, $I_3^\flip$ and $\boldsymbol{\eta}^{\flip}$ are flipped versions of \eqref{eq:customIp} and \eqref{eq:offsetVec} respectively.
 
 If $N^n < N^{n-1}$, points are simply removed from the vectors according to
 
 \begin{equation}\label{eq:removingPoint}
     \begin{aligned}
-        &\begin{cases}
-            \mathbf{p}^n = [p_0^n, \hdots, p_{M-1}^n]^T\\
-            \mathbf{v}^{n-1/2} = [v_{1/2}^{n-1/2}, \hdots, v_{M-1/2}^{n-1/2}]^T
+        &\!\!\!\!\!\!\begin{cases}
+            \mathbf{p}^n = [p_0^n, \hdots, p_{M^n-1}^n]^T\\
+            \mathbf{v}^{n-1/2} = [v_{1/2}^{n-1/2}, \hdots, v_{M^n-1/2}^{n-1/2}]^T
         \end{cases}
         \quad\!\text{if $N^n$ is even},\\
-        &\begin{cases}
-            \mathbf{q}^n = [q_1^n, \hdots, q_{M_q}^n]^T\\
-            \mathbf{w}^{n-1/2} = [w_{1/2}^{n-1/2},\hdots, w_{M_q-1/2}^{n-1/2}]^T
+        &\!\!\!\!\!\!\begin{cases}
+            \mathbf{q}^n = [q_1^n, \hdots, q_{M_q^n}^n]^T\\
+            \mathbf{w}^{n-1/2} = [w_{1/2}^{n-1/2},\hdots, w_{M_q^n-1/2}^{n-1/2}]^T
         \end{cases}\text{if $ N^n$ is odd}.
     \end{aligned}
 \end{equation}
@@ -149,15 +149,15 @@ The inner boundaries of the pressure states $p$ and $q$ are connected by \eqref{
 
 Luckily, as the pressure values are also calculated from derivatives of the velocity, the absolute state of $w$ does not matter. The difference in values at the connection point is also irrelevant as there is no spatial derivative taken between $v$ and $w$ (refer to Figure \ref{fig:dynamicGridSchematic}). Finally, the pressure values are used for the output audio of the simulation, so the drift does not cause any audible artefacts. 
 
-The absolute states of the velocity vectors do, however, need to be accounted for when adding points to the $\mathbf{v}$ and $\mathbf{w}$ using \eqref{eq:addingPoint}. The current drift can be approximated by observing the difference between $w_{-1/2}^{n-1/2}$ and $v_{M+1/2}^{n-1/2}$, as these have approximately the same $x$ location ($x_{w_{-1/2}}^n \approx x_{v_{M+1/2}}^n$) when a grid point is added. This is then used in a drift-correction vector $\boldsymbol{\eta}^{n-1/2}$ presented in \eqref{eq:offsetVec}. When a point is added to $v$, the values of $w$ in $\mathbf{z}_{v}$ are offset by the aforementioned difference and when a point is added to $w$ the same happens (inverted) for the values of $v$ in $\mathbf{z}_w$. This way, the drift is allowed, but does not affect the state of the newly added grid points. Notice that the drift does not affect the operations of point removal in \eqref{eq:removingPoint}.
+The absolute states of the velocity vectors do, however, need to be accounted for when adding points to the $\mathbf{v}$ and $\mathbf{w}$ using \eqref{eq:addingPoint}. The current drift can be approximated by observing the difference between $w_{-1/2}^{n-1/2}$ and $v_{M^n+1/2}^{n-1/2}$, as these have approximately the same $x$ location ($x_{w_{-1/2}}^n \approx x_{v_{M^n+1/2}}^n$) when a grid point is added. This is then used in a drift-correction vector $\boldsymbol{\eta}^{n-1/2}$ presented in \eqref{eq:offsetVec}. When a point is added to $v$, the values of $w$ in $\mathbf{z}_{v}$ are offset by the aforementioned difference and when a point is added to $w$ the same happens (inverted) for the values of $v$ in $\mathbf{z}_w$. This way, the drift is allowed, but does not affect the state of the newly added grid points. Notice that the drift does not affect the operations of point removal in \eqref{eq:removingPoint}.
 
 \subsection{State Correction}
-As $L^n$, and consequently the number of grid points, is decreased, it might occur that the inner boundaries $p_M^n$ and $q_0^n$ have a very different value when $\alpha \gtrsim 0$, i.e., right before a point is removed. This violates the rigid connection in Eq. \eqref{eq:rigidConn}. 
+As $L^n$, and consequently the number of grid points, is decreased, it might occur that the inner boundaries $p_{M^n}^n$ and $q_0^n$ have a very different value when $\alpha \gtrsim 0$, i.e., right before a point is removed. This violates the rigid connection in Eq. \eqref{eq:rigidConn}. 
 
 We propose in \cite{Willemsen2021} to add an artificial spring-like connection between the inner boundaries that ``corrects'' the state of these points. Applying this to system \eqref{eq:firstOrderPairs} extends Eqs. \eqref{eq:discPressureP} and \eqref{eq:discPressureQ} according to
 \begin{subequations}\label{eq:pressuresWithSC}
     \begin{align}
-        \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}p_\lp^n &= -\delta_{x-}(S_{\lg+1/2}v_{\lp+1/2}^{n+1/2}) + J_p(x_{p_M}^n)F_\text{sc}^n\label{eq:pWithSC}\\
+        \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}p_\lp^n &= -\delta_{x-}(S_{\lg+1/2}v_{\lp+1/2}^{n+1/2}) + J_p(x_{p_{M^n}}^n)F_\text{sc}^n\label{eq:pWithSC}\\
         \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}q_\lq^n &= -\delta_{x+}(S_{\lg-1/2}w_{\lq-1/2}^{n+1/2}) - J_q(x_{q_0}^n)F_\text{sc}^n\label{eq:qWithSC}
     \end{align}
 \end{subequations}
@@ -166,25 +166,25 @@ where spreading operators
     \begin{aligned}
     J_p(x_i^n)& =
     \begin{cases}
-        \frac{1}{h}, & \lp = \lp_{\!,i} = \lfloor x_i^n/h\rfloor\\
+        \frac{1}{h}, & \lp = \lfloor x_i^n/h\rfloor\\
         0,& \text{otherwise},
     \end{cases}
     \quad\text{and}\\
     J_q(x_i^n) &=
     \begin{cases}
-        \frac{1}{h}, & \lq = \lq_{\!,i} = \lfloor x_i^n/h \rfloor - M^n\\
+        \frac{1}{h}, & \lq = \lfloor x_i^n/h \rfloor - M^n\\
         0,& \text{otherwise}.
     \end{cases}
 \end{aligned}
 \end{equation}
-\SWcomment[should $\lp_{,i}$ and $\lq_{,i}$ also get a $n$ superscript?]Furthermore, correction effect
+Furthermore, correction effect
 \begin{equation}\label{eq:scForce}
     F_\text{sc}^n = \beta\left(\mu_{t\cdot}\eta_\text{sc}^n+\sigma_\text{sc}\delta_{t\cdot}\eta_\text{sc}^n\right),
 \end{equation}
 % (in m$^{3}$/s)\SWcomment[..units stop making sense here as this is an artificial connection ``force''.. might just exclude them?]
 with spring damping $\sigma_\text{sc}$, pressure difference
 \begin{equation}
-    \eta_\text{sc}^n \triangleq q_0^n - p_M^n
+    \eta_\text{sc}^n \triangleq q_0^n - p_{M^n}^n
 \end{equation} 
 and scaling coefficient
 \begin{equation}\label{eq:betaDef}

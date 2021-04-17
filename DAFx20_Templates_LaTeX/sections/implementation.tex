@@ -1,5 +1,5 @@
 \section{Implementation}\label{sec:implementation}
-The algorithm has been implemented in C++ using the JUCE framework \cite{JUCE}. A demo of the implementation can be found via \cite{DEMO}. The audio output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the radiating boundary $q_{M_q}^n$ is chosen, as this is also where the sound enters the listening space in the real world. To mimic high-frequency losses\SWcomment[ due to air absorption?], a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
+The algorithm has been implemented in C++ using the JUCE framework \cite{JUCE}. A demo of the implementation can be found via \cite{DEMO}. The audio output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the radiating boundary $q_{M_q^n}^n$ is chosen, as this is also where the sound enters the listening space in the real world. To mimic high-frequency losses\SWcomment[ due to air absorption?], a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
 
 Algorithm \ref{alg:calcOrder} shows the order in which the different parts of the system presented in this paper are calculated. 
 
@@ -17,9 +17,9 @@ Algorithm \ref{alg:calcOrder} shows the order in which the different parts of th
                 \If{$ N^n \neq N^{n-1} $}
                 {
                     Add or remove point\\
-                    Update $M$ and $M_q$ 
+                    Update $M^n$ and $M_q^n$ 
                 }
-                Calc. $p_{M+1}^n$ and $q_{-1}^n$ \\
+                Calc. $p_{M^n+1}^n$ and $q_{-1}^n$ \\
                 Calc. $\mathbf{v}^{n+1/2}$ and  $\mathbf{w}^{n+1/2}$ \\
                 Calc. $y^{n+3/2}$ w/o collision \\
                 Calc $g^{n+1/2}$ \\
@@ -144,7 +144,7 @@ To reduce audible artefacts and instability issues from adding and removing poin
 where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz. \SWcomment[still sub-audio rate though?]
 
 \subsection{State correction}\label{sec:impStateCorr}
-The introduction of system states at $n+1$ through the centred operators in Eq. \eqref{eq:scForce} seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}. The same operators also introduce the need for values at $n-1$, i.e., $p_{M}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed for the calculation and to create $\mathbf{r}$ in \eqref{eq:interpVecs} at $n-1$. For generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^n$ respectively. 
+The introduction of system states at $n+1$ through the centred operators in Eq. \eqref{eq:scForce} seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}. The same operators also introduce the need for values at $n-1$, i.e., $p_{M^n}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed for the calculation and to create $\mathbf{r}$ in \eqref{eq:interpVecs} at $n-1$. For generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^n$ respectively. 
 
 \subsection{Graphical User Interface and Control Mapping}
 A screenshot of the graphical user interface (GUI) is shown in Figure \ref{fig:GUI}. The geometry of the tube is plotted along with paths showing the pressure states in blue and the velocity (scaled by the geometry $S$) in green. The audio thread of the application runs at 44100 Hz whereas the graphics are updated at a rate of 15 Hz. 
