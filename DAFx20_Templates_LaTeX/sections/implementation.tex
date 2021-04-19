@@ -1,85 +1,3 @@
-\section{Implementation}\label{sec:implementation}
-The algorithm has been implemented in C++ using the JUCE framework \cite{JUCE}. A demo of the implementation can be found via \cite{DEMO}. The audio output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the radiating boundary $q_{M_q^n}^n$ is chosen, as this is also where the sound enters the listening space in the real world. To mimic high-frequency losses\SWcomment[ due to air absorption?], a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
-
-Algorithm \ref{alg:calcOrder} shows the order in which the different parts of the system presented in this paper are calculated. 
-
-\begin{algorithm}[ht]
-    \setstretch{1.1}
-    \fbox{\parbox{0.88\linewidth}
-    {
-        \While{application is running}
-        {
-            \begin{minipage}[c]{0.48\linewidth}
-                Retrieve new parameters\\
-                Update $L_p^n$ and $L_q^n$\\
-                Calc. $\Nfrac^n$ and $N^n$\\
-                Calc. $\alpha$ \\
-                \If{$ N^n \neq N^{n-1} $}
-                {
-                    Add or remove point\\
-                    Update $M^n$ and $M_q^n$ 
-                }
-                Calc. $p_{M^n+1}^n$ and $q_{-1}^n$ \\
-                Calc. $\mathbf{v}^{n+1/2}$ and  $\mathbf{w}^{n+1/2}$ \\
-                Calc. $y^{n+3/2}$ w/o collision \\
-                Calc $g^{n+1/2}$ \\
-                Calc. $y^{n+3/2}$ with collision \\
-                Calc. $U_\text{B}^{n+1/2}$ and $U_\text{r}^{n+1/2}$ \\
-                Calc. $\mathbf{p}^{n+1}$ and $\mathbf{q}^{n+1}$ \\
-                Retrieve output
-            \end{minipage}
-            \begin{minipage}[c]{0.43\linewidth}
-                ($L^n$, $\omega_\text{r}^n$ and $P_\text{m}^n$) \\
-                (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} \& \eqref{eq:updateLs})\\
-                (Eqs. \eqref{eq:nfrac} and \eqref{eq:orderOfCalcGrid})\\
-                (Eq. \eqref{eq:alphaDef})\\
-                \vspace{-0.2em}\\
-                (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
-                (Eq. \eqref{eq:MMq})\\
-                \vspace{-0.15em}\\
-                (Eqs. \eqref{eq:connectionInterpol})\vspace{0.05em}\\
-                (Eqs. \eqref{eq:discVelocityV} and \eqref{eq:discVelocityW})\\
-                (Eqs. \eqref{eq:discreteLipSystem})\\
-                (Eq. \eqref{eq:gDef})\\
-                (Eqs. \eqref{eq:discreteLipSystem})\\
-                (Eqs. \eqref{eq:bernoulli} and \eqref{eq:Ur})\\
-                (Eqs. \eqref{eq:pressuresWithSC})
-                \vspace{0.25em}\\
-           \end{minipage}
-           \\
-           \begin{minipage}[c]{0.4\linewidth}
-                Update system states\\
-                \\
-                \\
-                Update $N$ \\
-                Increment $n$      
-            \end{minipage}
-            \begin{minipage}[c]{0.5\linewidth}
-                ($\mathbf{p}^{n-1} = \mathbf{p}^{n}$, $\mathbf{p}^n=\mathbf{p}^{n+1}$)
-                (same for $\mathbf{v}^{n-1/2} = \hdots$,\\
-                $y^{n-1/2}$, $y^{n+1/2}$, and $\psi^n$)\\
-                ($N^{n-1} = N^n$)\\
-            \end{minipage}
-            }
-        }
-    }
-    \vspace{0.12cm}
-    \caption{\it Pseudocode showing the order of calculations of the algorithm implementing the trombone.\label{alg:calcOrder}}
-\end{algorithm}
-
-% We continue by providing the parameter values used in the simulation.
-\subsection{Parameters}
-For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
-The system is split in the middle of the slide crook such that the ranges for the lengths of the two tubes are $L_p^n \in[0.797, 1.327]$ and $L_q^n \in [1.796, 2.326]$.
-
-Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here is $\lambda$, which has been set slightly lower than the stability condition in \eqref{eq:CFL}, i.e., $\lambda = 0.999$. Although the implementation works when $\lambda = 1$, this is done to tolerate (much) higher speeds of change in $L^n$ before instability occurs (see Section \ref{sec:limit}). Not satisfying condition \eqref{eq:CFL} causes bandlimiting and dispersive effects \cite{bilbao2009}, but such a small deviation from the condition has no perceptual influence on the output sound and outweighs the problems caused by instability.
-
-As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube. This frequency depends on $L^n$ in the following way
-\begin{equation}\label{eq:lipReedCalc}
-    \omega_\text{r}^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}
-\end{equation}
-where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} = 2.4$ was heuristically found to best match the 4\textsuperscript{th} resonating mode of the tube and generates a recognisable brass sound.
-
 \begin{table}[t]
     \small
     \begin{center}
@@ -100,8 +18,6 @@ where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} = 2.4$ was heuristica
     \end{tabular}
     \end{center}
 \end{table}
-
-\input{sections/tromboneTikz.tex}
 
 \begin{table}[t]
     \small
@@ -135,6 +51,23 @@ where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} = 2.4$ was heuristica
     \end{tabular}
     \end{center}
 \end{table}
+\input{sections/tromboneTikz.tex}
+
+\section{Implementation}\label{sec:implementation}
+The algorithm has been implemented in C++ using the JUCE framework \cite{JUCE}. A demo of the implementation can be found via \cite{DEMO}. The audio output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the radiating boundary $q_{M_q^n}^n$ is chosen, as this is where the sound enters the listening space in the real world. To mimic high-frequency losses happening when the sound of the trombone travels from the bell to the ear, a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
+
+% We continue by providing the parameter values used in the simulation.
+\subsection{Parameters}
+For the most part, the parameters used in the simulation have been obtained from \cite{Harrison2018, Smyth2011, Benade1968}. The lengths and radii of different parts of the tube can be found in Table \ref{tab:geometry} and a diagram showing this geometry is shown in Figure \ref{fig:tromboneSchematic}.
+The system is split in the middle of the slide crook such that the ranges for the lengths of the two tubes are $L_p^n \in[0.797, 1.327]$ and $L_q^n \in [1.796, 2.326]$.
+
+Other parameters used in the simulation can be found in Table \ref{tab:parameters}. Not included here is $\lambda$, which has been set slightly lower than the stability condition in \eqref{eq:CFL}, i.e., $\lambda = 0.999$. Although the implementation works when $\lambda = 1$, this is done to tolerate (much) higher speeds of change in $L^n$ before instability occurs (see Section \ref{sec:limit}). Not satisfying condition \eqref{eq:CFL} causes bandlimiting and dispersive effects \cite{bilbao2009}, but such a small deviation from the condition has no perceptual influence on the output sound and outweighs the problems caused by instability.
+
+As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube. This frequency depends on $L^n$ in the following way
+\begin{equation}\label{eq:lipReedCalc}
+    \omega_\text{r}^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}
+\end{equation}
+where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} = 2.4$ was heuristically found to best match the 4\textsuperscript{th} resonating mode of the tube and generates a recognisable brass sound.
 
 \subsection{Limit on speed of change}\label{sec:limit}
 To reduce audible artefacts and instability issues from adding and removing points, and to stay in the sub-audio rate regime, a limit can be placed on \eqref{eq:lDiff} as
@@ -145,12 +78,6 @@ where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and h
 
 \subsection{State correction}\label{sec:impStateCorr}
 The introduction of system states at $n+1$ through the centred operators in Eq. \eqref{eq:scForce} seem to make the scheme implicit. It is, however, possible to calculate $F_\text{sc}$ explicitly \cite{bilbao2009, bilbao2009dafx}. The same operators also introduce the need for values at $n-1$, i.e., $p_{M^n}^{n-1}$ and $q_{0}^{n-1}$. Therefore, the vectors $\mathbf{p}^{n-1}$ and $\mathbf{q}^{n-1}$ will need to be stored, and the operations to add and remove grid points as described in \ref{sec:addRemove} need to be applied to these as well. One could argue that only two points at the inner boundaries are needed for the calculation and to create $\mathbf{r}$ in \eqref{eq:interpVecs} at $n-1$. For generality, we continue with the entire vectors defined over the same domains as $\mathbf{p}^n$ and $\mathbf{q}^n$ respectively. 
-
-\subsection{Graphical User Interface and Control Mapping}
-A screenshot of the graphical user interface (GUI) is shown in Figure \ref{fig:GUI}. The geometry of the tube is plotted along with paths showing the pressure states in blue and the velocity (scaled by the geometry $S$) in green. The audio thread of the application runs at 44100 Hz whereas the graphics are updated at a rate of 15 Hz. 
-
-The real-time application is controlled by interacting with the bottom panel using the mouse. The x-axis is mapped to tube-length $L^n$ and also modifies the lip-reed frequency $\omega_\text{r}$ according to Eq. \eqref{eq:lipReedCalc}. The y-axis changes the multiplier $\mathcal{F}$ in Eq. \eqref{eq:lipReedCalc} and the black line in the vertical middle of the control panel is mapped to $\mathcal{F} = 2.4$. The pressure is modulated by a slider at the bottom of the control panel. As of now, no focus has been put on intuitive parameter mapping; it has only been implemented for simple parameter exploration.
-
 \begin{figure}[t]
     \centering
     \setlength{\fboxsep}{0pt} 
@@ -158,6 +85,12 @@ The real-time application is controlled by interacting with the bottom panel usi
     \caption{\it Screenshot of the graphical user interface (GUI). The geometry (in orange) as well as the states of the pressure (in blue) and velocity scaled by $S$ (in green) are shown. For clarity, the start and end of the outer slide are denoted by dashed lines. The drift of $w$ as explained in Section \ref{sec:drift} is visible from the ``kink'' in the green line exactly in the middle of the outer slide.}
     \label{fig:GUI}
 \end{figure}
+
+\subsection{Graphical User Interface and Control Mapping}
+A screenshot of the graphical user interface (GUI) is shown in Figure \ref{fig:GUI}. The geometry of the tube is plotted along with paths showing the pressure states in blue and the velocity (scaled by the geometry $S$) in green. The audio thread of the application runs at 44100 Hz whereas the graphics are updated at a rate of 15 Hz. 
+
+The real-time application is controlled by interacting with the bottom panel using the mouse. The x-axis is mapped to tube-length $L^n$ and also modifies the lip-reed frequency $\omega_\text{r}$ according to Eq. \eqref{eq:lipReedCalc}. The y-axis changes the multiplier $\mathcal{F}$ in Eq. \eqref{eq:lipReedCalc} and the black line in the vertical middle of the control panel is mapped to $\mathcal{F} = 2.4$. The pressure is modulated by a slider at the bottom of the control panel. As of now, no focus has been put on intuitive parameter mapping; it has only been implemented for simple parameter exploration.
+
 % \begin{algorithm}[ht]
 %     \setstretch{1.1}
 %     \fbox{\parbox{0.88\linewidth}
@@ -210,4 +143,69 @@ The real-time application is controlled by interacting with the bottom panel usi
 %     \vspace{0.12cm}
 %     \caption{Pseudocode showing the order of calculations of the algorithm implementing the trombone .\label{alg:calcOrder}}
 % \end{algorithm}
+\begin{algorithm}[t]
+    \setstretch{1.1}
+    \fbox{\parbox{0.88\linewidth}
+    {
+        \While{application is running}
+        {
+            \begin{minipage}[c]{0.48\linewidth}
+                Retrieve new parameters\\
+                Update $L_p^n$ and $L_q^n$\\
+                Calc. $\Nfrac^n$ and $N^n$\\
+                Calc. $\alpha$ \\
+                \If{$ N^n \neq N^{n-1} $}
+                {
+                    Add or remove point\\
+                    Update $M^n$ and $M_q^n$ 
+                }
+                Calc. $p_{M^n+1}^n$ and $q_{-1}^n$ \\
+                Calc. $\mathbf{v}^{n+1/2}$ and  $\mathbf{w}^{n+1/2}$ \\
+                Calc. $y^{n+3/2}$ w/o collision \\
+                Calc $g^{n+1/2}$ \\
+                Calc. $y^{n+3/2}$ with collision \\
+                Calc. $U_\text{B}^{n+1/2}$ and $U_\text{r}^{n+1/2}$ \\
+                Calc. $\mathbf{p}^{n+1}$ and $\mathbf{q}^{n+1}$ \\
+                Retrieve output
+            \end{minipage}
+            \begin{minipage}[c]{0.43\linewidth}
+                ($L^n$, $\omega_\text{r}^n$ and $P_\text{m}^n$) \\
+                (Eqs. \eqref{eq:lDiff}, \eqref{eq:Nmaxdiff} \& \eqref{eq:updateLs})\\
+                (Eqs. \eqref{eq:nfrac} and \eqref{eq:orderOfCalcGrid})\\
+                (Eq. \eqref{eq:alphaDef})\\
+                \vspace{-0.2em}\\
+                (Eq. \eqref{eq:addingPoint} or \eqref{eq:removingPoint})\\
+                (Eq. \eqref{eq:MMq})\\
+                \vspace{-0.15em}\\
+                (Eqs. \eqref{eq:connectionInterpol})\vspace{0.05em}\\
+                (Eqs. \eqref{eq:discVelocityV} and \eqref{eq:discVelocityW})\\
+                (Eqs. \eqref{eq:discreteLipSystem})\\
+                (Eq. \eqref{eq:gDef})\\
+                (Eqs. \eqref{eq:discreteLipSystem})\\
+                (Eqs. \eqref{eq:bernoulli} and \eqref{eq:Ur})\\
+                (Eqs. \eqref{eq:pressuresWithSC})
+                \vspace{0.25em}\\
+           \end{minipage}
+           \\
+           \begin{minipage}[c]{0.4\linewidth}
+                Update system states\\
+                \\
+                \\
+                Update $N^{n-1}$ \\
+                Increment $n$      
+            \end{minipage}
+            \begin{minipage}[c]{0.5\linewidth}
+                ($\mathbf{p}^{n-1} = \mathbf{p}^{n}$, $\mathbf{p}^n=\mathbf{p}^{n+1}$)
+                (same for $\mathbf{v}^{n-1/2} = \hdots$,\\
+                $y^{n-1/2}$, $y^{n+1/2}$, and $\psi^n$)\\
+                ($N^{n-1} = N^n$)\\
+            \end{minipage}
+            }
+        }
+    }
+    \vspace{0.12cm}
+    \caption{\it Pseudocode showing the order of calculations of the algorithm implementing the trombone.\label{alg:calcOrder}}
+\end{algorithm}
+\subsection{Order of Calculation}
 
+Algorithm \ref{alg:calcOrder} shows the order in which the different parts of the system presented in this paper are calculated. 

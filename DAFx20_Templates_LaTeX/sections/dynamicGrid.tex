@@ -29,8 +29,8 @@ We can split a tube with time-varying length $L^n$ into two smaller sections wit
 Here, due to the different indexing for $w$, the spatial derivatives for the right system are flipped. Also note, that $l$ is still used for the spatial indices of $\bar S$ and $S$ which now approximate $S(x)$ according to
 \begin{equation}
 S_l \approx \begin{cases}
-     S(x=lh) & \text{for } x\in [0, L_p]\\
-     S(x=L^n-(M_q^n-l)h) & \text{for } x\in [L_p, L]
+     S(x=lh) & \text{for } x\in [0, L_p^n]\\
+     S(x=L^n-(M_q^n-l)h) & \text{for } x\in [L_p^n, L^n]
 \end{cases}
 \end{equation} 
 The conditions for the outer boundaries of this system, i.e., at $\lp = 0$ and $\lq = M_q^n$, are the same as for the full system. The inner boundaries, $\lp = M^n$ and $\lq = 0$ are connected according to the method described in \cite{Willemsen2021} to be explained shortly.
@@ -44,7 +44,7 @@ The two pairs of first order systems in \eqref{eq:firstOrderPairs} are placed on
     x_{p_\lp}^n = \lp h, \quad \text{and}\quad
     x_{q_\lq}^n = L^n-(M_q^n - \lq)h
 \end{equation}
-describing the locations of the left system and right system respectively. It can be observed from Eq. \eqref{eq:gridLocations} that as the tube length $L^n$ changes, the locations of the grid points of the right system will change. More specifically, as the trombone-slide is extended and $L^n$ increases, all grid points of the right system move to the right, and to the left for a contracting slide. If $L^n$ is changed in a smooth fashion, the continuous domain $x \in [0,L^n]$ will not necessarily be subdivided into an integer amount of intervals $N^n$ (of size $h = ck$). This is where a \textit{fractional} number of intervals is introduced and is defined as 
+describing the locations of the left system and right system respectively. Here, it can be observed that as the tube length $L^n$ changes, the locations of the grid points of the right system will change. More specifically, as the trombone-slide is extended and $L^n$ increases, all grid points of the right system move to the right, and to the left for a contracting slide. If $L^n$ is changed in a smooth fashion, the continuous domain $x \in [0,L^n]$ will not necessarily be subdivided into an integer amount of intervals $N^n$ (of size $h = ck$). This is where a \textit{fractional} number of intervals is introduced and is defined as 
 \begin{equation}\label{eq:nfrac}
     \Nfrac^n = L^n/h,
 \end{equation}
@@ -52,7 +52,7 @@ which is essentially the calculation of $N$ in Eq. \eqref{eq:orderOfCalcGrid} wi
 \begin{equation}\label{eq:alphaDef}
     \alpha = \alpha^n = \Nfrac^n - N^n,
 \end{equation}
-which describes the distance between the inner boundaries along the grid in terms of how many times $h$ would fit in-between (which is always less than once). If $\Nfrac^n = N^n$ and $\alpha = 0$, the inner boundary locations perfectly overlap, and $x_{p_{M^n}}^n = x_{q_0}^n$. This also means that the domain $x$ can be exactly divided into $N^n$ equal intervals of size $h = ck$. As the virtual grid points $p_{M^n+1}^n$ and $q_{-1}^n$ perfectly overlap with $q_{1}^n$ and $p_{M^n-1}^n$ respectively, these values can be used directly to calculate the inner boundaries. This situation effectively acts as a rigid connection between the inner boundaries defined as
+which describes the distance between the inner boundaries along the grid in terms of how many times $h$ would fit in-between (which is always less than once). If $\Nfrac^n = N^n$ and $\alpha = 0$, the inner boundary locations perfectly overlap, and $x_{p_{M^n}}^n = x_{q_0}^n$. This also means that the domain $x$ can be exactly divided into $N^n$ equal intervals of size $h = ck$. As the virtual grid points $p_{M^n+1}^n$ and $q_{-1}^n$ perfectly overlap with $q_{1}^n$ and $p_{M^n-1}^n$ respectively, these values can be used directly to calculate the grid points at the inner boundaries. This situation effectively acts as a rigid connection between the grid points at the inner boundaries defined as
 \begin{equation}\label{eq:rigidConn}
     p_{M^n}^n = q_0^n, \quad \text{if} \ \  \alpha = 0.
 \end{equation}
@@ -66,7 +66,7 @@ If $\alpha \neq 0$, some other definition for $p_{{M^n}+1}^n$ and $q_{-1}^n$ nee
         =-\frac{\alpha - 1}{\alpha + 1}p_{M^n-1}^n + p_{M^n}^n+ \frac{\alpha - 1}{\alpha + 1}q_{0}^n\label{eq:calcQm1},
 \end{align}
 \end{subequations}
-which can then be used to calculate $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_{M^n}^{n+1}$ and $q_0^{n+1}$. This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M^n+1}^n = q_1^n$ and $q_{-1}^n = p_{M^n-1}^n$ as stated before.
+which can then be used to calculate $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_{M^n}^{n+1}$ and $q_0^{n+1}$ (see Figure \ref{fig:dynamicGridSchematic}). This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M^n+1}^n = q_1^n$ and $q_{-1}^n = p_{M^n-1}^n$ as stated before.
 
 \subsection{Adding and removing grid points}\label{sec:addRemove}
 As the tube length $L^n$ changes, $L_p^n$ and $L_q^n$ also change according to
@@ -77,7 +77,7 @@ where
 \begin{equation}
     L_\text{diff}^n = L^n-L^{n-1},\label{eq:lDiff}
 \end{equation}
-which causes the number of points $M^n$ and $M_q^n$ to change as well, according to Eq. \eqref{eq:MMq}.
+which causes the number of intervals between grid points $M^n$ and $M_q^n$ to change as well, according to Eq. \eqref{eq:MMq}.
 
 The following state vectors are introduced for the pressure, defined for $n+1$ and $n$ %\SWcomment[($n-1$ is used later on for the state correction, say something about that here or leave for Section \ref{sec:impStateCorr}..?)]
 \begin{equation}
@@ -92,7 +92,7 @@ and for the velocity, defined for $n+1/2$ and $n-1/2$
 \end{equation}
 and contain the different states over the discrete domains defined at the beginning of this section. Here, $T$ denotes the transpose operation.
 
-If $N^n>N^{n-1}$, points are added to the left and right system in an alternating fashion %\SWcomment[(same here for $n-1$ in the state correction, say something about that here or leave for Section \ref{sec:impStateCorr}..?)]
+If $N^n>N^{n-1}$, points are added to the left and right system in an alternating fashion: %\SWcomment[(same here for $n-1$ in the state correction, say something about that here or leave for Section \ref{sec:impStateCorr}..?)]
 \begin{equation}\label{eq:addingPoint}
     \begin{aligned}
         \!\!\!\!\!&\begin{cases}
@@ -145,16 +145,16 @@ If $N^n < N^{n-1}$, points are simply removed from the vectors according to
 \end{equation}
 Notice that the even and odd conditions in Eqs. \eqref{eq:addingPoint} and \eqref{eq:removingPoint} can be swapped. To stay as close to the desired location of adding and  removing grid points as possible, this requires the ceiling and flooring operations in \eqref{eq:MMq} to be swapped as well.
 \subsection{Drift of $w$}\label{sec:drift}
-The inner boundaries of the pressure states $p$ and $q$ are connected by \eqref{eq:connectionInterpol}, but no such connection exists for the velocity states $v$ and $w$. As the radiating boundary is implemented on the pressure grid, \SWcomment[$\leftarrow$ what about this for the explanation of the drift?] this leaves $w$ without any boundary condition; it is only ``held in place'' by the pressure values of $q$, or more specifically, by derivatives (both spatial and temporal). As FD schemes are an approximation, it does not give a perfect solution and $w$ tends to `drift' during the simulation, especially when $L^n$ is changed.
+The inner boundaries of the pressure states $p$ and $q$ are connected by \eqref{eq:connectionInterpol}, but no such connection exists for the velocity states $v$ and $w$. As the radiating boundary is implemented on the pressure grid, this leaves $w$ without any boundary condition; it is only ``held in place'' by the pressure values of $q$, or more specifically, by derivatives (both spatial and temporal). As FD schemes are an approximation, it does not give a perfect solution and $w$ tends to `drift' during the simulation, especially when $L^n$ is changed.
 
 Luckily, as the pressure values are also calculated from derivatives of the velocity, the absolute state of $w$ does not matter. The difference in values at the connection point is also irrelevant as there is no spatial derivative taken between $v$ and $w$ (refer to Figure \ref{fig:dynamicGridSchematic}). Finally, the pressure values are used for the output audio of the simulation, so the drift does not cause any audible artefacts. 
 
 The absolute states of the velocity vectors do, however, need to be accounted for when adding points to the $\mathbf{v}$ and $\mathbf{w}$ using \eqref{eq:addingPoint}. The current drift can be approximated by observing the difference between $w_{-1/2}^{n-1/2}$ and $v_{M^n+1/2}^{n-1/2}$, as these have approximately the same $x$ location ($x_{w_{-1/2}}^n \approx x_{v_{M^n+1/2}}^n$) when a grid point is added. This is then used in a drift-correction vector $\boldsymbol{\eta}^{n-1/2}$ presented in \eqref{eq:offsetVec}. When a point is added to $v$, the values of $w$ in $\mathbf{z}_{v}$ are offset by the aforementioned difference and when a point is added to $w$ the same happens (inverted) for the values of $v$ in $\mathbf{z}_w$. This way, the drift is allowed, but does not affect the state of the newly added grid points. Notice that the drift does not affect the operations of point removal in \eqref{eq:removingPoint}.
 
 \subsection{State Correction}
-As $L^n$, and consequently the number of grid points, is decreased, it might occur that the inner boundaries $p_{M^n}^n$ and $q_0^n$ have a very different value when $\alpha \gtrsim 0$, i.e., right before a point is removed. This violates the rigid connection in Eq. \eqref{eq:rigidConn}. 
+As $L^n$, and consequently the number of grid points, is decreased, it might occur that the grid points at the inner boundaries $p_{M^n}^n$ and $q_0^n$ have a very different value when $\alpha \gtrsim 0$, i.e., right before a point is removed. This violates the rigid connection in Eq. \eqref{eq:rigidConn}. 
 
-We propose in \cite{Willemsen2021} to add an artificial spring-like connection between the inner boundaries that ``corrects'' the state of these points. Applying this to system \eqref{eq:firstOrderPairs} extends Eqs. \eqref{eq:discPressureP} and \eqref{eq:discPressureQ} according to
+We propose in \cite{Willemsen2021} to add an artificial spring-like connection between the grid points at the inner boundaries that ``corrects'' the state of these points. Applying this to system \eqref{eq:firstOrderPairs} extends Eqs. \eqref{eq:discPressureP} and \eqref{eq:discPressureQ} according to
 \begin{subequations}\label{eq:pressuresWithSC}
     \begin{align}
         \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}p_\lp^n &= -\delta_{x-}(S_{\lg+1/2}v_{\lp+1/2}^{n+1/2}) + J_p(x_{p_{M^n}}^n)F_\text{sc}^n\label{eq:pWithSC}\\
@@ -188,7 +188,7 @@ with spring damping $\sigma_\text{sc}$, pressure difference
 \end{equation} 
 and scaling coefficient
 \begin{equation}\label{eq:betaDef}
-    \beta = \beta(\alpha) = \frac{1-\alpha}{\alpha+\epsilon},
+    \beta = \beta(\alpha) = \frac{1-\alpha}{\alpha+\varepsilon},
 \end{equation}
-where $\epsilon\ll 1$ to prevent division by 0. Just like in \cite{Willemsen2021}, implementing the pressure difference allows for an infinite $\beta$ ($\epsilon = 0$) acting like a rigid connection between Eqs. \eqref{eq:pWithSC} and \eqref{eq:qWithSC}.
+where $\varepsilon\ll 1$ to prevent division by 0. Just like in \cite{Willemsen2021}, the implementation of the correction effect allows for an infinite $\beta$ when $\alpha = \varepsilon = 0$ acting like a rigid connection between Eqs. \eqref{eq:pWithSC} and \eqref{eq:qWithSC}.
 % One can write the entire system above in matrix form by concatenating...
