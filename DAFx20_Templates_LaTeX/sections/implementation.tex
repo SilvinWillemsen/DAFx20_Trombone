@@ -54,7 +54,7 @@
 \input{sections/tromboneTikz.tex}
 
 \section{Implementation}\label{sec:implementation}
-The algorithm has been implemented in C++ using the JUCE framework \cite{JUCE}. A demo of the implementation can be found via \cite{DEMO}. The audio output of the system can be retrieved by selecting a grid point on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the radiating boundary $q_{M_q^n}^n$ is chosen, as this is where the sound enters the listening space in the real world. To mimic high-frequency losses happening when the sound of the trombone travels from the bell to the ear, a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
+The implementation has been done in C++ using the JUCE framework \cite{JUCE}, and is available online\footnote{\href{https://github.com/SilvinWillemsen/cppBrass/releases/tag/v1.0}{https://github.com/SilvinWillemsen/cppBrass/releases/}} as well as a demo showcasing it.\footnote{\href{https://youtu.be/Ht5gVNrshYo}{https://youtu.be/Ht5gVNrshYo}} The audio output of the system can be retrieved by selecting one or multiple grid points on the pressure grid and listening to this at the given sample rate $f_\text{s}$. Here, the output is taken as the weighted average of the rightmost points until 10.8 cm (radius of the flare-end) from the end of the the radiating boundary. This range was chosen due to the fact that in the real world, the sound does not originate from a single point-like source, but rather from a larger -- here assumed to be spherical -- region of space. The spatial averaging has a low-passing effect on the sound, but informal listening tests by the authors have confirmed that the sound is more true to that of an actual trombone than if a single point is chosen. %To mimic high-frequency losses happening when the sound of the trombone travels from the bell to the ear, a 4\textsuperscript{th}-order low-passing Butterworth filter with a cutoff frequency of $0.05 f_\text{s}$ Hz is used.  
 
 % We continue by providing the parameter values used in the simulation.
 \subsection{Parameters}
@@ -65,14 +65,14 @@ Other parameters used in the simulation can be found in Table \ref{tab:parameter
 
 As the tube acts mainly as an amplifier for specific resonant frequencies it is important to match the frequency of the lip reed to a resonating mode of the tube. This frequency depends on $L^n$ in the following way
 \begin{equation}\label{eq:lipReedCalc}
-    \omega_\text{r}^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}
+    \omega_\text{r}^{n+1/2} = \mathcal{F}\frac{2\pi c}{\rho_0 L^{n+1/2}}\ ,
 \end{equation}
 where $L^{n+1/2} = L^n$ and scalar multiplier $\mathcal{F} = 2.4$ was heuristically found to best match the 4\textsuperscript{th} resonating mode of the tube and generates a recognisable brass sound.
 
 \subsection{Limit on speed of change}\label{sec:limit}
-To reduce audible artefacts and instability issues from adding and removing points, and to stay in the sub-audio rate regime, a limit can be placed on \eqref{eq:lDiff} as
+To reduce audible artifacts and instability issues from adding and removing points, and to stay in the sub-audio rate regime, a limit can be placed on \eqref{eq:lDiff} as
 \begin{equation}\label{eq:Nmaxdiff} 
-    L_\text{diff}^n \leq \Nfrac_\text{maxdiff} h
+    L_\text{diff}^n \leq \Nfrac_\text{maxdiff} h,
 \end{equation}
 where $\Nfrac_\text{maxdiff}$ is the maximum change in $\Nfrac$ per sample and has been set to $\Nfrac_\text{maxdiff} = 1/20$. This means that a grid point can be added or removed every 20 samples and allows the entire range of $L$ to be traversed in ca. 0.06 s at a sample rate of $f_\text{s} = 44100$ Hz.
 
@@ -153,7 +153,7 @@ The real-time application is controlled by interacting with the bottom panel usi
                 Retrieve new parameters\\
                 Update $L_p^n$ and $L_q^n$\\
                 Calc. $\Nfrac^n$ and $N^n$\\
-                Calc. $\alpha$ \\
+                Calc. $\alpha^n$ \\
                 \If{$ N^n \neq N^{n-1} $}
                 {
                     Add or remove point\\

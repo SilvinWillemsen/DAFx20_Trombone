@@ -67,11 +67,11 @@ Expanding the operators, we obtain the following recursion
         v_{l+1/2}^{n+1/2} &= v_{l+1/2}^{n-1/2}-\frac{\lambda}{\rho_0 c}(p_{l+1}^n - p_l^n),\label{eq:velocityUpdate}
     \end{align}
 \end{subequations}
-where $\lambda = ck/h$ is referred to as the Courant number and \cite{bilbao2009}
+where $\lambda = ck/h$ is referred to as the Courant number and
 \begin{equation}\label{eq:CFL}
     \lambda \leq 1 \quad\Longrightarrow \quad  h\geq ck
 \end{equation}
-in order for the scheme to be stable. In implementation, the following steps are taken to calculate $\lambda$:
+in order for the scheme to be stable \cite{bilbao2009}. In implementation, the following steps are taken to calculate $\lambda$:
 \begin{equation}\label{eq:orderOfCalcGrid}
     h := ck,\ \ N := \left\lfloor\frac{L}{h}\right\rfloor, \ \ h := \frac{L}{N}, \ \ \lambda := \frac{ck}{h},
 \end{equation}
@@ -88,7 +88,7 @@ Equations \eqref{eq:pressureUpdate} and \eqref{eq:velocityUpdate} hold for $l\in
 % \end{subequations}
 
 \subsection{Lip reed}\label{sec:discLipReed}
-As the lip reed interacts with the particle velocity of the tube, it is placed on the interleaved temporal grid, but kept on the regular spatial grid, as it interacts with the boundary at $l=0$. Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are then discretised as follows:
+As the lip reed interacts with the particle velocity of the tube via Eq. \eqref{eq:lipBoundary}, it is discretised to the interleaved temporal grid, but to the regular spatial grid as it interacts with the boundary at $x=0$. Equations \eqref{eq:lipReedCont} - \eqref{eq:lipBoundary} are then discretised as follows:
 \def\nphSys{n+1/2}
 \begin{subequations}\label{eq:discreteLipSystem}
     \begin{align}
@@ -107,13 +107,12 @@ As the lip reed interacts with the particle velocity of the tube, it is placed o
     \end{align}
 \end{subequations}
 Here, following \cite{Ducceschi2021},
-\begin{subnumcases}{ \label{eq:gDef} g^{n+1/2} =}
-\begin{aligned}
-\kappa&\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\\
-&\cdot(\eta^{n+1/2})^{\frac{\alpha_\text{c}-1}{2}}
-\end{aligned} & if $\eta^{n+1/2} \geq 0$ \label{eq:collCorr1}\\
--2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$\label{eq:collCorr2}\\
-0, & $\begin{aligned} &\text{if } \eta^{n+1/2} < 0\\ &\text{and } \eta^{\star} = \eta^{n-1/2}
+\begin{subnumcases}{ \label{eq:gDef} \!\!\!\!\!\!\!\!\!\!\!\!g^{n+1/2} =\!\!}
+    \!\!
+\kappa\sqrt{\frac{K_\text{c}(\alpha_\text{c}+1)}{2}}\!\cdot\!(\eta^{n+1/2})^{\frac{\alpha_\text{c}-1}{2}}
+\!\!\!\!\!\!\!\!\!\!\!\!& if $\eta^{n+1/2} \geq 0$ \label{eq:collCorr1}\\
+\!\!-2 \frac{\psi^n}{\eta^\star-\eta^{n-1/2}} & if $\eta^{n+1/2} < 0$\label{eq:collCorr2}\\
+\!\!0, & $\!\!\!\!\!\!\!\!\!\!\!\begin{aligned} &\quad\ \:\;\text{if } \eta^{n+1/2} < 0\\ &\text{and } \eta^{\star} = \eta^{n-1/2}
 \end{aligned}$\label{eq:collCorr3}
 \end{subnumcases}
 %

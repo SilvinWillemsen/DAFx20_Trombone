@@ -1,9 +1,9 @@
 \section{Continuous System}\label{sec:continuous}
-Wave propagation in an acoustic tube can be approximated using a 1-dimensional model, for wavelengths that are long relative to the largest lateral dimension of the tube. Consider a tube of time-varying length $L$ $=L(t)$ (in m) defined over spatial domain $x\in [0, L]$ and time $t\geq 0$. Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order partial differential equations (PDEs) describing the wave propagation in an acoustic tube can then be written as:
+Wave propagation in an acoustic tube can be approximated using a 1-dimensional (1D) model, for wavelengths that are long relative to the largest lateral dimension of the tube. Consider a tube of time-varying length $L$ $=L(t)$ (in m) defined over spatial domain $x\in [0, L]$ and time $t\geq 0$. Using operators $\partial_t$ and $\partial_x$ denoting partial derivatives with respect to time $t$ and spatial coordinate $x$, respectively, a system of first-order partial differential equations (PDEs) describing the wave propagation in an acoustic tube can then be written as:
 \begin{subequations}\label{eq:firstOrderSystem}
     \begin{align}
-        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv)\label{eq:contPressure}\\
-        \rho_0\partial_tv &= -\partial_xp\label{eq:contVelocity}
+        \frac{S}{\rho_0 c^2}\partial_t p &= -\partial_x(Sv),\label{eq:contPressure}\\
+        \rho_0\partial_tv &= -\partial_xp,\label{eq:contVelocity}
     \end{align}
 \end{subequations}
 with acoustic pressure $p = p(x,t)$ (in N/m$^2$), particle velocity $v = v(x,t)$ (in m/s) and (circular) cross-sectional area $S(x)$ (in m$^2$). Furthermore, $\rho_0$ is the density of air (in kg/m$^3$) and $c$ is the speed of sound in air (in m/s). System \eqref{eq:firstOrderSystem} can be condensed into a second-order equation in $p$ alone, often referred to as Webster's equation \cite{Webster19}.  %\SWcomment[Interesting! In NSS it is the acoustic potential right? Can you go from that to a second-order PDE in $p$? There is a time-derivative hidden there somewhere right? (Just wondering :))]\SBcomment[Yes, the form in $p$ alone is the one you usually see. You get it by differentiating the first equation, giving you a $\dot{v}$ on the RHS, and then you can substitute the second equation in...I used the velocity potential one because it has direct energy balance properties. ] \SWcomment[Right. So Webster's eq. in $p$ and $\Psi$ are identical (will exhibit identical behaviour), except for the unit of the state variable..?]\SBcomment[yes that's right...using the velocity potential allows you to do all the energy analysis easily, in terms of physical impedances. But the scheme you get to in the end is the same, just one derivative down.] \SWcomment[Alright cool! Thanks for the explanation :)] 
@@ -42,7 +42,7 @@ with displacement from the equilibrium $y = y(t)$, lip mass $M_\text{r}$ (in kg)
 We extend the existing models of lip reeds \cite{campbell2004brass} by introducing a nonlinear collision between the lips based on potential quadratisation proposed by \cite{Ducceschi2021}. The collision potential is defined as
 \begin{equation}
     \psi(\eta) = \left(\frac{2K_\text{c}}{\alpha_\text{c}+1}[\eta]_+^{\alpha_\text{c}+1}
-    \right)^{1/2}
+    \right)^{1/2}\!,
 \end{equation}
 % \begin{equation*}
 %     K_\text{c}>0, \quad \alpha_\text{c}\geq 1, \quad \eta\triangleq -y-H_0

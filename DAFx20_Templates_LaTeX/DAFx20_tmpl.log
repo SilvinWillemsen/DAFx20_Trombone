@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  17 APR 2021 12:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  10 JUN 2021 13:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1174,16 +1174,12 @@ Package epstopdf Info: Source file: <Figures/tromboneSchematic.eps>
 (epstopdf)                    date: 2021-04-17 12:31:23
 (epstopdf)                    size: 117113 bytes
 (epstopdf)             Output file: <Figures/tromboneSchematic-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-17 12:30:19
-(epstopdf)                    size: 113139 bytes
+(epstopdf)                    date: 2021-04-17 12:32:26
+(epstopdf)                    size: 116131 bytes
 (epstopdf)             Command: <repstopdf --outfile=Figures/tromboneSchematic-eps-converted-to.pdf Figures/tromboneSchematic.eps>
 (epstopdf)             \includegraphics on input line 3.
-runsystem(repstopdf --outfile=Figures/tromboneSchematic-eps-converted-to.pdf Figures/tromboneSchematic.eps)...executed safely (allowed).
-
-Package epstopdf Info: Result file: <Figures/tromboneSchematic-eps-converted-to.pdf>
-(epstopdf)                    date: 2021-04-17 12:32:26
-(epstopdf)                    size: 116131 bytes.
- <Figures/tromboneSchematic-eps-converted-to.pdf, id=197, 1304.875pt x 351.3125pt>
+Package epstopdf Info: Output file is already uptodate.
+ <Figures/tromboneSchematic-eps-converted-to.pdf, id=202, 1304.875pt x 351.3125pt>
 File: Figures/tromboneSchematic-eps-converted-to.pdf Graphic file (type pdf)
  <use Figures/tromboneSchematic-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/tromboneSchematic-eps-converted-to.pdf used on input line 3.
@@ -1193,55 +1189,19 @@ Overfull \hbox (5.58553pt too wide) in paragraph at lines 16--18
 []\T1/ptm/m/n/9 We can split a tube with time-varying length $\OML/cmm/m/it/9 L[]$ \T1/ptm/m/n/9 into two smaller
  []
 
-
-Underfull \vbox (badness 6641) has occurred while \output is active []
-
- [3]
-Underfull \vbox (badness 4181) has occurred while \output is active []
+[3]
+Underfull \vbox (badness 3471) has occurred while \output is active []
 
  [4 </Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/Figures/tromboneSchematic-eps-converted-to.pdf>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 147.
+(hyperref)                removing `math shift' on input line 146.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 147.
+(hyperref)                removing `math shift' on input line 146.
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [5]) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/implementation.tex
-Overfull \hbox (3.64346pt too wide) in paragraph at lines 2--3
-\T1/ptm/m/n/9 The al-go-rithm has been im-ple-mented in C++ us-ing the JUCE frame-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--65
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--65
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--65
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 65--65
-
- []
-
-
-Overfull \hbox (3.04147pt too wide) in paragraph at lines 65--67
-[][] 
- []
-
-(/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/tromboneTikz.tex
+) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/implementation.tex [5] (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/tromboneTikz.tex
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
@@ -1262,14 +1222,39 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) [6] <Figures/GUI.png, id=378, 793.96625pt x 588.1975pt>
+) [6] <Figures/GUI.png, id=363, 793.96625pt x 588.1975pt>
 File: Figures/GUI.png Graphic file (type png)
  <use Figures/GUI.png>
-Package pdftex.def Info: Figures/GUI.png used on input line 157.
+Package pdftex.def Info: Figures/GUI.png used on input line 84.
 (pdftex.def)             Requested size: 237.5805pt x 176.00287pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 157--158
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 84--85
  [][] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 205--205
+
+ []
+
+
+Overfull \hbox (3.04147pt too wide) in paragraph at lines 205--207
+[][] 
  []
 
 ) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/discussion.tex [7 </Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/Figures/GUI.png>]) (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/sections/conclusion.tex)
@@ -1277,17 +1262,14 @@ Overfull \hbox (1.03458pt too wide) in paragraph at lines 328--333
 \T1/ptm/m/n/9 Nordic Sound and Mu-sic Com-put-ing Net-work Nordic-SMC, project
  []
 
-(/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.bbl [8])
+(/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.bbl) [8]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 338.
- [9
-
-]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 338.
  (/Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 338.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 338.
 Package rerunfilecheck Info: File `DAFx20_tmpl.out' has not changed.
-(rerunfilecheck)             Checksum: 069D66ED63E820B1BC4F4C60781A2120;1427.
+(rerunfilecheck)             Checksum: B56FD5B5E1E5E6254972427AF530199D;1505.
  )
 (\end occurred inside a group at level 1)
 
@@ -1295,18 +1277,18 @@ Package rerunfilecheck Info: File `DAFx20_tmpl.out' has not changed.
 ### bottom level
 (\end occurred when \ifx on line 149 was incomplete) 
 Here is how much of TeX's memory you used:
- 21529 strings out of 493014
- 395195 string characters out of 6133351
- 483986 words of memory out of 5000000
- 24480 multiletter control sequences out of 15000+600000
- 47568 words of font info for 72 fonts, out of 8000000 for 9000
+ 21535 strings out of 493014
+ 395271 string characters out of 6133351
+ 485055 words of memory out of 5000000
+ 24482 multiletter control sequences out of 15000+600000
+ 51803 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,92p,2304b,6444s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (9 pages, 503200 bytes).
+Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (8 pages, 503112 bytes).
 PDF statistics:
- 515 PDF objects out of 1000 (max. 8388607)
- 446 compressed objects within 5 object streams
- 125 named destinations out of 1000 (max. 500000)
- 203 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 520 PDF objects out of 1000 (max. 8388607)
+ 452 compressed objects within 5 object streams
+ 126 named destinations out of 1000 (max. 500000)
+ 211 words of extra memory for PDF output out of 10000 (max. 10000000)
 

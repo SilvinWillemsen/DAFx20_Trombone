@@ -1,7 +1,7 @@
 \begin{figure*}[t]
     \centering
     \includegraphics[width = \textwidth]{Figures/tromboneSchematic.eps}
-    \caption{\it Schematic showing data flow of how different grid points at time index $n+1$ are calculated with $\alpha = 0.25$ in Eq. \eqref{eq:alphaDef}. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case, the points required to calculate $p_2^{n+1}$ are shown (refer to Eq. \eqref{eq:updateNormal}). Furthermore, the points needed to calculate $p_{M^n}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M^n+1}^n$ and $q_{-1}^n$ 
+    \caption{\it Schematic showing data flow of how different grid points at time index $n+1$ are calculated with $\alpha = 0.25$ in Eq. \eqref{eq:alphaDef}. To prevent cluttering, arrows going straight up (indicating that the state of a grid point at time step $n$ is needed to calculate the state of that grid point at $n+1$) are suppressed. As an example of the usual case (refer to Eq. \eqref{eq:updateNormal}), the points required to calculate $p_2^{n+1}$ are shown. Furthermore, the points needed to calculate $p_{M^n}^{n+1}$ and $q_0^{n+1}$ are shown. The most important difference with the usual case is that the virtual grid points $p_{M^n+1}^n$ and $q_{-1}^n$ 
     are the result of the interpolation of known pressure values at $n$ using Eq. \eqref{eq:connectionInterpol}. %and velocity values at $n+1/2$ respectively
     %
     %\SWcomment[Seemingly, $q_0^n$ is not calculated from anything, but it is simply $q_0^{n+1}$ time-shifted back. The same would be shown for $v_{M_p+1/2}^{n-1/2}$, but the figure does not go back-in-time more than this.]
@@ -9,7 +9,7 @@
 \end{figure*}
 
 \section{Dynamic grid}\label{sec:dynamicGrid}
-The defining feature of the trombone is its slide that alters the length of the tube, changing the resonant frequencies. In a companion paper \cite{Willemsen2021}, we present a method to dynamically change grid configurations of FD schemes by inserting and deleting grid points based on an instantaneous value of the time varying wave speed $c(t)$. Although here, the tube length $L(t)$ is varied, the method still applies. %\SWcomment[So that's the thing. We're changing $c$ in the other paper, but $L$ here. Could change this to "an instantaneous value of the time varying wave speed $c(t)$. Although here, the tube length $L(t)$ is varied, the method still applies."] Though \cite{Willemsen2021} shows changes in the wavespeed $c$ rather than the length $L$, the effect of a change in either of these parameters has an identical effect on these systems \SWcomment[as long as the geometry is unchanged for the grid points.] Leaving $c$ fixed also means that grid spacing $h$ does not change during the simulation, but rather the spatial domain of the system. 
+The defining feature of the trombone is its slide that alters the length of the tube, changing the resonant frequencies. In a companion paper \cite{Willemsen2021}, we present a method to dynamically change grid configurations of FD schemes by inserting and deleting grid points based on an instantaneous value of the time-varying wave speed $c(t)$. Although here, the tube length $L(t)$ is varied, the method still applies. %\SWcomment[So that's the thing. We're changing $c$ in the other paper, but $L$ here. Could change this to "an instantaneous value of the time varying wave speed $c(t)$. Although here, the tube length $L(t)$ is varied, the method still applies."] Though \cite{Willemsen2021} shows changes in the wavespeed $c$ rather than the length $L$, the effect of a change in either of these parameters has an identical effect on these systems \SWcomment[as long as the geometry is unchanged for the grid points.] Leaving $c$ fixed also means that grid spacing $h$ does not change during the simulation, but rather the spatial domain of the system. 
 Note that this method only works for slow (sub-audio rate) parameter changes.
 %\SBcomment[Not quite clear---in this paper, is it $c$ changing, or $L$? You might not need all this explanation of the equivalence between changing $c$ and $L$. ] \SWcomment[I'm changing $L$ so $c$ -- and $h$ -- are fixed. I just wanted to show that this method also works when changing another variable, but I guess the other paper already clarifies that.. Planning to remove "Though \cite{Willemsen2021} shows...spatial domain of the system." ]
 
@@ -26,11 +26,11 @@ We can split a tube with time-varying length $L^n$ into two smaller sections wit
         \rho_0 \delta_{t-}w_{\lq-1/2}^{n+1/2}&=-\delta_{x-}q_\lq^n.\label{eq:discVelocityW}
     \end{align}
 \end{subequations}
-Here, due to the different indexing for $w$, the spatial derivatives for the right system are flipped. Also note, that $l$ is still used for the spatial indices of $\bar S$ and $S$ which now approximate $S(x)$ according to
+Here, due to the different indexing for $w$, the spatial derivatives for the right system are flipped ($\delta_{x+}$ became $\delta_{x-}$ and vice versa). Also note, that $l$ is still used for the spatial indices of $\bar S$ and $S$ which now approximate $S(x)$ according to
 \begin{equation}
 S_l \approx \begin{cases}
-     S(x=lh) & \text{for } x\in [0, L_p^n]\\
-     S(x=L^n-(M_q^n-l)h) & \text{for } x\in [L_p^n, L^n]
+     S(x=lh) & \text{for } x\in [0, L_p^n],\\
+     S(x=L^n-(M_q^n-l)h) & \text{for } x\in [L_p^n, L^n].
 \end{cases}
 \end{equation} 
 The conditions for the outer boundaries of this system, i.e., at $\lp = 0$ and $\lq = M_q^n$, are the same as for the full system. The inner boundaries, $\lp = M^n$ and $\lq = 0$ are connected according to the method described in \cite{Willemsen2021} to be explained shortly.
@@ -42,7 +42,7 @@ In the following, the location of a grid point $u_l$ along the grid (in m from t
 The two pairs of first order systems in \eqref{eq:firstOrderPairs} are placed on the same domain $x$ with
 \begin{equation}\label{eq:gridLocations}
     x_{p_\lp}^n = \lp h, \quad \text{and}\quad
-    x_{q_\lq}^n = L^n-(M_q^n - \lq)h
+    x_{q_\lq}^n = L^n-(M_q^n - \lq)h,
 \end{equation}
 describing the locations of the left system and right system respectively. Here, it can be observed that as the tube length $L^n$ changes, the locations of the grid points of the right system will change. More specifically, as the trombone-slide is extended and $L^n$ increases, all grid points of the right system move to the right, and to the left for a contracting slide. If $L^n$ is changed in a smooth fashion, the continuous domain $x \in [0,L^n]$ will not necessarily be subdivided into an integer amount of intervals $N^n$ (of size $h = ck$). This is where a \textit{fractional} number of intervals is introduced and is defined as 
 \begin{equation}\label{eq:nfrac}
@@ -66,7 +66,7 @@ If $\alpha \neq 0$, some other definition for $p_{{M^n}+1}^n$ and $q_{-1}^n$ nee
         =-\frac{\alpha - 1}{\alpha + 1}p_{M^n-1}^n + p_{M^n}^n+ \frac{\alpha - 1}{\alpha + 1}q_{0}^n\label{eq:calcQm1},
 \end{align}
 \end{subequations}
-which can then be used to calculate $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_{M^n}^{n+1}$ and $q_0^{n+1}$ (see Figure \ref{fig:dynamicGridSchematic}). This process repeats every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M^n+1}^n = q_1^n$ and $q_{-1}^n = p_{M^n-1}^n$ as stated before.
+which can then be used to calculate $v_{M^n+1/2}^{n+1/2}$ and $w_{-1/2}^{n+1/2}$ and consequently $p_{M^n}^{n+1}$ and $q_0^{n+1}$ (see Figure \ref{fig:dynamicGridSchematic}). This process is repeated every sample. It can be shown through the rigid connection in \eqref{eq:rigidConn}, that if $\alpha=0$, the definitions in \eqref{eq:connectionInterpol} reduce to $p_{M^n+1}^n = q_1^n$ and $q_{-1}^n = p_{M^n-1}^n$ as stated before.
 
 \subsection{Adding and removing grid points}\label{sec:addRemove}
 As the tube length $L^n$ changes, $L_p^n$ and $L_q^n$ also change according to
@@ -81,13 +81,13 @@ which causes the number of intervals between grid points $M^n$ and $M_q^n$ to ch
 
 The following state vectors are introduced for the pressure, defined for $n+1$ and $n$ %\SWcomment[($n-1$ is used later on for the state correction, say something about that here or leave for Section \ref{sec:impStateCorr}..?)]
 \begin{equation}
-    \mathbf{p}^n = [p_0^n, p_1^n, ..., p_{M^n}^n]^T,\ \mathbf{q}^n = [q_0^n, q_1^n, ..., q_{M_q^n}^n]^T
+    \mathbf{p}^n = [p_0^n, p_1^n, ..., p_{M^n}^n]^T,\ \mathbf{q}^n = [q_0^n, q_1^n, ..., q_{M_q^n}^n]^T,
 \end{equation}
 and for the velocity, defined for $n+1/2$ and $n-1/2$
 \begin{equation}
     \begin{aligned}
-        \mathbf{v}^{n-1/2} &=  [v_{1/2}^{n-1/2}, v_{3/2}^{n-1/2}, ..., v_{M^n+1/2}^{n-1/2}]^T\\
-        \mathbf{w}^{n-1/2} &=  [w_{-1/2}^{n-1/2}, w_{1/2}^{n-1/2}, ..., w_{M_q^n-1/2}^{n-1/2}]^T
+        \mathbf{v}^{n-1/2} &=  [v_{1/2}^{n-1/2}, v_{3/2}^{n-1/2}, ..., v_{M^n+1/2}^{n-1/2}]^T,\\
+        \mathbf{w}^{n-1/2} &=  [w_{-1/2}^{n-1/2}, w_{1/2}^{n-1/2}, ..., w_{M_q^n-1/2}^{n-1/2}]^T,
     \end{aligned}
 \end{equation}
 and contain the different states over the discrete domains defined at the beginning of this section. Here, $T$ denotes the transpose operation.
@@ -115,21 +115,20 @@ where
         %     \mathbf{v}_\star^n &= [w_1^n, w_0^n, u_M^n, u_{M-1}^n],
     \end{aligned}
 \end{equation}
-cubic Lagrangian interpolator
+and cubic Lagrangian interpolator
 \begin{equation}\label{eq:customIp}
     I_3 = \begin{bmatrix} -\frac{\alpha(\alpha+1)}{(\alpha+2)(\alpha+3)} &\frac{2\alpha}{\alpha+2} &\frac{2}{\alpha+2} 
     &-\frac{2\alpha}{(\alpha+3)(\alpha+2)}
-    \end{bmatrix},
+    \end{bmatrix}.
 \end{equation}
-and 
+Here, 
 \begin{equation}\label{eq:offsetVec}
     \boldsymbol{\eta} = \boldsymbol{\eta}^{n-1/2}= \left(w_{-1/2}^{n-1/2}-v_{M^n+1/2}^{n
     -1/2}\right)\cdot[0, 0, 1, 1]^T 
 \end{equation}
-adds an offset to half of the $\mathbf{z}$ vectors depending on the difference between $v_{M^n+1/2}^{n-1/2}$ and $w_{-1/2}^{n-1/2}$. Why this is necessary will be further explained in Section \ref{sec:drift}. Finally, $I_3^\flip$ and $\boldsymbol{\eta}^{\flip}$ are flipped versions of \eqref{eq:customIp} and \eqref{eq:offsetVec} respectively.
+adds an offset to half of the elements in the $\mathbf{z}$ vectors depending on the difference between $v_{M^n+1/2}^{n-1/2}$ and $w_{-1/2}^{n-1/2}$. Why this is necessary will be further explained in Section \ref{sec:drift}. Finally, $I_3^\flip$ and $\boldsymbol{\eta}^{\flip}$ are flipped versions of \eqref{eq:customIp} and \eqref{eq:offsetVec} respectively.
 
 If $N^n < N^{n-1}$, points are simply removed from the vectors according to
-
 \begin{equation}\label{eq:removingPoint}
     \begin{aligned}
         &\!\!\!\!\!\!\begin{cases}
@@ -147,7 +146,7 @@ Notice that the even and odd conditions in Eqs. \eqref{eq:addingPoint} and \eqre
 \subsection{Drift of $w$}\label{sec:drift}
 The inner boundaries of the pressure states $p$ and $q$ are connected by \eqref{eq:connectionInterpol}, but no such connection exists for the velocity states $v$ and $w$. As the radiating boundary is implemented on the pressure grid, this leaves $w$ without any boundary condition; it is only ``held in place'' by the pressure values of $q$, or more specifically, by derivatives (both spatial and temporal). As FD schemes are an approximation, it does not give a perfect solution and $w$ tends to `drift' during the simulation, especially when $L^n$ is changed.
 
-Luckily, as the pressure values are also calculated from derivatives of the velocity, the absolute state of $w$ does not matter. The difference in values at the connection point is also irrelevant as there is no spatial derivative taken between $v$ and $w$ (refer to Figure \ref{fig:dynamicGridSchematic}). Finally, the pressure values are used for the output audio of the simulation, so the drift does not cause any audible artefacts. 
+Luckily, as the pressure values are also calculated from derivatives of the velocity, the absolute state of $w$ does not matter. The difference in values at the connection point is also irrelevant as there is no spatial derivative taken between $v$ and $w$ (refer to Figure \ref{fig:dynamicGridSchematic}). Finally, the pressure values are used for the output audio of the simulation, so the drift does not affect the audio. 
 
 The absolute states of the velocity vectors do, however, need to be accounted for when adding points to the $\mathbf{v}$ and $\mathbf{w}$ using \eqref{eq:addingPoint}. The current drift can be approximated by observing the difference between $w_{-1/2}^{n-1/2}$ and $v_{M^n+1/2}^{n-1/2}$, as these have approximately the same $x$ location ($x_{w_{-1/2}}^n \approx x_{v_{M^n+1/2}}^n$) when a grid point is added. This is then used in a drift-correction vector $\boldsymbol{\eta}^{n-1/2}$ presented in \eqref{eq:offsetVec}. When a point is added to $v$, the values of $w$ in $\mathbf{z}_{v}$ are offset by the aforementioned difference and when a point is added to $w$ the same happens (inverted) for the values of $v$ in $\mathbf{z}_w$. This way, the drift is allowed, but does not affect the state of the newly added grid points. Notice that the drift does not affect the operations of point removal in \eqref{eq:removingPoint}.
 
@@ -157,11 +156,11 @@ As $L^n$, and consequently the number of grid points, is decreased, it might occ
 We propose in \cite{Willemsen2021} to add an artificial spring-like connection between the grid points at the inner boundaries that ``corrects'' the state of these points. Applying this to system \eqref{eq:firstOrderPairs} extends Eqs. \eqref{eq:discPressureP} and \eqref{eq:discPressureQ} according to
 \begin{subequations}\label{eq:pressuresWithSC}
     \begin{align}
-        \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}p_\lp^n &= -\delta_{x-}(S_{\lg+1/2}v_{\lp+1/2}^{n+1/2}) + J_p(x_{p_{M^n}}^n)F_\text{sc}^n\label{eq:pWithSC}\\
-        \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}q_\lq^n &= -\delta_{x+}(S_{\lg-1/2}w_{\lq-1/2}^{n+1/2}) - J_q(x_{q_0}^n)F_\text{sc}^n\label{eq:qWithSC}
+        \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}p_\lp^n &= -\delta_{x-}(S_{\lg+1/2}v_{\lp+1/2}^{n+1/2}) + J_p(x_{p_{M^n}}^n)F_\text{sc}^n,\label{eq:pWithSC}\\
+        \frac{\bar S_\lg}{\rho_0 c^2}\delta_{t+}q_\lq^n &= -\delta_{x+}(S_{\lg-1/2}w_{\lq-1/2}^{n+1/2}) - J_q(x_{q_0}^n)F_\text{sc}^n,\label{eq:qWithSC}
     \end{align}
 \end{subequations}
-where spreading operators
+where the spreading operators are defined as
 \begin{equation}\label{eq:spreadingOperators}
     \begin{aligned}
     J_p(x_i^n)& =
@@ -177,18 +176,18 @@ where spreading operators
     \end{cases}
 \end{aligned}
 \end{equation}
-Furthermore, correction effect
+Furthermore, the correction effect is defined as
 \begin{equation}\label{eq:scForce}
     F_\text{sc}^n = \beta\left(\mu_{t\cdot}\eta_\text{sc}^n+\sigma_\text{sc}\delta_{t\cdot}\eta_\text{sc}^n\right),
 \end{equation}
 % (in m$^{3}$/s)\SWcomment[..units stop making sense here as this is an artificial connection ``force''.. might just exclude them?]
 with spring damping $\sigma_\text{sc}$, pressure difference
 \begin{equation}
-    \eta_\text{sc}^n \triangleq q_0^n - p_{M^n}^n
+    \eta_\text{sc}^n \triangleq q_0^n - p_{M^n}^n,
 \end{equation} 
 and scaling coefficient
 \begin{equation}\label{eq:betaDef}
-    \beta = \beta(\alpha) = \frac{1-\alpha}{\alpha+\varepsilon},
+    \beta = \beta(\alpha) = \frac{1-\alpha}{\alpha+\varepsilon}.
 \end{equation}
-where $\varepsilon\ll 1$ to prevent division by 0. Just like in \cite{Willemsen2021}, the implementation of the correction effect allows for an infinite $\beta$ when $\alpha = \varepsilon = 0$ acting like a rigid connection between Eqs. \eqref{eq:pWithSC} and \eqref{eq:qWithSC}.
+Here, $\varepsilon\ll 1$ to prevent division by 0. Just like in \cite{Willemsen2021}, the implementation of the correction effect allows for an infinite $\beta$ when $\alpha = \varepsilon = 0$ acting like a rigid connection between Eqs. \eqref{eq:pWithSC} and \eqref{eq:qWithSC}.
 % One can write the entire system above in matrix form by concatenating...
