@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  10 JUN 2021 13:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.11.3)  23 JUN 2021 16:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1222,38 +1222,38 @@ Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-) [6] <Figures/GUI.png, id=363, 793.96625pt x 588.1975pt>
+) <Figures/GUI.png, id=349, 793.96625pt x 588.1975pt>
 File: Figures/GUI.png Graphic file (type png)
  <use Figures/GUI.png>
-Package pdftex.def Info: Figures/GUI.png used on input line 84.
+Package pdftex.def Info: Figures/GUI.png used on input line 85.
 (pdftex.def)             Requested size: 237.5805pt x 176.00287pt.
 
-Overfull \hbox (0.79999pt too wide) in paragraph at lines 84--85
+Overfull \hbox (0.79999pt too wide) in paragraph at lines 85--86
  [][] 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 205--205
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
 
  []
 
 
-Overfull \hbox (3.04147pt too wide) in paragraph at lines 205--207
+Underfull \hbox (badness 10000) in paragraph at lines 206--206
+
+ []
+
+
+Overfull \hbox (3.04147pt too wide) in paragraph at lines 206--208
 [][] 
  []
 
@@ -1279,13 +1279,13 @@ Package rerunfilecheck Info: File `DAFx20_tmpl.out' has not changed.
 Here is how much of TeX's memory you used:
  21535 strings out of 493014
  395271 string characters out of 6133351
- 485055 words of memory out of 5000000
+ 488444 words of memory out of 5000000
  24482 multiletter control sequences out of 15000+600000
  51803 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  55i,18n,92p,2304b,6444s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2016/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmmib9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (8 pages, 503112 bytes).
+Output written on /Users/SilvinW/repositories/DAFx20_Trombone/DAFx20_Templates_LaTeX/DAFx20_tmpl.pdf (8 pages, 503071 bytes).
 PDF statistics:
  520 PDF objects out of 1000 (max. 8388607)
  452 compressed objects within 5 object streams
